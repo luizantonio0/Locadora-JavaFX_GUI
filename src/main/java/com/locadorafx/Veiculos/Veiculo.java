@@ -1,12 +1,12 @@
-package Veiculos;
+package com.locadorafx.Veiculos;
 
-import Interface.IVeiculo;
-import Clientes.Cliente;
-import Veiculos.Atributos.Placa;
-import Veiculos.Marca.Marca;
-import Veiculos.Estado.Estado;
-import Veiculos.Categoria.Categoria;
-import Veiculos.Locacao.Locacao;
+import com.locadorafx.Interface.IVeiculo;
+import com.locadorafx.Clientes.Cliente;
+import com.locadorafx.Veiculos.Atributos.Placa;
+import com.locadorafx.Veiculos.Marca.Marca;
+import com.locadorafx.Veiculos.Estado.Estado;
+import com.locadorafx.Veiculos.Categoria.Categoria;
+import com.locadorafx.Veiculos.Locacao.Locacao;
 
 import java.time.LocalDateTime;
 import java.time.Year;

@@ -1,10 +1,10 @@
-package Interface;
+package com.locadorafx.Interface;
 
-import Clientes.Cliente;
-import Veiculos.Marca.Marca;
-import Veiculos.Estado.Estado;
-import Veiculos.Categoria.Categoria;
-import Veiculos.Locacao.Locacao;
+import com.locadorafx.Clientes.Cliente;
+import com.locadorafx.Veiculos.Marca.Marca;
+import com.locadorafx.Veiculos.Estado.Estado;
+import com.locadorafx.Veiculos.Categoria.Categoria;
+import com.locadorafx.Veiculos.Locacao.Locacao;
 
 import java.time.LocalDateTime;
 

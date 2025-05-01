@@ -15,7 +15,7 @@
       <Button layoutX="532.0" layoutY="434.0" mnemonicParsing="false" onAction="#voltarTela" prefHeight="48.0" prefWidth="112.0" />
       <ImageView fitHeight="620.0" fitWidth="1000.0">
          <image>
-            <Image url="@../Untitled%20(2).png" />
+            <Image url="@images/Untitled (2).png" />
          </image>
       </ImageView>
       <TextField fx:id="textFieldPlaca" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" text="INSERIR MASCARA">

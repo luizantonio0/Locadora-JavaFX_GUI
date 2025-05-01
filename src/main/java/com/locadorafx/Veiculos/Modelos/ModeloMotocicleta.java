@@ -1,4 +1,4 @@
-package Veiculos.Modelos;
+package com.locadorafx.Veiculos.Modelos;
 
 public enum ModeloMotocicleta {
     //HONDA

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -7,16 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.cadastrarClienteController">
    <children>
-      <Button layoutX="532.0" layoutY="434.0" mnemonicParsing="false" onAction="#voltarTela" prefHeight="48.0" prefWidth="112.0" />
-      <Button layoutX="654.0" layoutY="434.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="48.0" prefWidth="118.0" />
       <ImageView fitHeight="620.0" fitWidth="1000.0">
          <image>
-            <Image url="@../Untitled%20(4).png" />
+            <Image url="@images/Untitled (4).png" />
          </image>
       </ImageView>
+      <Button layoutX="532.0" layoutY="434.0" mnemonicParsing="false" onAction="#voltarTela" opacity="0.0" prefHeight="48.0" prefWidth="112.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="654.0" layoutY="434.0" mnemonicParsing="false" onAction="#cadastrarCliente" opacity="0.0" prefHeight="48.0" prefWidth="118.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <TextField fx:id="textFieldRG" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
          <font>
             <Font size="14.0" />

@@ -1,14 +1,14 @@
-package Clientes;
+package com.locadorafx.Clientes;
 
-import Clientes.Atributos.CPF;
-import Clientes.Atributos.Email;
-import Clientes.Atributos.RG;
+import com.locadorafx.Clientes.Atributos.CPF;
+import com.locadorafx.Clientes.Atributos.Email;
+import com.locadorafx.Clientes.Atributos.RG;
 
 public abstract sealed class Pessoa permits Cliente {
 
-    public Pessoa(String nome, String cpf, String email, String rg, String endereco) {
+    public Pessoa(String nome, String sobrenome, String cpf, String email, String rg, String endereco) {
         this.nome = nome;
-        this.sobrenome = nome;
+        this.sobrenome = sobrenome;
         this.cpf = new CPF(cpf);
         this.email = new Email(email);
         this.rg = new RG(rg);
