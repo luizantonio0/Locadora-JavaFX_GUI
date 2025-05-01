@@ -37,7 +37,7 @@ public class loginController {
 
     @FXML
     void sendFormLogin() throws IOException {
-        //Não está compilando pois não consegue identificar a biblioteca jasypt, erro de modulo
+        //Não está compilando pois não consegue identificar a biblioteca jasypt, erro de modulo.
         //BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         //Buscar dados do banco de Dados banco de dados
         //passwordEncryptor.checkPassword(textFieldSenha.getText(), "Senha obtida do banco de dados");
