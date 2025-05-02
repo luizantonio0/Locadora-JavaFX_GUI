@@ -1,4 +1,4 @@
-package com.locadorafx.Veiculos.Modelos;
+package com.locadorafx.Models.Veiculos.Modelos;
 
 public enum ModeloAutomovel {
     //VW

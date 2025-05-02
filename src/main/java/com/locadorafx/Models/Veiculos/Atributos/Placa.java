@@ -1,4 +1,4 @@
-package com.locadorafx.Veiculos.Atributos;
+package com.locadorafx.Models.Veiculos.Atributos;
 
 public record Placa(String placa) {
 

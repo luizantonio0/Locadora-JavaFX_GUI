@@ -1,17 +1,17 @@
-package com.locadorafx.Veiculos;
+package com.locadorafx.Models.Veiculos;
 
-import com.locadorafx.Interface.IVeiculo;
-import com.locadorafx.Clientes.Cliente;
-import com.locadorafx.Veiculos.Atributos.Placa;
-import com.locadorafx.Veiculos.Marca.Marca;
-import com.locadorafx.Veiculos.Estado.Estado;
-import com.locadorafx.Veiculos.Categoria.Categoria;
-import com.locadorafx.Veiculos.Locacao.Locacao;
+import com.locadorafx.Models.Interface.IVeiculo;
+import com.locadorafx.Models.Clientes.Cliente;
+import com.locadorafx.Models.Veiculos.Atributos.Placa;
+import com.locadorafx.Models.Veiculos.Marca.Marca;
+import com.locadorafx.Models.Veiculos.Estado.Estado;
+import com.locadorafx.Models.Veiculos.Categoria.Categoria;
+import com.locadorafx.Models.Veiculos.Locacao.Locacao;
 
 import java.time.LocalDateTime;
 import java.time.Year;
 
-public abstract sealed class Veiculo implements IVeiculo permits Automovel {
+public abstract sealed class Veiculo implements IVeiculo permits Automovel, Motocicleta, Van {
     //Alterar heranças, Adicionar herança para van e motocicleta
 
 
@@ -84,6 +84,18 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel {
     public void devolver(){
         this.locacao = null;
         this.estado = Estado.DISPONIVEL;
+    }
+
+    public double getValorParaVenda(){
+
+        int idadeVeiculo = LocalDateTime.now().getYear() - this.ano.getValue();
+        double tempValorCompra = getValorCompra();
+
+        double valorVenda = tempValorCompra - idadeVeiculo * 0.15 * tempValorCompra;
+
+        if (valorVenda < tempValorCompra * 0.1) {valorVenda = tempValorCompra*0.1;}
+
+        return valorVenda;
     }
 
 }

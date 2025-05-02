@@ -1,4 +1,4 @@
-package com.locadorafx.Clientes.Atributos;
+package com.locadorafx.Models.Clientes.Atributos;
 
 public record RG(String rg) {
 

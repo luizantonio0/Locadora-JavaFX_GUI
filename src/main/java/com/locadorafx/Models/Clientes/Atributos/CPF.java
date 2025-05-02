@@ -1,4 +1,4 @@
-package com.locadorafx.Clientes.Atributos;
+package com.locadorafx.Models.Clientes.Atributos;
 
 public record CPF(String cpf) {
     public CPF(String cpf) {

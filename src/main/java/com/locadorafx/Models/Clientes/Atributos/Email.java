@@ -1,4 +1,4 @@
-package com.locadorafx.Clientes.Atributos;
+package com.locadorafx.Models.Clientes.Atributos;
 
 import java.util.regex.Pattern;
 
