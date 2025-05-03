@@ -63,7 +63,7 @@ public class locarCarro1Controller {
     private static int ordemCarros = 0;
     public static Veiculo veiculoSelecionado;
     //Lista temporaria para testes substitir por conexao com banco de dados posteriormente
-    private static List<Veiculo> veiculos = new ArrayList<>();
+    private static final List<Veiculo> veiculos = new ArrayList<>();
 
     public void initialize() {
         Veiculo gol = new Automovel("AAA0A00", 50000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.POPULAR, 1, ModeloAutomovel.GOL);
