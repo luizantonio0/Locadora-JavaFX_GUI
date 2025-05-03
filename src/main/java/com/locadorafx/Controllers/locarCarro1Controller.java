@@ -74,9 +74,9 @@ public class locarCarro1Controller {
         Veiculo van2 = new Van("BBB0B00", 100000, Year.of(2010), Marca.GM, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloVan.MASTER);
         Veiculo van3 = new Van("CCC0C00", 200000, Year.of(2024), Marca.Mercedes, Estado.DISPONIVEL, Categoria.LUXO,  ModeloVan.SPRINTER);
 
-        Veiculo moto1 = new Motocicleta("AAA0A00", 50000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloMotocicleta.CG150);
-        Veiculo moto2 = new Motocicleta("BBB0B00", 100000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloMotocicleta.CB300F);
-        Veiculo moto3 = new Motocicleta("CCC0C00", 200000, Year.of(2024), Marca.Honda, Estado.DISPONIVEL, Categoria.LUXO,  ModeloMotocicleta.CBR1000);
+        Veiculo moto1 = new Motocicleta("AAA0A00", 5000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloMotocicleta.CG150);
+        Veiculo moto2 = new Motocicleta("BBB0B00", 10000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloMotocicleta.CB300F);
+        Veiculo moto3 = new Motocicleta("CCC0C00", 20000, Year.of(2024), Marca.Honda, Estado.DISPONIVEL, Categoria.LUXO,  ModeloMotocicleta.CBR1000);
 
         veiculos.add(gol); veiculos.add(virtus); veiculos.add(jetta);
         veiculos.add(van1); veiculos.add(van2); veiculos.add(van3);
