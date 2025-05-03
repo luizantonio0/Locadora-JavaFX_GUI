@@ -60,7 +60,7 @@ public class locarCarro1Controller {
     @FXML
     private Label TextFieldModelo3;
 
-    private static int ordemCarros = 0;
+    private static short ordemCarros = 0;
     public static Veiculo veiculoSelecionado;
     //Lista temporaria para testes substitir por conexao com banco de dados posteriormente
     private static final List<Veiculo> veiculos = new ArrayList<>();
