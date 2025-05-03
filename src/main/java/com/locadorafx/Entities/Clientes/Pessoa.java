@@ -1,8 +1,8 @@
-package com.locadorafx.Models.Clientes;
+package com.locadorafx.Entities.Clientes;
 
-import com.locadorafx.Models.Clientes.Atributos.CPF;
-import com.locadorafx.Models.Clientes.Atributos.Email;
-import com.locadorafx.Models.Clientes.Atributos.RG;
+import com.locadorafx.Entities.Clientes.Atributos.CPF;
+import com.locadorafx.Entities.Clientes.Atributos.Email;
+import com.locadorafx.Entities.Clientes.Atributos.RG;
 
 public abstract sealed class Pessoa permits Cliente {
 

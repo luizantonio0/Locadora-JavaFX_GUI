@@ -4,7 +4,7 @@ import com.locadorafx.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.jasypt.util.password.BasicPasswordEncryptor;
+//import org.jasypt.util.password.BasicPasswordEncryptor;
 
 import java.io.IOException;
 
@@ -37,10 +37,10 @@ public class loginController {
 
     @FXML
     void sendFormLogin() throws IOException {
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        String cpfEncriptado = passwordEncryptor.encryptPassword(textFieldCPF.getText());
+        //BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        //String cpfEncriptado = passwordEncryptor.encryptPassword(textFieldCPF.getText());
         //Buscar dados do banco de Dados banco de dados
-        boolean teste = passwordEncryptor.checkPassword(textFieldSenha.getText(), cpfEncriptado);
+        //passwordEncryptor.checkPassword(textFieldSenha.getText(), cpfEncriptado);
         App.setRoot("locarCarro1-View");
 
     }

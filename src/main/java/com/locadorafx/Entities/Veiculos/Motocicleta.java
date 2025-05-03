@@ -1,9 +1,9 @@
-package com.locadorafx.Models.Veiculos;
+package com.locadorafx.Entities.Veiculos;
 
-import com.locadorafx.Models.Veiculos.Categoria.Categoria;
-import com.locadorafx.Models.Veiculos.Estado.Estado;
-import com.locadorafx.Models.Veiculos.Marca.Marca;
-import com.locadorafx.Models.Veiculos.Modelos.ModeloMotocicleta;
+import com.locadorafx.Entities.Veiculos.Categoria.Categoria;
+import com.locadorafx.Entities.Veiculos.Estado.Estado;
+import com.locadorafx.Entities.Veiculos.Marca.Marca;
+import com.locadorafx.Entities.Veiculos.Modelos.ModeloMotocicleta;
 
 import java.time.Year;
 
@@ -15,6 +15,11 @@ public final class Motocicleta extends Veiculo{
     }
 
     private final ModeloMotocicleta modelo;
+
+    public ModeloMotocicleta getModelo() {
+        return modelo;
+    }
+
     //------------------------------------------------------------------------------------
     @Override
     public String toString() {

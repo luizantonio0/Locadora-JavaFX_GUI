@@ -1,4 +1,4 @@
-package com.locadorafx.Models.Clientes;
+package com.locadorafx.Entities.Clientes;
 
 public final class Cliente extends Pessoa{
 

@@ -1,7 +1,7 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
-import com.locadorafx.Models.Clientes.Cliente;
+import com.locadorafx.Entities.Clientes.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

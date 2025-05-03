@@ -1,6 +1,6 @@
-package com.locadorafx.Models.Veiculos.Locacao;
+package com.locadorafx.Entities.Veiculos.Locacao;
 
-import com.locadorafx.Models.Clientes.Cliente;
+import com.locadorafx.Entities.Clientes.Cliente;
 
 import java.time.LocalDateTime;
 
