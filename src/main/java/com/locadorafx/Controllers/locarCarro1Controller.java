@@ -11,8 +11,10 @@ import com.locadorafx.Entities.Veiculos.Modelos.ModeloVan;
 import com.locadorafx.Entities.Veiculos.Motocicleta;
 import com.locadorafx.Entities.Veiculos.Van;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+import com.locadorafx.Controllers.CarregarDadosVeiculo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -60,12 +62,21 @@ public class locarCarro1Controller {
     @FXML
     private Label TextFieldModelo3;
 
+    @FXML
+    private Button btnLocar01;
+
+    @FXML
+    private Button btnLocar02;
+
+    @FXML
+    private Button btnLocar03;
+
     private static short ordemCarros = 0;
     public static Veiculo veiculoSelecionado;
     //Lista temporaria para testes substitir por conexao com banco de dados posteriormente
     private static final List<Veiculo> veiculos = new ArrayList<>();
 
-    public void initialize() {
+    public void initialize(){
         Veiculo gol = new Automovel("AAA0A00", 50000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.POPULAR, 1, ModeloAutomovel.GOL);
         Veiculo virtus = new Automovel("BBB0B00", 100000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.INTEMERIARIO, 2, ModeloAutomovel.VIRTUS);
         Veiculo jetta = new Automovel("CCC0C00", 200000, Year.of(2024), Marca.VW, Estado.DISPONIVEL, Categoria.LUXO, 3, ModeloAutomovel.JETTA);
@@ -83,6 +94,7 @@ public class locarCarro1Controller {
         veiculos.add(moto1); veiculos.add(moto2); veiculos.add(moto3);
 
         carregarCarros(veiculos);
+
 
     }
 
@@ -113,7 +125,15 @@ public class locarCarro1Controller {
 
     @FXML
     void locarVeiculo(ActionEvent event) throws IOException {
-        veiculoSelecionado = veiculos.get(ordemCarros);
+        var btn = event.getSource();
+
+        veiculoSelecionado = switch (btn.toString()){
+            case "Button[id=btnLocar01, styleClass=button]''" -> veiculos.get(ordemCarros);
+            case "Button[id=btnLocar02, styleClass=button]''" -> veiculos.get(ordemCarros+1);
+            case "Button[id=btnLocar03, styleClass=button]''" -> veiculos.get(ordemCarros+2);
+            default -> null;
+        };
+
         App.setRoot("locarCarro2-View");
     }
 
@@ -127,38 +147,22 @@ public class locarCarro1Controller {
 
     private void carregarCarros(List<Veiculo> veiculos) {
 
-        carregarPreco(TexFieldPrice1, ordemCarros);
-        carregarPreco(TexFieldPrice2, ordemCarros+1);
-        carregarPreco(TexFieldPrice3, ordemCarros+2);
+        CarregarDadosVeiculo.carregarPreco(TexFieldPrice1, veiculos.get(ordemCarros));
+        CarregarDadosVeiculo.carregarPreco(TexFieldPrice2, veiculos.get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarPreco(TexFieldPrice3, veiculos.get(ordemCarros+2));
 
-        carregarCategoria(TextFieldCategoria1, ordemCarros);
-        carregarCategoria(TextFieldCategoria2, ordemCarros+1);
-        carregarCategoria(TextFieldCategoria3, ordemCarros+2);
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria1, veiculos.get(ordemCarros));
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria2, veiculos.get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria3, veiculos.get(ordemCarros+2));
 
-        carregarMarca(TextFieldMarca1, ordemCarros);
-        carregarMarca(TextFieldMarca2, ordemCarros+1);
-        carregarMarca(TextFieldMarca3, ordemCarros+2);
+        CarregarDadosVeiculo.carregarMarca(TextFieldMarca1, veiculos.get(ordemCarros));
+        CarregarDadosVeiculo.carregarMarca(TextFieldMarca2, veiculos.get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarMarca(TextFieldMarca3, veiculos.get(ordemCarros+2));
 
-        carregarModelo(veiculos.get(ordemCarros), TextFieldModelo1);
-        carregarModelo(veiculos.get(ordemCarros+1), TextFieldModelo2);
-        carregarModelo(veiculos.get(ordemCarros+2), TextFieldModelo3);
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo1, veiculos.get(ordemCarros));
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo2, veiculos.get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo3, veiculos.get(ordemCarros+2));
 
-    }
-    private void carregarPreco(Label preco, int index){
-        preco.setText("R$ %.2f".formatted((veiculos.get(index).getValorDiariaLocacao())));
-    }
-    private void carregarCategoria(Label categoria, int index){
-        categoria.setText(veiculos.get(index).getCategoria().toString());
-    }
-    private void carregarMarca(Label marca, int index){
-        marca.setText(veiculos.get(index).getMarca().toString());
-    }
-    private void carregarModelo(Veiculo veiculo, Label modelo){
-        modelo.setText(switch (veiculo) {
-            case Automovel a -> a.getModelo().toString();
-            case Motocicleta m -> m.getModelo().toString();
-            case Van v -> v.getModelo().toString();
-        });
     }
 }
 

@@ -9,25 +9,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.locarCarro2Controller">
    <children>
-      <Button layoutX="515.0" layoutY="435.0" mnemonicParsing="false" onAction="#voltarTela" prefHeight="39.0" prefWidth="116.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="647.0" layoutY="435.0" mnemonicParsing="false" onAction="#locar" prefHeight="39.0" prefWidth="116.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <ImageView fitHeight="620.0" fitWidth="1000.0">
          <image>
             <Image url="@images/Untitled (3).png" />
          </image>
       </ImageView>
-      <TextField layoutX="573.0" layoutY="317.0" />
+      <Button layoutX="515.0" layoutY="435.0" mnemonicParsing="false" onAction="#voltarTela" opacity="0.0" prefHeight="39.0" prefWidth="116.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="647.0" layoutY="435.0" mnemonicParsing="false" onAction="#locar" opacity="0.0" prefHeight="39.0" prefWidth="116.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="textFieldDias" layoutX="573.0" layoutY="317.0" text="1" />
       <Label fx:id="TextFieldMarca" alignment="CENTER" layoutX="572.0" layoutY="145.0" prefHeight="31.0" prefWidth="150.0" textAlignment="CENTER">
          <font>
             <Font size="18.0" />

@@ -20,6 +20,7 @@ public interface IVeiculo {
     int getAno();
     double getValorParaVenda();
     double getValorDiariaLocacao();
+    double getValorDiariaLocacao(int dias);
 
 
 }

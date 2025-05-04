@@ -35,4 +35,12 @@ public final class Van extends Veiculo {
             case Categoria.LUXO -> 600.00;
         };
     }
+    public double getValorDiariaLocacao(int dias){
+        if (dias <= 0){return 0;}
+        return switch (super.getCategoria()){
+            case Categoria.POPULAR -> 200.00 * dias;
+            case Categoria.INTEMERIARIO -> 400.00 * dias;
+            case Categoria.LUXO -> 600.00 * dias;
+        };
+    }
 }

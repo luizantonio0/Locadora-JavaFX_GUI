@@ -42,4 +42,13 @@ public final class Automovel extends Veiculo{
             case Categoria.LUXO -> 450.00;
          };
     }
+
+    public double getValorDiariaLocacao(int dias){
+        if (dias <= 0){return 0;}
+        return switch (super.getCategoria()){
+            case Categoria.POPULAR -> 100.00 * dias;
+            case Categoria.INTEMERIARIO -> 300.00 * dias;
+            case Categoria.LUXO -> 450.00 * dias;
+        };
+    }
 }

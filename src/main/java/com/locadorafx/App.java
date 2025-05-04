@@ -17,6 +17,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+        //stage.getIcons().add(new Image(getClass().getResourceAsStream("@/logo.png")));
     }
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));

@@ -34,4 +34,12 @@ public final class Motocicleta extends Veiculo{
             case Categoria.LUXO -> 350.00;
         };
     }
+    public double getValorDiariaLocacao(int dias){
+        if (dias <= 0){return 0;}
+        return switch (super.getCategoria()){
+            case Categoria.POPULAR -> 70.00 * dias;
+            case Categoria.INTEMERIARIO -> 200.00 * dias;
+            case Categoria.LUXO -> 350.00 * dias;
+        };
+    }
 }
