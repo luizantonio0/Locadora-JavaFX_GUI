@@ -62,18 +62,10 @@ public class locarCarro1Controller {
     @FXML
     private Label TextFieldModelo3;
 
-    @FXML
-    private Button btnLocar01;
 
-    @FXML
-    private Button btnLocar02;
-
-    @FXML
-    private Button btnLocar03;
-
-    private static short ordemCarros = 0;
-    public static Veiculo veiculoSelecionado;
-    //Lista temporaria para testes substitir por conexao com banco de dados posteriormente
+    private static int ordemCarros = 0;
+    protected static Veiculo veiculoSelecionado;
+    //Lista temporaria para testes, substitir por conexao com banco de dados posteriormente
     private static final List<Veiculo> veiculos = new ArrayList<>();
 
     public void initialize(){
@@ -114,9 +106,11 @@ public class locarCarro1Controller {
     }
 
     @FXML
-    void avancar(ActionEvent event) {
-        if (ordemCarros != veiculos.size()-3){
-            ordemCarros += 3;
+    void avancar() {
+        if (ordemCarros == veiculos.size()-3){
+            ordemCarros = 0;
+        } else {
+            ordemCarros +=3;
         }
 
         carregarCarros(veiculos);
@@ -138,8 +132,10 @@ public class locarCarro1Controller {
     }
 
     @FXML
-    void voltar(ActionEvent event) {
-        if (ordemCarros != 0){
+    void voltar() {
+        if (ordemCarros == 0){
+            ordemCarros = veiculos.size()-3;
+        } else{
             ordemCarros -= 3;
         }
         carregarCarros(veiculos);

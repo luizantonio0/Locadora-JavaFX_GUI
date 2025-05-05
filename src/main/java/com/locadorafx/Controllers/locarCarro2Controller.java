@@ -2,20 +2,20 @@ package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
 import com.locadorafx.Entities.Veiculos.Automovel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.locadorafx.Entities.Veiculos.Locacao.Locacao;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.time.temporal.ChronoUnit;
 
 import static com.locadorafx.Controllers.locarCarro1Controller.veiculoSelecionado;
 
 public class locarCarro2Controller {
 
     @FXML
-    private static Label TexFieldPrice;
+    private Label TexFieldPrice;
 
     @FXML
     private Label TextFieldCategoria;
@@ -26,27 +26,35 @@ public class locarCarro2Controller {
     @FXML
     private Label TextFieldModelo;
     @FXML
-    private TextField textFieldDias;
+    private DatePicker datePickerInicio;
 
+    @FXML
+    private DatePicker datePickerTermino;
+
+    private int diasLocacao;
+
+    private double valorDiariaLocacao;
 
     public void initialize() {
-
-        CarregarDadosVeiculo.carregarCategoria(TextFieldModelo, veiculoSelecionado);
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria, veiculoSelecionado);
         CarregarDadosVeiculo.carregarMarca(TextFieldMarca, veiculoSelecionado);
-        CarregarDadosVeiculo.carregarModelo(TextFieldCategoria, veiculoSelecionado);
-
-        //criar listener para mudar o preço conforme o input
-        textFieldDias.textProperty().addListener((observable, oldValue, newValue) -> {
-            TexFieldPrice.setText("R$ %.2f".formatted(veiculoSelecionado.getValorDiariaLocacao(Integer.parseInt(textFieldDias.getText()))));
-        });
-
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo, veiculoSelecionado);
     }
 
+    @FXML
+    void calcularDiasLocacao() {
+        if (datePickerInicio.getValue() != null && datePickerTermino.getValue() != null) {
 
+            diasLocacao = ((int) ChronoUnit.DAYS.between(datePickerInicio.getValue(), datePickerTermino.getValue()) +1);
+            valorDiariaLocacao = veiculoSelecionado.getValorDiariaLocacao(diasLocacao);
+
+            TexFieldPrice.setText("R$ %.2f".formatted(valorDiariaLocacao));
+        }
+    }
 
     @FXML
     void locar() {
-
+        //Instanciar nova locação
 
     }
 
