@@ -1,4 +1,4 @@
-package com.locadorafx.Entities.Veiculos.Marca;
+package com.locadorafx.Entities.Veiculos.Atributos.Marca;
 
 public enum Marca {
     VW,

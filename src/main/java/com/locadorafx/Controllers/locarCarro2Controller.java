@@ -1,8 +1,7 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
-import com.locadorafx.Entities.Veiculos.Automovel;
-import com.locadorafx.Entities.Veiculos.Locacao.Locacao;
+import com.locadorafx.Entities.Locadora.Locadora;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;

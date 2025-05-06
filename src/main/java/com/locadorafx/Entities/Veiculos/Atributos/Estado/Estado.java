@@ -1,4 +1,4 @@
-package com.locadorafx.Entities.Veiculos.Estado;
+package com.locadorafx.Entities.Veiculos.Atributos.Estado;
 
 public enum Estado {
     LOCADO,

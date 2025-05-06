@@ -1,10 +1,10 @@
-package com.locadorafx.Entities.Interface;
+package com.locadorafx.Entities.Veiculos.Interface;
 
 import com.locadorafx.Entities.Clientes.Cliente;
-import com.locadorafx.Entities.Veiculos.Marca.Marca;
-import com.locadorafx.Entities.Veiculos.Estado.Estado;
-import com.locadorafx.Entities.Veiculos.Categoria.Categoria;
-import com.locadorafx.Entities.Veiculos.Locacao.Locacao;
+import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
+import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
+import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
+import com.locadorafx.Entities.Locacao.Locacao;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.locadorafx.Entities.Veiculos.Categoria;
+package com.locadorafx.Entities.Veiculos.Atributos.Categoria;
 
 public enum Categoria {
     POPULAR,

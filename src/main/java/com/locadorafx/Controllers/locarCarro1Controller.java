@@ -1,26 +1,13 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
-import com.locadorafx.Entities.Veiculos.Automovel;
-import com.locadorafx.Entities.Veiculos.Categoria.Categoria;
-import com.locadorafx.Entities.Veiculos.Estado.Estado;
-import com.locadorafx.Entities.Veiculos.Marca.Marca;
-import com.locadorafx.Entities.Veiculos.Modelos.ModeloAutomovel;
-import com.locadorafx.Entities.Veiculos.Modelos.ModeloMotocicleta;
-import com.locadorafx.Entities.Veiculos.Modelos.ModeloVan;
-import com.locadorafx.Entities.Veiculos.Motocicleta;
-import com.locadorafx.Entities.Veiculos.Van;
+import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Veiculo;
-import com.locadorafx.Controllers.CarregarDadosVeiculo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.time.Year;
-import java.util.ArrayList;
-import java.util.List;
 
 public class locarCarro1Controller {
 
@@ -65,29 +52,9 @@ public class locarCarro1Controller {
 
     private static int ordemCarros = 0;
     protected static Veiculo veiculoSelecionado;
-    //Lista temporaria para testes, substitir por conexao com banco de dados posteriormente
-    private static final List<Veiculo> veiculos = new ArrayList<>();
 
     public void initialize(){
-        Veiculo gol = new Automovel("AAA0A00", 50000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.POPULAR, 1, ModeloAutomovel.GOL);
-        Veiculo virtus = new Automovel("BBB0B00", 100000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.INTEMERIARIO, 2, ModeloAutomovel.VIRTUS);
-        Veiculo jetta = new Automovel("CCC0C00", 200000, Year.of(2024), Marca.VW, Estado.DISPONIVEL, Categoria.LUXO, 3, ModeloAutomovel.JETTA);
-
-        Veiculo van1 = new Van("AAA0A00", 50000, Year.of(2010), Marca.Fiat, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloVan.DUCATO);
-        Veiculo van2 = new Van("BBB0B00", 100000, Year.of(2010), Marca.GM, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloVan.MASTER);
-        Veiculo van3 = new Van("CCC0C00", 200000, Year.of(2024), Marca.Mercedes, Estado.DISPONIVEL, Categoria.LUXO,  ModeloVan.SPRINTER);
-
-        Veiculo moto1 = new Motocicleta("AAA0A00", 5000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloMotocicleta.CG150);
-        Veiculo moto2 = new Motocicleta("BBB0B00", 10000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloMotocicleta.CB300F);
-        Veiculo moto3 = new Motocicleta("CCC0C00", 20000, Year.of(2024), Marca.Honda, Estado.DISPONIVEL, Categoria.LUXO,  ModeloMotocicleta.CBR1000);
-
-        veiculos.add(gol); veiculos.add(virtus); veiculos.add(jetta);
-        veiculos.add(van1); veiculos.add(van2); veiculos.add(van3);
-        veiculos.add(moto1); veiculos.add(moto2); veiculos.add(moto3);
-
-        carregarCarros(veiculos);
-
-
+        carregarCarros();
     }
 
     @FXML
@@ -107,14 +74,12 @@ public class locarCarro1Controller {
 
     @FXML
     void avancar() {
-        if (ordemCarros == veiculos.size()-3){
+        if (ordemCarros == Locadora.getEstoque().size()-3){
             ordemCarros = 0;
         } else {
             ordemCarros +=3;
         }
-
-        carregarCarros(veiculos);
-
+        carregarCarros();
     }
 
     @FXML
@@ -122,9 +87,9 @@ public class locarCarro1Controller {
         var btn = event.getSource();
 
         veiculoSelecionado = switch (btn.toString()){
-            case "Button[id=btnLocar01, styleClass=button]''" -> veiculos.get(ordemCarros);
-            case "Button[id=btnLocar02, styleClass=button]''" -> veiculos.get(ordemCarros+1);
-            case "Button[id=btnLocar03, styleClass=button]''" -> veiculos.get(ordemCarros+2);
+            case "Button[id=btnLocar01, styleClass=button]''" -> Locadora.getEstoque().get(ordemCarros);
+            case "Button[id=btnLocar02, styleClass=button]''" -> Locadora.getEstoque().get(ordemCarros+1);
+            case "Button[id=btnLocar03, styleClass=button]''" -> Locadora.getEstoque().get(ordemCarros+2);
             default -> null;
         };
 
@@ -134,31 +99,30 @@ public class locarCarro1Controller {
     @FXML
     void voltar() {
         if (ordemCarros == 0){
-            ordemCarros = veiculos.size()-3;
+            ordemCarros = Locadora.getEstoque().size()-3;
         } else{
             ordemCarros -= 3;
         }
-        carregarCarros(veiculos);
+        carregarCarros();
     }
 
-    private void carregarCarros(List<Veiculo> veiculos) {
+    private void carregarCarros() {
 
-        CarregarDadosVeiculo.carregarPreco(TexFieldPrice1, veiculos.get(ordemCarros));
-        CarregarDadosVeiculo.carregarPreco(TexFieldPrice2, veiculos.get(ordemCarros+1));
-        CarregarDadosVeiculo.carregarPreco(TexFieldPrice3, veiculos.get(ordemCarros+2));
+        CarregarDadosVeiculo.carregarPreco(TexFieldPrice1, Locadora.getEstoque().get(ordemCarros));
+        CarregarDadosVeiculo.carregarPreco(TexFieldPrice2, Locadora.getEstoque().get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarPreco(TexFieldPrice3, Locadora.getEstoque().get(ordemCarros+2));
 
-        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria1, veiculos.get(ordemCarros));
-        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria2, veiculos.get(ordemCarros+1));
-        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria3, veiculos.get(ordemCarros+2));
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria1, Locadora.getEstoque().get(ordemCarros));
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria2, Locadora.getEstoque().get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarCategoria(TextFieldCategoria3, Locadora.getEstoque().get(ordemCarros+2));
 
-        CarregarDadosVeiculo.carregarMarca(TextFieldMarca1, veiculos.get(ordemCarros));
-        CarregarDadosVeiculo.carregarMarca(TextFieldMarca2, veiculos.get(ordemCarros+1));
-        CarregarDadosVeiculo.carregarMarca(TextFieldMarca3, veiculos.get(ordemCarros+2));
+        CarregarDadosVeiculo.carregarMarca(TextFieldMarca1, Locadora.getEstoque().get(ordemCarros));
+        CarregarDadosVeiculo.carregarMarca(TextFieldMarca2, Locadora.getEstoque().get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarMarca(TextFieldMarca3, Locadora.getEstoque().get(ordemCarros+2));
 
-        CarregarDadosVeiculo.carregarModelo(TextFieldModelo1, veiculos.get(ordemCarros));
-        CarregarDadosVeiculo.carregarModelo(TextFieldModelo2, veiculos.get(ordemCarros+1));
-        CarregarDadosVeiculo.carregarModelo(TextFieldModelo3, veiculos.get(ordemCarros+2));
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo1, Locadora.getEstoque().get(ordemCarros));
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo2, Locadora.getEstoque().get(ordemCarros+1));
+        CarregarDadosVeiculo.carregarModelo(TextFieldModelo3, Locadora.getEstoque().get(ordemCarros+2));
 
     }
 }
-

@@ -1,4 +1,4 @@
-package com.locadorafx.Entities.Veiculos.Modelos;
+package com.locadorafx.Entities.Veiculos.Atributos.Modelos;
 
 public enum ModeloVan {
     //POPULAR

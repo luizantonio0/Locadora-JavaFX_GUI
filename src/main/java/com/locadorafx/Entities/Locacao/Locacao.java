@@ -1,4 +1,4 @@
-package com.locadorafx.Entities.Veiculos.Locacao;
+package com.locadorafx.Entities.Locacao;
 
 import com.locadorafx.Entities.Clientes.Cliente;
 

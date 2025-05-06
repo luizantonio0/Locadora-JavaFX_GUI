@@ -1,9 +1,9 @@
 package com.locadorafx.Entities.Veiculos;
 
-import com.locadorafx.Entities.Veiculos.Categoria.Categoria;
-import com.locadorafx.Entities.Veiculos.Estado.Estado;
-import com.locadorafx.Entities.Veiculos.Marca.Marca;
-import com.locadorafx.Entities.Veiculos.Modelos.ModeloMotocicleta;
+import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
+import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
+import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
+import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 
 import java.time.Year;
 
