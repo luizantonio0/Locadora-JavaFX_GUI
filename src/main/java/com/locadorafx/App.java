@@ -1,5 +1,9 @@
 package com.locadorafx;
 
+import java.io.IOException;
+import java.time.Year;
+import java.util.List;
+
 import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
@@ -11,22 +15,19 @@ import com.locadorafx.Entities.Veiculos.Automovel;
 import com.locadorafx.Entities.Veiculos.Motocicleta;
 import com.locadorafx.Entities.Veiculos.Van;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.time.Year;
-import java.util.List;
-
 public class App extends Application {
     private static Scene scene;
     private static final List<Veiculo> veiculos = Locadora.getEstoque();
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(/*"login-View"*/  "cadastrarVeiculo-View"), 1000, 620);
+        scene = new Scene(loadFXML(/*"login-View"*/  /* */"cadastrarVeiculo-View"), 1000, 620);
         stage.setTitle("Locadora");
         stage.setScene(scene);
         stage.show();
@@ -49,7 +50,7 @@ public class App extends Application {
             Veiculo jetta = new Automovel("CCC0C00", 200000, Year.of(2024), Marca.VW, Estado.DISPONIVEL, Categoria.LUXO, 3, ModeloAutomovel.JETTA);
 
             Veiculo van1 = new Van("AAA0A00", 50000, Year.of(2010), Marca.Fiat, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloVan.DUCATO);
-            Veiculo van2 = new Van("BBB0B00", 100000, Year.of(2010), Marca.GM, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloVan.MASTER);
+            Veiculo van2 = new Van("BBB0B00", 100000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.POPULAR, ModeloVan.KOMBI);
             Veiculo van3 = new Van("CCC0C00", 200000, Year.of(2024), Marca.Mercedes, Estado.DISPONIVEL, Categoria.LUXO,  ModeloVan.SPRINTER);
 
             Veiculo moto1 = new Motocicleta("AAA0A00", 5000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloMotocicleta.CG150);
