@@ -27,6 +27,14 @@ public final class Automovel extends Veiculo{
     public ModeloAutomovel getModelo() {
         return this.modelo;
     }
+    @Override
+    public Categoria getCategoria() {
+        return modelo.categoria;
+    }
+    @Override
+    public Marca getMarca() {
+        return modelo.marca;
+    }
     //------------------------------------------------------------------------------------
 
     @Override

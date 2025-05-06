@@ -26,7 +26,7 @@ public class App extends Application {
     private static final List<Veiculo> veiculos = Locadora.getEstoque();
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login-View"), 1000, 620);
+        scene = new Scene(loadFXML(/*"login-View"*/  "cadastrarVeiculo-View"), 1000, 620);
         stage.setTitle("Locadora");
         stage.setScene(scene);
         stage.show();

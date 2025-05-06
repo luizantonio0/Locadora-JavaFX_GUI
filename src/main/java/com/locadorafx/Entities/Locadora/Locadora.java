@@ -8,8 +8,8 @@ import java.util.List;
 public class Locadora {
     private static List<Veiculo> estoque = new ArrayList<>();
 
-    public void adicionarVeiculo(Veiculo veiculo) {
-        this.estoque.add(veiculo);
+    public static void adicionarVeiculo(Veiculo veiculo) {
+        estoque.add(veiculo);
     }
 
     public static List<Veiculo> getEstoque() {

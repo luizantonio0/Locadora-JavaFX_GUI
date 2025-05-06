@@ -26,6 +26,8 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     }
 
     //------------------------------------------------------------------------------------
+    //Remover propriedades marca e categoria, pois elas já estão em modelo
+    //Remover depois de finalizar com as classes van e motocicleta
     private final Placa placa;
     private final double valorCompra;
     private final Year ano;
