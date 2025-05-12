@@ -1,7 +1,6 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
-import com.locadorafx.Entities.Locadora.Locadora;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -31,7 +30,6 @@ public class locarCarro2Controller {
     private DatePicker datePickerTermino;
 
     private int diasLocacao;
-
     private double valorDiariaLocacao;
 
     public void initialize() {

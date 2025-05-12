@@ -22,8 +22,8 @@ public enum ModeloAutomovel {
     //AUDI
     A3(Marca.Audi, Categoria.POPULAR), Q3(Marca.Audi, Categoria.INTEMERIARIO), RS8(Marca.Audi, Categoria.LUXO);
 
-    public final Marca marca;
-    public final Categoria categoria;
+    private final Marca marca;
+    private final Categoria categoria;
 
     ModeloAutomovel(Marca marca, Categoria categoria) {
         this.marca = marca;
@@ -40,5 +40,11 @@ public enum ModeloAutomovel {
         return modeloAutomoveis;
     }
 
+    public Marca getMarca() {
+        return marca;
+    }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
 }

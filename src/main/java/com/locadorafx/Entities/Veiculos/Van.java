@@ -9,8 +9,8 @@ import java.time.Year;
 
 public final class Van extends Veiculo {
 
-    public Van(String placa, double valorCompra, Year ano, Marca marca, Estado estado, Categoria categoria, /*int id,*/ ModeloVan modelo) {
-        super(placa, valorCompra, ano, marca, estado, categoria/*, id*/);
+    public Van(String placa, double valorCompra, Year ano, Estado estado, /*int id,*/ ModeloVan modelo) {
+        super(placa, valorCompra, ano, estado/*, id*/);
         this.modelo = modelo;
     }
 
@@ -18,6 +18,15 @@ public final class Van extends Veiculo {
 
     public ModeloVan getModelo() {
         return modelo;
+    }
+
+    @Override
+    public Categoria getCategoria() {
+        return modelo.getCategoria();
+    }
+    @Override
+    public Marca getMarca() {
+        return modelo.getMarca();
     }
 
     //------------------------------------------------------------------------------------
@@ -29,7 +38,7 @@ public final class Van extends Veiculo {
     @Override
     public double getValorDiariaLocacao(){
 
-        return switch (super.getCategoria()){
+        return switch (getCategoria()){
             case Categoria.POPULAR -> 200.00;
             case Categoria.INTEMERIARIO -> 400.00;
             case Categoria.LUXO -> 600.00;
@@ -37,7 +46,7 @@ public final class Van extends Veiculo {
     }
     public double getValorDiariaLocacao(int dias){
         if (dias <= 0){return 0;}
-        return switch (super.getCategoria()){
+        return switch (getCategoria()){
             case Categoria.POPULAR -> 200.00 * dias;
             case Categoria.INTEMERIARIO -> 400.00 * dias;
             case Categoria.LUXO -> 600.00 * dias;

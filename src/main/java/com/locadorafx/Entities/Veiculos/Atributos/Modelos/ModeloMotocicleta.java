@@ -3,6 +3,9 @@ package com.locadorafx.Entities.Veiculos.Atributos.Modelos;
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum ModeloMotocicleta {
     //HONDA
     CG150(Marca.Honda, Categoria.POPULAR), CB300F(Marca.Honda, Categoria.INTEMERIARIO), CBR1000(Marca.Honda, Categoria.LUXO);
@@ -10,8 +13,25 @@ public enum ModeloMotocicleta {
     private final Marca marca;
     private final Categoria categoria;
 
-    private ModeloMotocicleta(Marca marca, Categoria categoria) {
+    ModeloMotocicleta(Marca marca, Categoria categoria) {
         this.marca = marca;
         this.categoria = categoria;
+    }
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public static List<ModeloMotocicleta> getModeloMotocicleta(Marca marca) {
+        List<ModeloMotocicleta> modelos = new ArrayList<>();
+        for (ModeloMotocicleta automovel : ModeloMotocicleta.values()) {
+            if (automovel.marca.equals(marca)) {
+                modelos.add(automovel);
+            }
+        }
+        return modelos;
     }
 }

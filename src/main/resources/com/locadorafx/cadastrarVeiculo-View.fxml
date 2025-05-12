@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,31 +16,31 @@
             <Image url="@images/Untitled (2).png" />
          </image>
       </ImageView>
-      <Button layoutX="654.0" layoutY="434.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" opacity="0.0" prefHeight="48.0" prefWidth="118.0" />
-      <Button layoutX="657.0" layoutY="434.0" mnemonicParsing="false" onAction="#voltarTela" opacity="0.0" prefHeight="48.0" prefWidth="112.0" />
-      <TextField fx:id="textFieldPlaca" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" text="INSERIR MASCARA">
+      <Button layoutX="654.0" layoutY="434.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" opacity="0.0" prefHeight="48.0" prefWidth="118.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="530.0" layoutY="434.0" mnemonicParsing="false" onAction="#voltarTela" opacity="0.0" prefHeight="48.0" prefWidth="118.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextField fx:id="textFieldPlaca" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldValor" layoutX="530.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" text="INSERIR MASCARA">
+      <TextField fx:id="textFieldValor" layoutX="530.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="comboBoxModelo" disable="true" layoutX="220.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" />
-      <ComboBox fx:id="comboBoxCategoria" layoutX="220.0" layoutY="265.0" prefHeight="35.0" prefWidth="242.0" />
-      <ComboBox fx:id="comboBoxEstado" layoutX="530.0" layoutY="265.0" prefHeight="35.0" prefWidth="242.0" />
-      <ComboBox fx:id="comboBoxMarca" layoutX="530.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" />
-      <TextField fx:id="textFieldAno" layoutX="220.0" layoutY="441.0" prefHeight="35.0" prefWidth="242.0" text="INSERIR MASCARA">
+      <ComboBox fx:id="comboBoxModelo" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" />
+      <ComboBox fx:id="comboBoxEstado" layoutX="530.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" />
+      <ComboBox fx:id="comboBoxMarca" layoutX="220.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" />
+      <TextField fx:id="textFieldAno" alignment="CENTER_RIGHT" layoutX="530.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="220.0" layoutY="404.0" text="Ano do veiculo" textFill="#b9aaaa">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

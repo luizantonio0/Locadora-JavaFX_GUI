@@ -9,8 +9,8 @@ import java.time.Year;
 
 public final class Motocicleta extends Veiculo{
 
-    public Motocicleta(String placa, double valorCompra, Year ano, Marca marca, Estado estado, Categoria categoria, /*int id,*/ ModeloMotocicleta modelo) {
-        super(placa, valorCompra, ano, marca, estado, categoria/*, id*/);
+    public Motocicleta(String placa, double valorCompra, Year ano, Estado estado, /*int id,*/ ModeloMotocicleta modelo) {
+        super(placa, valorCompra, ano, estado/*, id*/);
         this.modelo = modelo;
     }
 
@@ -18,6 +18,15 @@ public final class Motocicleta extends Veiculo{
 
     public ModeloMotocicleta getModelo() {
         return modelo;
+    }
+
+    @Override
+    public Categoria getCategoria() {
+        return modelo.getCategoria();
+    }
+    @Override
+    public Marca getMarca() {
+        return modelo.getMarca();
     }
 
     //------------------------------------------------------------------------------------
@@ -28,7 +37,7 @@ public final class Motocicleta extends Veiculo{
     @Override
     public double getValorDiariaLocacao(){
 
-        return switch (super.getCategoria()){
+        return switch (getCategoria()){
             case Categoria.POPULAR -> 70.00;
             case Categoria.INTEMERIARIO -> 200.00;
             case Categoria.LUXO -> 350.00;
@@ -36,7 +45,7 @@ public final class Motocicleta extends Veiculo{
     }
     public double getValorDiariaLocacao(int dias){
         if (dias <= 0){return 0;}
-        return switch (super.getCategoria()){
+        return switch (getCategoria()){
             case Categoria.POPULAR -> 70.00 * dias;
             case Categoria.INTEMERIARIO -> 200.00 * dias;
             case Categoria.LUXO -> 350.00 * dias;

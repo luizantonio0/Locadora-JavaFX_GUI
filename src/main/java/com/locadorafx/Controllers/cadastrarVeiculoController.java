@@ -2,27 +2,24 @@ package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
 import com.locadorafx.Entities.Locadora.Locadora;
-import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
-import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Automovel;
-import com.locadorafx.Entities.Veiculos.Motocicleta;
-import com.locadorafx.Entities.Veiculos.Van;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 import java.io.IOException;
 import java.time.Year;
 import java.util.List;
 
-public class cadastrarVeiculoController {
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.*;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
 
-    @FXML
-    private ComboBox<Categoria> comboBoxCategoria;
+public class cadastrarVeiculoController {
 
     @FXML
     private ComboBox<Estado> comboBoxEstado;
@@ -33,8 +30,6 @@ public class cadastrarVeiculoController {
     @FXML
     private ComboBox<ModeloAutomovel> comboBoxModelo;
 
-    protected static Veiculo tipoModelo;
-
     @FXML
     private TextField textFieldAno;
 
@@ -44,45 +39,48 @@ public class cadastrarVeiculoController {
     @FXML
     private TextField textFieldValor;
 
+    protected static Veiculo tipoModelo;
+
     public void initialize() {
 
         /*Mudar o desing da view e remover o comboBox Categoria, ela é definida quando o usuario escolhe o modelo. */
 
-
         comboBoxEstado.getItems().addAll(Estado.values());
         comboBoxMarca.getItems().addAll(Marca.values());
+
         //Ao definir um elemento javaFX como visible(false) ele é inacessivel. Usar para os 3 tipos diferentes de modelo.
+
         comboBoxMarca.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    List<ModeloAutomovel> modelos = ModeloAutomovel.getModeloAutomovel(comboBoxMarca.getValue());
+                    List<ModeloAutomovel> modelos = ModeloAutomovel.getModeloAutomovel(newValue);
+
                     comboBoxModelo.getItems().clear();
                     comboBoxModelo.getItems().addAll(modelos.toArray(new ModeloAutomovel[0]));
 
                     comboBoxModelo.setDisable(false);
-
-                }
-        );
-        comboBoxModelo.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-
-                    comboBoxCategoria.getItems().clear();
-                    comboBoxCategoria.getItems().add(comboBoxModelo.getValue().categoria);
-
-                }
-        );
+                });
+        textFieldAno.setTextFormatter(new TextFormatter<>(rolagemTextoAno()));
+        textFieldValor.setTextFormatter(new TextFormatter<>(rolagemTextoValor()));
+        textFieldPlaca.setTextFormatter(new TextFormatter<>(rolagemTextoPlaca()));
     }
 
     @FXML
     void cadastrarVeiculo() {
-        Veiculo automovel = new Automovel(textFieldPlaca.getText(), Double.parseDouble(textFieldValor.getText()), Year.parse(textFieldAno.getText()),
-                comboBoxMarca.getValue(), comboBoxEstado.getValue(), comboBoxCategoria.getValue(), 0, null);
+        StringBuilder valorString = new StringBuilder(textFieldValor.getText());
 
-        Locadora.adicionarVeiculo(automovel);
+        double valor = getDouble(valorString);
+
+        try {
+            Veiculo veiculo = new Automovel(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(), 0, comboBoxModelo.getValue());
+            Locadora.adicionarVeiculo(veiculo);
+            mensagemSucessoCarro();
+        } catch (IllegalArgumentException e){
+            mensagemErro(e.getMessage());
+        }
     }
 
     @FXML
     void voltarTela() throws IOException {
         App.setRoot("login-View");
     }
-
 }

@@ -5,9 +5,7 @@ import java.time.Year;
 import java.util.List;
 
 import com.locadorafx.Entities.Locadora.Locadora;
-import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
-import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
@@ -45,17 +43,17 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-            Veiculo gol = new Automovel("AAA0A00", 50000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.POPULAR, 1, ModeloAutomovel.GOL);
-            Veiculo virtus = new Automovel("BBB0B00", 100000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.INTEMERIARIO, 2, ModeloAutomovel.VIRTUS);
-            Veiculo jetta = new Automovel("CCC0C00", 200000, Year.of(2024), Marca.VW, Estado.DISPONIVEL, Categoria.LUXO, 3, ModeloAutomovel.JETTA);
+            Veiculo gol = new Automovel("AAA0A00", 50000, Year.of(2010), Estado.DISPONIVEL, 1, ModeloAutomovel.GOL);
+            Veiculo virtus = new Automovel("BBB0B00", 100000, Year.of(2010), Estado.DISPONIVEL, 2, ModeloAutomovel.VIRTUS);
+            Veiculo jetta = new Automovel("CCC0C00", 200000, Year.of(2024), Estado.DISPONIVEL, 3, ModeloAutomovel.JETTA);
 
-            Veiculo van1 = new Van("AAA0A00", 50000, Year.of(2010), Marca.Fiat, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloVan.DUCATO);
-            Veiculo van2 = new Van("BBB0B00", 100000, Year.of(2010), Marca.VW, Estado.DISPONIVEL, Categoria.POPULAR, ModeloVan.KOMBI);
-            Veiculo van3 = new Van("CCC0C00", 200000, Year.of(2024), Marca.Mercedes, Estado.DISPONIVEL, Categoria.LUXO,  ModeloVan.SPRINTER);
+            Veiculo van1 = new Van("AAA0A00", 50000, Year.of(2010), Estado.DISPONIVEL, ModeloVan.DUCATO);
+            Veiculo van2 = new Van("BBB0B00", 100000, Year.of(2010), Estado.DISPONIVEL, ModeloVan.KOMBI);
+            Veiculo van3 = new Van("CCC0C00", 200000, Year.of(2024), Estado.DISPONIVEL, ModeloVan.SPRINTER);
 
-            Veiculo moto1 = new Motocicleta("AAA0A00", 5000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.POPULAR,  ModeloMotocicleta.CG150);
-            Veiculo moto2 = new Motocicleta("BBB0B00", 10000, Year.of(2010), Marca.Honda, Estado.DISPONIVEL, Categoria.INTEMERIARIO, ModeloMotocicleta.CB300F);
-            Veiculo moto3 = new Motocicleta("CCC0C00", 20000, Year.of(2024), Marca.Honda, Estado.DISPONIVEL, Categoria.LUXO,  ModeloMotocicleta.CBR1000);
+            Veiculo moto1 = new Motocicleta("AAA0A00", 5000, Year.of(2010), Estado.DISPONIVEL, ModeloMotocicleta.CG150);
+            Veiculo moto2 = new Motocicleta("BBB0B00", 10000, Year.of(2010), Estado.DISPONIVEL, ModeloMotocicleta.CB300F);
+            Veiculo moto3 = new Motocicleta("CCC0C00", 20000, Year.of(2024), Estado.DISPONIVEL, ModeloMotocicleta.CBR1000);
 
             veiculos.add(gol); veiculos.add(virtus); veiculos.add(jetta);
             veiculos.add(van1); veiculos.add(van2); veiculos.add(van3);
