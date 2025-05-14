@@ -13,8 +13,16 @@ public record Placa(String placa) {
         return placa;
     }
 
+    public String removeHifen(String placa) {
+        StringBuilder sb = new StringBuilder(placa);
+        sb.deleteCharAt(3);
+        return sb.toString();
+    }
+
     public boolean  validarPlaca(String string) {
         //Formato da Placa "XXX-0X00"
+        if (string.length() > 7) { string = removeHifen(string); }
+        
         if (string.length() != 7) { return false; }
 
             for (int i = 0; i < 7; i++){

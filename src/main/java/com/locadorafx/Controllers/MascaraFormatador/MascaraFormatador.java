@@ -1,10 +1,10 @@
 package com.locadorafx.Controllers.MascaraFormatador;
 
-import javafx.scene.control.TextFormatter;
-
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.function.UnaryOperator;
+
+import javafx.scene.control.TextFormatter;
 
 public class MascaraFormatador {
 
@@ -51,11 +51,11 @@ public class MascaraFormatador {
             if (change.getText().isEmpty()){
                 return change;
             }
-            if (!change.getText().matches("^[A-Za-z0-9]+$")) {
+            if (!change.getText().matches("^[A-Za-z0-9-]+$")) {
                 return null;
             }
 
-            if (novoValor.length() >= 7) {
+            if (novoValor.length() >= 8) {
                 novoValor.deleteCharAt(0);
             }
 
