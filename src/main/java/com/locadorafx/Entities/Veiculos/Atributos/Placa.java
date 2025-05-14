@@ -4,7 +4,7 @@ public record Placa(String placa) {
 
     public Placa(String placa){
         if (validarPlaca(placa)){
-            this.placa = placa;
+            this.placa = placa.toUpperCase();
         } else {throw new IllegalArgumentException("A placa é invalida");}
     }
 

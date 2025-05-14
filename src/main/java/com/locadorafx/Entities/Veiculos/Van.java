@@ -9,7 +9,7 @@ import java.time.Year;
 
 public final class Van extends Veiculo {
 
-    public Van(String placa, double valorCompra, Year ano, Estado estado, /*int id,*/ ModeloVan modelo) {
+    Van(String placa, double valorCompra, Year ano, Estado estado, /*int id,*/ ModeloVan modelo) {
         super(placa, valorCompra, ano, estado/*, id*/);
         this.modelo = modelo;
     }

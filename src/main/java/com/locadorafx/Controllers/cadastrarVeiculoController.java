@@ -5,8 +5,8 @@ import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
-import com.locadorafx.Entities.Veiculos.Automovel;
-import com.locadorafx.Entities.Veiculos.Veiculo;
+import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
+import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -14,10 +14,11 @@ import javafx.scene.control.TextFormatter;
 
 import java.io.IOException;
 import java.time.Year;
-import java.util.List;
 
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.*;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
+import static com.locadorafx.Controllers.SceneController.ComboBoxInitialize.ComboBoxInitializeModelo;
+import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 
 public class cadastrarVeiculoController {
 
@@ -31,6 +32,12 @@ public class cadastrarVeiculoController {
     private ComboBox<ModeloAutomovel> comboBoxModelo;
 
     @FXML
+    private ComboBox<ModeloMotocicleta> comboBoxModeloMotocicleta;
+
+    @FXML
+    private ComboBox<ModeloVan> comboBoxModeloVan;
+
+    @FXML
     private TextField textFieldAno;
 
     @FXML
@@ -39,25 +46,32 @@ public class cadastrarVeiculoController {
     @FXML
     private TextField textFieldValor;
 
-    protected static Veiculo tipoModelo;
+    protected static short tipoVeiculo = 0;
 
     public void initialize() {
 
-        /*Mudar o desing da view e remover o comboBox Categoria, ela é definida quando o usuario escolhe o modelo. */
-
+        switch (tipoVeiculo) {
+            case 0:
+                comboBoxModelo.setVisible(true); break;
+            case 1:
+                comboBoxModeloMotocicleta.setVisible(true); break;
+            case 2:
+                comboBoxModeloVan.setVisible(true); break;
+        }
         comboBoxEstado.getItems().addAll(Estado.values());
         comboBoxMarca.getItems().addAll(Marca.values());
 
-        //Ao definir um elemento javaFX como visible(false) ele é inacessivel. Usar para os 3 tipos diferentes de modelo.
-
         comboBoxMarca.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    List<ModeloAutomovel> modelos = ModeloAutomovel.getModeloAutomovel(newValue);
 
-                    comboBoxModelo.getItems().clear();
-                    comboBoxModelo.getItems().addAll(modelos.toArray(new ModeloAutomovel[0]));
-
-                    comboBoxModelo.setDisable(false);
+                    switch (tipoVeiculo) {
+                        case 0:
+                            ComboBoxInitializeModelo(tipoVeiculo, comboBoxModelo, newValue); break;
+                        case 1:
+                            ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloMotocicleta, newValue); break;
+                        case 2:
+                            ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloVan, newValue); break;
+                    }
                 });
         textFieldAno.setTextFormatter(new TextFormatter<>(rolagemTextoAno()));
         textFieldValor.setTextFormatter(new TextFormatter<>(rolagemTextoValor()));
@@ -71,11 +85,11 @@ public class cadastrarVeiculoController {
         double valor = getDouble(valorString);
 
         try {
-            Veiculo veiculo = new Automovel(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(), 0, comboBoxModelo.getValue());
+            var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(), 0, comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
             Locadora.adicionarVeiculo(veiculo);
-            mensagemSucessoCarro();
+            mensagemCadastroVeiculoSucesso();
         } catch (IllegalArgumentException e){
-            mensagemErro(e.getMessage());
+            mensagemCadastroVeiculoErro(e.getMessage());
         }
     }
 

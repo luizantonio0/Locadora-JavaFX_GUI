@@ -13,7 +13,7 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     //Alterar heranças, Adicionar herança para van e motocicleta
 
 
-    public Veiculo(String placa, double valorCompra, Year ano, Estado estado) {
+    protected Veiculo(String placa, double valorCompra, Year ano, Estado estado) {
         //Formato da Placa "XXX-0X00"
         this.placa = new Placa(placa);
         this.valorCompra = valorCompra;

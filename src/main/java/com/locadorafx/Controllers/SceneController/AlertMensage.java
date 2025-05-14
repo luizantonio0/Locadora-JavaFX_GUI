@@ -4,16 +4,16 @@ import javafx.scene.control.Alert;
 
 
 public class AlertMensage {
-    public static void mensagemSucessoCarro() {
+    public static void mensagemCadastroVeiculoSucesso() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Carro cadastrado com sucesso!");
+        alert.setTitle("Veículo cadastrado com sucesso!");
         alert.setHeaderText(null);
-        alert.setContentText("O carro foi cadastrado com sucesso!");
+        alert.setContentText("O veículo foi cadastrado com sucesso!");
         alert.showAndWait();
         //textLabelMensagemErro.setTextFill(Color.web("#77ff89"));
     }
 
-    public static void mensagemErro(String mensagem) {
+    public static void mensagemCadastroVeiculoErro(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro ao cadastrar veiculo!!");
         alert.setContentText("Erro: " + mensagem);
