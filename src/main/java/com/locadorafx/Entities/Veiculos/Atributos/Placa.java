@@ -13,7 +13,7 @@ public record Placa(String placa) {
         return placa;
     }
 
-    public String removeHifen(String placa) {
+    private String removeHifen(String placa) {
         StringBuilder sb = new StringBuilder(placa);
         sb.deleteCharAt(3);
         return sb.toString();
