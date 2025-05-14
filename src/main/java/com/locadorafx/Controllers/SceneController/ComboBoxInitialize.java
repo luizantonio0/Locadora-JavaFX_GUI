@@ -1,19 +1,20 @@
 package com.locadorafx.Controllers.SceneController;
 
+import java.util.List;
+
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
+
 import javafx.scene.control.ComboBox;
 
-import java.util.List;
-
 public class ComboBoxInitialize {
-    public static void ComboBoxInitializeModelo(short tipoVeiculo, ComboBox comboBoxModelo, Marca marca) {
+    public static void ComboBoxInitializeModelo(short tipoVeiculo, ComboBox<?> comboBoxModelo, Marca marca) {
         switch (tipoVeiculo){
-            case 0: ComboBoxInitializeModeloAutomovel(comboBoxModelo, marca); break;
-            case 1: ComboBoxInitializeModeloMotocicleta(comboBoxModelo, marca); break;
-            case 2: ComboBoxInitializeModeloVan(comboBoxModelo, marca); break;
+            case 0 -> ComboBoxInitializeModeloAutomovel((ComboBox<ModeloAutomovel>) comboBoxModelo, marca);
+            case 1 -> ComboBoxInitializeModeloMotocicleta((ComboBox<ModeloMotocicleta>) comboBoxModelo, marca);
+            case 2 -> ComboBoxInitializeModeloVan((ComboBox<ModeloVan>) comboBoxModelo, marca);
         }
     }
 
@@ -21,7 +22,7 @@ public class ComboBoxInitialize {
         List<ModeloAutomovel> modelos = ModeloAutomovel.getModeloAutomovel(newValue);
 
         comboBoxModelo.getItems().clear();
-        comboBoxModelo.getItems().addAll(modelos.toArray(new ModeloAutomovel[0]));
+        comboBoxModelo.getItems().addAll(modelos.toArray(ModeloAutomovel[]::new));
 
         comboBoxModelo.setDisable(false);
     }
@@ -29,7 +30,7 @@ public class ComboBoxInitialize {
         List<ModeloVan> modelos = ModeloVan.getModeloVan(newValue);
 
         comboBoxModelo.getItems().clear();
-        comboBoxModelo.getItems().addAll(modelos.toArray(new ModeloVan[0]));
+        comboBoxModelo.getItems().addAll(modelos.toArray(ModeloVan[]::new));
 
         comboBoxModelo.setDisable(false);
     }
@@ -37,7 +38,7 @@ public class ComboBoxInitialize {
         List<ModeloMotocicleta> modelos = ModeloMotocicleta.getModeloMotocicleta(newValue);
 
         comboBoxModelo.getItems().clear();
-        comboBoxModelo.getItems().addAll(modelos.toArray(new ModeloMotocicleta[0]));
+        comboBoxModelo.getItems().addAll(modelos.toArray(ModeloMotocicleta[]::new));
 
         comboBoxModelo.setDisable(false);
     }

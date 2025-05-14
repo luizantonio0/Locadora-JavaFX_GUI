@@ -1,19 +1,22 @@
 package com.locadorafx.Controllers;
 
+import java.io.IOException;
+
 import com.locadorafx.App;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 import com.locadorafx.Entities.Clientes.Atributos.CPF;
 import com.locadorafx.Entities.Clientes.Atributos.Email;
 import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Locadora.Locadora;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.IOException;
-
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 
 public class CRUDClienteController {
 
@@ -59,7 +62,7 @@ public class CRUDClienteController {
 
     private ObservableList<Cliente> clientes;
 
-    private Cliente cliente;
+    private Cliente clienteSelecionado;
 
     public void initialize() {
         //não funciona corrigir
@@ -70,11 +73,11 @@ public class CRUDClienteController {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 
 
-
         clientes = FXCollections.observableArrayList(Locadora.getClientes());
         tableViewClientes.setItems(clientes);
 
         tableViewClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            clienteSelecionado = newValue;
             if (newValue != null) {
                 //textFieldId.setText(newValue.getId());
                 textFieldCPF.setText(newValue.getCpf());
@@ -83,6 +86,7 @@ public class CRUDClienteController {
                 textFieldSorbenome.setText(newValue.getSobrenome());
                 textFieldEmail.setText(newValue.getEmail());
                 textFieldEndereco.setText(newValue.getEndereco());
+                textFieldId.setText(String.valueOf(newValue.getId()));
             }
 
         });
@@ -91,10 +95,10 @@ public class CRUDClienteController {
 
     @FXML
     void apagarDadosEscolhidos() {
-        textFieldSorbenome.setText(cliente.getSobrenome());
-        textFieldNome.setText(cliente.getNome());
-        textFieldEmail.setText(cliente.getEmail());
-        textFieldEndereco.setText(cliente.getEndereco());
+        textFieldSorbenome.setText(clienteSelecionado.getSobrenome());
+        textFieldNome.setText(clienteSelecionado.getNome());
+        textFieldEmail.setText(clienteSelecionado.getEmail());
+        textFieldEndereco.setText(clienteSelecionado.getEndereco());
     }
 
     @FXML
@@ -109,10 +113,10 @@ public class CRUDClienteController {
 
     @FXML
     void save() {
-        cliente.setEmail(textFieldEmail.getText());
-        cliente.setNome(textFieldNome.getText());
-        cliente.setEndereco(textFieldEndereco.getText());
-        cliente.setSobrenome(textFieldSorbenome.getText());
+        clienteSelecionado.setEmail(textFieldEmail.getText());
+        clienteSelecionado.setNome(textFieldNome.getText());
+        clienteSelecionado.setEndereco(textFieldEndereco.getText());
+        clienteSelecionado.setSobrenome(textFieldSorbenome.getText());
     }
 
     @FXML

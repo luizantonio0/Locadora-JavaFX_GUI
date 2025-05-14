@@ -7,8 +7,22 @@ public final class Cliente extends Pessoa{
         super(nome, sobrenome, cpf, email, rg, endereco);
     }
 
+    private int id;
 
     //----------------------------------------------------------------------------
+    public int getId() {
+        return id;
+    }
+
+    public Cliente setId(int id) {
+        if (this.id != 0) {
+            throw new UnsupportedOperationException("ID já foi definido e não pode ser alterado.");
+        }
+        this.id = id;
+        return this;
+    }
+    //----------------------------------------------------------------------------
+    @Override
     public String toString() {
         return "Cliente -> id: -erro- nome: %s sobrenome: %s cpf: %s email: %s RG: %s, Endereço: %s".formatted(/*id,*/ getNome(), getSobrenome(), getCpf(), getEmail(), getRg(), getEndereco());
     }

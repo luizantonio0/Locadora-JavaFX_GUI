@@ -10,15 +10,15 @@ import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
+import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+import com.locadorafx.Models.ClienteDAO;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 
 public class App extends Application {
     private static Scene scene;
@@ -43,8 +43,9 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-            Cliente luiz = new Cliente("Luiz", "Gonçalves", "11848652640", "luiz@gmail.com", "201683799", "Curitiba");
-            Locadora.adicionarClientes(luiz);
+            Cliente luiz = new Cliente("Luiz", "Gonçalves", "01161535632", "luiz@gmail.com", "201683799", "Curitiba");
+            Cliente antonio = new Cliente("Antonio", "Santos", "12609432089", "antonio@gmail.com", "367463386", "Montes Claros");
+            ClienteDAO.adicionarCliente(luiz); ClienteDAO.adicionarCliente(antonio);
 
             Veiculo gol = factory("AAA0A00", 50000, Year.of(2010), Estado.DISPONIVEL, 1, ModeloAutomovel.GOL, null, null);
             Veiculo virtus = factory("BBB0B00", 100000, Year.of(2010), Estado.DISPONIVEL, 2, ModeloAutomovel.VIRTUS, null, null);

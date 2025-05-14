@@ -1,24 +1,29 @@
 package com.locadorafx.Controllers;
 
+import java.io.IOException;
+import java.time.Year;
+
 import com.locadorafx.App;
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.getDouble;
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoAno;
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoPlaca;
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoValor;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemCadastroVeiculoErro;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemCadastroVeiculoSucesso;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+import static com.locadorafx.Controllers.SceneController.ComboBoxInitialize.ComboBoxInitializeModelo;
 import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
+import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-
-import java.io.IOException;
-import java.time.Year;
-
-import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.*;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
-import static com.locadorafx.Controllers.SceneController.ComboBoxInitialize.ComboBoxInitializeModelo;
-import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 
 public class cadastrarVeiculoController {
 
@@ -51,12 +56,9 @@ public class cadastrarVeiculoController {
     public void initialize() {
 
         switch (tipoVeiculo) {
-            case 0:
-                comboBoxModelo.setVisible(true); break;
-            case 1:
-                comboBoxModeloMotocicleta.setVisible(true); break;
-            case 2:
-                comboBoxModeloVan.setVisible(true); break;
+            case 0 -> comboBoxModelo.setVisible(true);
+            case 1 -> comboBoxModeloMotocicleta.setVisible(true);
+            case 2 -> comboBoxModeloVan.setVisible(true);
         }
         comboBoxEstado.getItems().addAll(Estado.values());
         comboBoxMarca.getItems().addAll(Marca.values());
@@ -65,12 +67,9 @@ public class cadastrarVeiculoController {
                 (observable, oldValue, newValue) -> {
 
                     switch (tipoVeiculo) {
-                        case 0:
-                            ComboBoxInitializeModelo(tipoVeiculo, comboBoxModelo, newValue); break;
-                        case 1:
-                            ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloMotocicleta, newValue); break;
-                        case 2:
-                            ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloVan, newValue); break;
+                        case 0 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModelo, newValue);
+                        case 1 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloMotocicleta, newValue);
+                        case 2 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloVan, newValue);
                     }
                 });
         textFieldAno.setTextFormatter(new TextFormatter<>(rolagemTextoAno()));
