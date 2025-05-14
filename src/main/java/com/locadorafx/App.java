@@ -26,7 +26,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML(/*"login-View"*/  /* */"cadastrarVeiculo-View"), 1000, 620);
         stage.setTitle("Locadora");
-        stage.getIcons().add(new Image(App.class.getResourceAsStream("/com/locadorafx/images/logo.jpg")));
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/com/locadorafx/images/icon.png")));
 
         stage.setScene(scene);
         stage.show();
