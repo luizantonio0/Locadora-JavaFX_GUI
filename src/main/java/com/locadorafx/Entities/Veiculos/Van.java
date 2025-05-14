@@ -1,21 +1,22 @@
 package com.locadorafx.Entities.Veiculos;
 
+import java.time.Year;
+
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
 
-import java.time.Year;
-
 public final class Van extends Veiculo {
 
-    Van(String placa, double valorCompra, Year ano, Estado estado, /*int id,*/ ModeloVan modelo) {
-        super(placa, valorCompra, ano, estado/*, id*/);
+    Van(String placa, double valorCompra, Year ano, Estado estado, ModeloVan modelo) {
+        super(placa, valorCompra, ano, estado);
         this.modelo = modelo;
     }
 
     private final ModeloVan modelo;
 
+    //------------------------------------------------------------------------------------
     public ModeloVan getModelo() {
         return modelo;
     }
@@ -32,7 +33,7 @@ public final class Van extends Veiculo {
     //------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "Automovel{\nid=-erro-, \nmodelo=%s}\n%s".formatted(/*id,*/ modelo, super.toString());
+        return "Automovel{\nid=%d, \nmodelo=%s}\n%s".formatted(getId(), modelo, super.toString());
     }
 
     @Override
@@ -44,6 +45,7 @@ public final class Van extends Veiculo {
             case Categoria.LUXO -> 600.00;
         };
     }
+    @Override
     public double getValorDiariaLocacao(int dias){
         if (dias <= 0){return 0;}
         return switch (getCategoria()){
@@ -52,4 +54,6 @@ public final class Van extends Veiculo {
             case Categoria.LUXO -> 600.00 * dias;
         };
     }
+
+ 
 }

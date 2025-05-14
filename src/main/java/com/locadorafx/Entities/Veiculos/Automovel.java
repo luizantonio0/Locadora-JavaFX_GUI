@@ -1,21 +1,18 @@
 package com.locadorafx.Entities.Veiculos;
 
+import java.time.Year;
+
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 
-import java.time.Year;
-
 public final class Automovel extends Veiculo{
 
-    Automovel(String placa, double valorCompra, Year ano, Estado estado, int id, ModeloAutomovel modelo) {
+    Automovel(String placa, double valorCompra, Year ano, Estado estado, ModeloAutomovel modelo) {
         super(placa, valorCompra, ano, estado);
-        this.id = id;
         this.modelo = modelo;
     }
-
-    private final int id;
     private final ModeloAutomovel modelo;
     //------------------------------------------------------------------------------------
     public ModeloAutomovel getModelo() {
@@ -34,9 +31,10 @@ public final class Automovel extends Veiculo{
 
     @Override
     public String toString() {
-        return "Automovel{\nid=%d, \nmodelo=%s}\n%s".formatted(id, modelo, super.toString());
+        return "Automovel{\nid=%d, \nmodelo=%s}\n%s".formatted(getId(), modelo, super.toString());
     }
 
+    @Override
     public double getValorDiariaLocacao(){
 
          return switch (getCategoria()){
@@ -46,6 +44,7 @@ public final class Automovel extends Veiculo{
          };
     }
 
+    @Override
     public double getValorDiariaLocacao(int dias){
         if (dias <= 0){return 0;}
         return switch (getCategoria()){

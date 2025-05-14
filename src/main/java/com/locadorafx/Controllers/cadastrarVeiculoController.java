@@ -84,7 +84,7 @@ public class cadastrarVeiculoController {
         double valor = getDouble(valorString);
 
         try {
-            var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(), 0, comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
+            var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(),  comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
             Locadora.adicionarVeiculo(veiculo);
             mensagemCadastroVeiculoSucesso();
         } catch (IllegalArgumentException e){

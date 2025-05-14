@@ -25,7 +25,18 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     private final Year ano;
     private Estado estado;
     private Locacao locacao;
+    private int id;
     //------------------------------------------------------------------------------------
+    public int getId() {
+        return id;
+    }
+    public Veiculo setId(int id) {
+        if (this.id != 0) {
+            throw new IllegalStateException("Id já foi definido");
+        }
+        this.id = id;
+        return this;
+    }
     @Override
     public Estado getEstado(){
         return this.estado;

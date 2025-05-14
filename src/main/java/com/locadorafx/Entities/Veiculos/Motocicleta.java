@@ -1,20 +1,21 @@
 package com.locadorafx.Entities.Veiculos;
 
+import java.time.Year;
+
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 
-import java.time.Year;
-
 public final class Motocicleta extends Veiculo{
 
-    Motocicleta(String placa, double valorCompra, Year ano, Estado estado, /*int id,*/ ModeloMotocicleta modelo) {
-        super(placa, valorCompra, ano, estado/*, id*/);
+    Motocicleta(String placa, double valorCompra, Year ano, Estado estado, ModeloMotocicleta modelo) {
+        super(placa, valorCompra, ano, estado);
         this.modelo = modelo;
     }
 
     private final ModeloMotocicleta modelo;
+    //------------------------------------------------------------------------------------
 
     public ModeloMotocicleta getModelo() {
         return modelo;
@@ -32,7 +33,7 @@ public final class Motocicleta extends Veiculo{
     //------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "Automovel{\nid=-erro-, \nmodelo=%s}\n%s".formatted(/*id,*/ modelo, super.toString());
+        return "Automovel{\nid=%d, \nmodelo=%s}\n%s".formatted(getId(), modelo, super.toString());
     }
     @Override
     public double getValorDiariaLocacao(){
@@ -43,6 +44,7 @@ public final class Motocicleta extends Veiculo{
             case Categoria.LUXO -> 350.00;
         };
     }
+    @Override
     public double getValorDiariaLocacao(int dias){
         if (dias <= 0){return 0;}
         return switch (getCategoria()){

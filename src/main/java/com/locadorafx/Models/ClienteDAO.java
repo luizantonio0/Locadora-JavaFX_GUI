@@ -5,7 +5,7 @@ import com.locadorafx.Entities.Locadora.Locadora;
 
 public class ClienteDAO {
 
-    public static void adicionarCliente(Cliente cliente) {      
+    public static void save(Cliente cliente) {      
         int id = Locadora.getClientes().size() + 1;
         cliente.setId(id);
         
