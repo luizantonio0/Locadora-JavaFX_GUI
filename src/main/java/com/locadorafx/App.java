@@ -17,6 +17,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -25,10 +26,11 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML(/*"login-View"*/  /* */"cadastrarVeiculo-View"), 1000, 620);
         stage.setTitle("Locadora");
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/com/locadorafx/images/logo.jpg")));
+
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
-        //stage.getIcons().add(new Image(getClass().getResourceAsStream("@/logo.png")));
     }
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
