@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
 
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 import static com.locadorafx.Controllers.locarCarro1Controller.veiculoSelecionado;
 
 public class locarCarro2Controller {
@@ -56,8 +57,11 @@ public class locarCarro2Controller {
     }
 
     @FXML
-    void voltarTela() throws IOException {
-        App.setRoot("locarCarro1-View");
+    void voltarTela(){
+        try {
+            App.setRoot("locarCarro1-View");
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
-
 }

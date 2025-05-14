@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.CRUDClienteController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -36,21 +36,21 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TableView layoutY="27.0" prefHeight="595.0" prefWidth="500.0">
+            <TableView fx:id="tableViewClientes" layoutY="27.0" prefHeight="595.0" prefWidth="500.0">
               <columns>
-                <TableColumn prefWidth="60.0" text="Id" />
-                <TableColumn prefWidth="109.0" text="Nome" />
-                  <TableColumn prefWidth="109.0" text="CPF" />
-                  <TableColumn prefWidth="109.0" text="E-mail" />
-                  <TableColumn prefWidth="109.0" text="Endereço" />
+                <TableColumn fx:id="tableColumnId" prefWidth="60.0" text="Id" />
+                <TableColumn fx:id="tableColumnNome" prefWidth="109.0" text="Nome" />
+                  <TableColumn fx:id="tableColumnCPF" prefWidth="109.0" text="CPF" />
+                  <TableColumn fx:id="tableColumnEmail" prefWidth="109.0" text="E-mail" />
+                  <TableColumn fx:id="tableColumnEndereco" prefWidth="109.0" text="Endereço" />
               </columns>
             </TableView>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <TextField disable="true" editable="false" layoutX="42.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="CPF" />
+            <TextField fx:id="textFieldCPF" disable="true" editable="false" layoutX="42.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="CPF" />
             <TextField fx:id="textFieldId" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="273.0" layoutY="17.0" prefHeight="25.0" prefWidth="77.0" text="0012" />
-            <TextField disable="true" layoutX="277.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="RG" />
+            <TextField fx:id="textFieldRG" disable="true" layoutX="277.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="RG" />
             <Text layoutX="169.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente Id: ">
                <font>
                   <Font size="20.0" />
@@ -58,18 +58,18 @@
             </Text>
             <Text layoutX="42.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" />
             <Text layoutX="277.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RG" />
-            <TextField editable="false" layoutX="42.0" layoutY="131.0" prefHeight="25.0" prefWidth="181.0" promptText="Nome" />
+            <TextField fx:id="textFieldNome" editable="false" layoutX="42.0" layoutY="131.0" prefHeight="25.0" prefWidth="181.0" promptText="Nome" />
             <Text layoutX="42.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-            <TextField editable="false" layoutX="276.0" layoutY="131.0" prefHeight="25.0" prefWidth="181.0" promptText="Sobrenome" text="Gonçalves" />
+            <TextField fx:id="textFieldSorbenome" editable="false" layoutX="276.0" layoutY="131.0" prefHeight="25.0" prefWidth="181.0" promptText="Sobrenome" />
             <Text layoutX="277.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sobrenome" />
-            <TextField editable="false" layoutX="42.0" layoutY="182.0" prefHeight="25.0" prefWidth="181.0" promptText="E-mail" />
+            <TextField fx:id="textFieldEmail" editable="false" layoutX="42.0" layoutY="182.0" prefHeight="25.0" prefWidth="181.0" promptText="E-mail" />
             <Text layoutX="42.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail" />
-            <TextArea editable="false" layoutX="42.0" layoutY="235.0" prefHeight="48.0" prefWidth="418.0" promptText="Endereço Completo" />
+            <TextArea fx:id="textFieldEndereco" editable="false" layoutX="42.0" layoutY="235.0" prefHeight="48.0" prefWidth="418.0" promptText="Endereço Completo" />
             <Text layoutX="44.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço" />
-            <Button fx:id="setEditable" layoutX="376.0" layoutY="297.0" mnemonicParsing="false" text="Editar Dados" />
-            <Button layoutX="113.0" layoutY="367.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="112.0" text="Voltar Tela" />
-            <Button layoutX="294.0" layoutY="367.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="112.0" text="Salvar " />
-            <Button fx:id="setEditable1" layoutX="299.0" layoutY="297.0" mnemonicParsing="false" text="Cancelar" />
+            <Button layoutX="376.0" layoutY="297.0" mnemonicParsing="false" onAction="#setEditable" text="Editar Dados" />
+            <Button layoutX="113.0" layoutY="367.0" mnemonicParsing="false" onAction="#getTelaAnterior" prefHeight="48.0" prefWidth="112.0" text="Voltar Tela" />
+            <Button layoutX="294.0" layoutY="367.0" mnemonicParsing="false" onAction="#save" prefHeight="48.0" prefWidth="112.0" text="Salvar " />
+            <Button layoutX="299.0" layoutY="297.0" mnemonicParsing="false" onAction="#apagarDadosEscolhidos" text="Cancelar" />
          </children></AnchorPane>
   </items>
 </SplitPane>

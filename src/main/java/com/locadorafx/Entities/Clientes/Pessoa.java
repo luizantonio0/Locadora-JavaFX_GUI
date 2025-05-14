@@ -16,7 +16,6 @@ public abstract sealed class Pessoa permits Cliente {
     }
 
     //--------------------------------------------------------------------------------------
-    //Adicionar sobrenome, RG, Endereço
     private String nome;
     private String sobrenome;
     private final CPF cpf;
@@ -25,6 +24,15 @@ public abstract sealed class Pessoa permits Cliente {
     private String endereco;
 
     //--------------------------------------------------------------------------------------
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
     public void setEmail(String email) {
         this.email = new Email(email);
     }

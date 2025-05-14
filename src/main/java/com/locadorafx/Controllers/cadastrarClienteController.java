@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+
 public class cadastrarClienteController {
 
     @FXML
@@ -44,8 +46,12 @@ public class cadastrarClienteController {
     }
 
     @FXML
-    void voltarTela(ActionEvent event) throws IOException {
-        App.setRoot("login-View");
+    void voltarTela(){
+        try {
+            App.setRoot("login-View");
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
 
 }

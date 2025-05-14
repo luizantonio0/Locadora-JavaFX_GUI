@@ -12,7 +12,6 @@ public class FactoryVeiculos {
     private FactoryVeiculos() {
     }
 
-
     public static Veiculo factory(String placa, double valorCompra, Year ano, Estado estado, int id, ModeloAutomovel modelo, ModeloVan modeloVan, ModeloMotocicleta modeloMotocicleta) {
         if (modeloMotocicleta == null && modelo == null) {
             return factoryVan(placa, valorCompra, ano, estado, modeloVan);

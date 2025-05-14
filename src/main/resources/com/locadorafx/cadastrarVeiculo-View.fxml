@@ -24,25 +24,25 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField fx:id="textFieldPlaca" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldPlaca" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" promptText="XXX0X00">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldValor" layoutX="530.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldValor" alignment="CENTER_RIGHT" layoutX="530.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" promptText="R$ 0,00">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="comboBoxModelo" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" visible="false" />
-      <ComboBox fx:id="comboBoxEstado" layoutX="530.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" />
-      <ComboBox fx:id="comboBoxMarca" layoutX="220.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" />
-      <TextField fx:id="textFieldAno" alignment="CENTER_RIGHT" layoutX="530.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0">
+      <ComboBox fx:id="comboBoxModelo" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" promptText="Escolha o modelo do carro" visible="false" />
+      <ComboBox fx:id="comboBoxEstado" layoutX="530.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" promptText="Selecione o estado do veiculo" />
+      <ComboBox fx:id="comboBoxMarca" layoutX="220.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" promptText="Selecione a marca" />
+      <TextField fx:id="textFieldAno" alignment="CENTER_RIGHT" layoutX="530.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" promptText="2000">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <ComboBox fx:id="comboBoxModeloVan" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" visible="false" />
-      <ComboBox fx:id="comboBoxModeloMotocicleta" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" visible="false" />
+      <ComboBox fx:id="comboBoxModeloVan" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" promptText="Escolha o modelo da van" visible="false" />
+      <ComboBox fx:id="comboBoxModeloMotocicleta" disable="true" layoutX="220.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" promptText="Escolha o modelo da moto" visible="false" />
    </children>
 </AnchorPane>

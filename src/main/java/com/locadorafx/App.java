@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.Year;
 import java.util.List;
 
+import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
@@ -24,7 +25,7 @@ public class App extends Application {
     private static final List<Veiculo> veiculos = Locadora.getEstoque();
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(/*"login-View"*/  /* */"cadastrarVeiculo-View"), 1000, 620);
+        scene = new Scene(loadFXML(/*"login-View"*/  /* */"CRUD-Cliente-View"), 1000, 620);
         stage.setTitle("Locadora");
         stage.setScene(scene);
         stage.show();
@@ -41,6 +42,9 @@ public class App extends Application {
 
 
     public static void main(String[] args) {
+
+            Cliente luiz = new Cliente("Luiz", "Gonçalves", "11848652640", "luiz@gmail.com", "201683799", "Curitiba");
+            Locadora.adicionarClientes(luiz);
 
             Veiculo gol = factory("AAA0A00", 50000, Year.of(2010), Estado.DISPONIVEL, 1, ModeloAutomovel.GOL, null, null);
             Veiculo virtus = factory("BBB0B00", 100000, Year.of(2010), Estado.DISPONIVEL, 2, ModeloAutomovel.VIRTUS, null, null);

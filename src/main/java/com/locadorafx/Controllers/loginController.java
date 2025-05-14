@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+
 public class loginController {
 
     @FXML
@@ -22,10 +24,12 @@ public class loginController {
     }
 
     @FXML
-    void abrirTelaCadastro() throws IOException {
-        App.setRoot("cadastrarCliente-View");
-
-
+    void abrirTelaCadastro(){
+        try {
+            App.setRoot("cadastrarCliente-View");
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
 
     @FXML
@@ -36,13 +40,16 @@ public class loginController {
     }
 
     @FXML
-    void sendFormLogin() throws IOException {
+    void sendFormLogin(){
         //BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         //String cpfEncriptado = passwordEncryptor.encryptPassword(textFieldCPF.getText());
         //Buscar dados do banco de Dados banco de dados
         //passwordEncryptor.checkPassword(textFieldSenha.getText(), cpfEncriptado);
-        App.setRoot("locarCarro1-View");
-
+        try {
+            App.setRoot("locarCarro1-View");
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
 
 }

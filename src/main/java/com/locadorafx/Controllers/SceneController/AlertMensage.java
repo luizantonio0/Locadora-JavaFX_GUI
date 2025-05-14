@@ -5,12 +5,11 @@ import javafx.scene.control.Alert;
 
 public class AlertMensage {
     public static void mensagemCadastroVeiculoSucesso() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Veículo cadastrado com sucesso!");
         alert.setHeaderText(null);
         alert.setContentText("O veículo foi cadastrado com sucesso!");
         alert.showAndWait();
-        //textLabelMensagemErro.setTextFill(Color.web("#77ff89"));
     }
 
     public static void mensagemCadastroVeiculoErro(String mensagem) {
@@ -19,6 +18,13 @@ public class AlertMensage {
         alert.setContentText("Erro: " + mensagem);
         alert.setHeaderText(null);
         alert.showAndWait();
+    }
 
+    public static void mensagemTelaNaoExistente(String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Tela não encontrada!");
+        alert.setContentText("Erro: " + mensagem);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }

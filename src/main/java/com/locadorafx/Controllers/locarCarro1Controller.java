@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+
 public class locarCarro1Controller {
 
     @FXML
@@ -58,8 +60,12 @@ public class locarCarro1Controller {
     }
 
     @FXML
-    void VoltarParaLogin() throws IOException {
-        App.setRoot("login-View");
+    void VoltarParaLogin(){
+        try {
+            App.setRoot("login-View");
+        } catch (IOException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
 
     @FXML
@@ -68,8 +74,12 @@ public class locarCarro1Controller {
     }
 
     @FXML
-    void abrirMeusDados() throws IOException {
-        App.setRoot("");
+    void abrirMeusDados(){
+        try {
+            App.setRoot("");
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
 
     @FXML
@@ -93,7 +103,11 @@ public class locarCarro1Controller {
             default -> null;
         };
 
-        App.setRoot("locarCarro2-View");
+        try {
+            App.setRoot("locarCarro2-View");
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
 
     @FXML
