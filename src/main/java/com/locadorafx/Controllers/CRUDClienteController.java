@@ -77,6 +77,11 @@ public class CRUDClienteController {
         tableViewClientes.setItems(clientes);
 
         tableViewClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            textFieldEmail.setEditable(false);
+            textFieldEndereco.setEditable(false);
+            textFieldNome.setEditable(false);
+            textFieldSorbenome.setEditable(false);
+            
             clienteSelecionado = newValue;
             if (newValue != null) {
                 //textFieldId.setText(newValue.getId());
