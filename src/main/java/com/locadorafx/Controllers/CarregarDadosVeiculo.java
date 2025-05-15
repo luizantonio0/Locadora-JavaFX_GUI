@@ -1,10 +1,15 @@
 package com.locadorafx.Controllers;
 
+import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Veiculos.Automovel;
 import com.locadorafx.Entities.Veiculos.Motocicleta;
 import com.locadorafx.Entities.Veiculos.Van;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class CarregarDadosVeiculo {
@@ -25,5 +30,36 @@ public class CarregarDadosVeiculo {
             case Motocicleta m -> m.getModelo().toString();
             case Van v -> v.getModelo().toString();
         });
+    }
+
+    public static void carregarTabelaClientes(TableColumn tableColumnNome, TableColumn tableColumnEmail, TableColumn tableColumnEndereco, TableColumn tableColumnCPF, TableColumn tableColumnId){
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+    }
+
+    public static void carregarDadosCliente(TextField textFieldCPFCliente, TextField textFieldNomeCliente, TextField textFieldIdCliente, Cliente newValue){
+        textFieldCPFCliente.setText(newValue.getCpf());
+        textFieldNomeCliente.setText(newValue.getNome() + " " + newValue.getSobrenome());
+        textFieldIdCliente.setText(String.valueOf(newValue.getId()));
+    }
+    public static void carregarDadosCliente(TextField textFieldCPF, TextField textFieldRG, TextField textFieldNome, TextField textFieldSobrenome, TextField textFieldEmail, TextArea textFieldEndereco, TextField textFieldId, Cliente newValue){
+        textFieldCPF.setText(newValue.getCpf());
+        textFieldRG.setText(newValue.getRg().toString());
+        textFieldNome.setText(newValue.getNome());
+        textFieldSobrenome.setText(newValue.getSobrenome());
+        textFieldEmail.setText(newValue.getEmail());
+        textFieldEndereco.setText(newValue.getEndereco());
+        textFieldId.setText(String.valueOf(newValue.getId()));
+    }
+    public static void carregarDadosVeiculo(TextField id, TextField placa, TextField marca, TextField modelo, TextField ano, Veiculo newValue){
+        id.setText(String.valueOf(newValue.getId()));
+        placa.setText(newValue.getPlaca().toString());
+        marca.setText(newValue.getMarca().toString());
+        modelo.setText(newValue.getModeloToString());
+        ano.setText(String.valueOf(newValue.getAno()));
+
     }
 }

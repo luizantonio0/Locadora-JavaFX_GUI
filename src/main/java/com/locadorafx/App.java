@@ -1,13 +1,17 @@
 package com.locadorafx;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.Year;
 
 import com.locadorafx.Entities.Clientes.Cliente;
+import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
+
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 import com.locadorafx.Models.ClienteDAO;
@@ -24,7 +28,7 @@ public class App extends Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(/*"login-View"*/  /* */"cadastrarVeiculo-View"), 1000, 620);
+        scene = new Scene(loadFXML(/*"login-View"*/"AdminLocacao-View"), 1000, 620);
         stage.setTitle("Locadora");
         stage.getIcons().add(new Image(App.class.getResourceAsStream("/com/locadorafx/images/icon.png")));
 
@@ -32,8 +36,12 @@ public class App extends Application {
         stage.show();
         stage.setResizable(false);
     }
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static void setRoot(String fxml){
+        try {
+            scene.setRoot(loadFXML(fxml));
+        } catch (IOException | IllegalStateException e) {
+            mensagemTelaNaoExistente(e.getMessage());
+        }
     }
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/locadorafx/" + fxml + ".fxml"));
@@ -62,6 +70,9 @@ public class App extends Application {
             VeiculoDAO.save(gol); VeiculoDAO.save(virtus); VeiculoDAO.save(jetta);
             VeiculoDAO.save(van1); VeiculoDAO.save(van2); VeiculoDAO.save(van3);
             VeiculoDAO.save(moto1); VeiculoDAO.save(moto2); VeiculoDAO.save(moto3);
+
+            gol.locar(4, LocalDateTime.of(2020, 12, 3, 0,0), luiz);
+            moto1.locar(4, LocalDateTime.of(2020, 12, 3, 0,0), luiz);
 
         launch();
     }

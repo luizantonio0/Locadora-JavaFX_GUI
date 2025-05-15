@@ -61,11 +61,7 @@ public class locarCarro1Controller {
 
     @FXML
     void VoltarParaLogin(){
-        try {
             App.setRoot("login-View");
-        } catch (IOException e) {
-            mensagemTelaNaoExistente(e.getMessage());
-        }
     }
 
     @FXML
@@ -75,11 +71,7 @@ public class locarCarro1Controller {
 
     @FXML
     void abrirMeusDados(){
-        try {
             App.setRoot("");
-        } catch (IOException | IllegalStateException e) {
-            mensagemTelaNaoExistente(e.getMessage());
-        }
     }
 
     @FXML
@@ -102,12 +94,7 @@ public class locarCarro1Controller {
             case "Button[id=btnLocar03, styleClass=button]''" -> Locadora.getEstoque().get(ordemCarros+2);
             default -> null;
         };
-
-        try {
             App.setRoot("locarCarro2-View");
-        } catch (IOException | IllegalStateException e) {
-            mensagemTelaNaoExistente(e.getMessage());
-        }
     }
 
     @FXML

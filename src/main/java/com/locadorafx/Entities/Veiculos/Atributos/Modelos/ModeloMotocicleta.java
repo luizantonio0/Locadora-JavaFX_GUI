@@ -8,7 +8,7 @@ import java.util.List;
 
 public enum ModeloMotocicleta {
     //HONDA
-    CG150(Marca.Honda, Categoria.POPULAR), CB300F(Marca.Honda, Categoria.INTEMERIARIO), CBR1000(Marca.Honda, Categoria.LUXO);
+    CG150(Marca.Honda, Categoria.POPULAR), CB300F(Marca.Honda, Categoria.INTEMERDIARIO), CBR1000(Marca.Honda, Categoria.LUXO);
     
     private final Marca marca;
     private final Categoria categoria;

@@ -58,10 +58,6 @@ public class locarCarro2Controller {
 
     @FXML
     void voltarTela(){
-        try {
             App.setRoot("locarCarro1-View");
-        } catch (IOException | IllegalStateException e) {
-            mensagemTelaNaoExistente(e.getMessage());
-        }
     }
 }

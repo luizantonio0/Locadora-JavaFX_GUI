@@ -14,6 +14,7 @@ public interface IVeiculo {
     void devolver();
     Estado getEstado();
     Marca getMarca();
+    String getModeloToString();
     Categoria getCategoria();
     Locacao getLocacao();
     String getPlaca();

@@ -47,11 +47,7 @@ public class cadastrarClienteController {
 
     @FXML
     void voltarTela(){
-        try {
             App.setRoot("login-View");
-        } catch (IOException | IllegalStateException e) {
-            mensagemTelaNaoExistente(e.getMessage());
-        }
     }
 
 }

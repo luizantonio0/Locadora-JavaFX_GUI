@@ -10,7 +10,7 @@ public enum ModeloVan {
     //POPULAR
     DUCATO(Marca.Fiat, Categoria.POPULAR), KOMBI(Marca.VW, Categoria.POPULAR),
     //INTERMEDIARIO
-    TRANSIT(Marca.Ford, Categoria.INTEMERIARIO),
+    TRANSIT(Marca.Ford, Categoria.INTEMERDIARIO),
     //LUXO
     SPRINTER(Marca.Mercedes, Categoria.LUXO);
 

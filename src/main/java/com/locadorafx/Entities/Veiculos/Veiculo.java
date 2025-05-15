@@ -26,6 +26,8 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     private Estado estado;
     private Locacao locacao;
     private int id;
+    //Manter variavel precoDiaria, Criar MEtodo no Construtor
+    private double precoDiaria;
     //------------------------------------------------------------------------------------
     public int getId() {
         return id;
@@ -36,6 +38,12 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         }
         this.id = id;
         return this;
+    }
+    public void setPrecoDiaria(double precoDiaria) {
+        if (this.precoDiaria != 0) {
+            throw new IllegalStateException("O preço diario não pode ser mudado");
+        }
+        this.precoDiaria = precoDiaria;
     }
     @Override
     public Estado getEstado(){
@@ -71,17 +79,24 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
             throw new IllegalStateException("O Veiculo não está disponivel para locação");
         }
 
-        Locacao locacaoLocal = new Locacao(1, dias, getValorDiariaLocacao()*dias, data, cliente);
+        Locacao locacaoLocal = new Locacao(dias, getValorDiariaLocacao()*dias, data, cliente);
         this.setLocacao(locacaoLocal);
+        cliente.setAtivo(true);
         this.estado = Estado.LOCADO;
     }
     @Override
     public void vender(){
-        this.locacao = null;
+        if(this.locacao != null && this.estado == Estado.VENDIDO){
+            throw new IllegalStateException("O veiculo Não pode ser vendido, pois está LOCADO ou VENDIDO!!");
+        }
         this.estado = Estado.VENDIDO;
     }
     @Override
     public void devolver(){
+        if(this.locacao == null){
+            throw new IllegalStateException("O Veiculo não pode ser devolvido, pois não está LOCADO!!");
+        }
+        this.locacao.getCliente().setAtivo(false);
         this.locacao = null;
         this.estado = Estado.DISPONIVEL;
     }

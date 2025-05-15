@@ -27,4 +27,11 @@ public class AlertMensage {
         alert.setHeaderText(null);
         alert.showAndWait();
     }
+    public static void mensagemClienteAtivoNaoPodeSerExcluido() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("CLiente possui veiculo alugado!!");
+        alert.setContentText("O cliente selecionado não pode ser excluido, pois tem veiculo alugado!!");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.AdminVenderVeiculoController">
+   <items>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="496.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <TableView fx:id="tableViewVeiculo" layoutY="27.0" prefHeight="595.0" prefWidth="496.0">
+               <columns>
+                  <TableColumn fx:id="tableColumnIdVeiculo" prefWidth="49.0" text="Id" />
+                  <TableColumn fx:id="tableColumnMarcaVeiculo" prefWidth="172.0" text="Marca" />
+                  <TableColumn fx:id="tableColumnModeloVeiculo" prefWidth="156.0" text="Modelo" />
+                  <TableColumn fx:id="tableColumnAnoVeiculo" prefWidth="42.0" text="Ano" />
+                  <TableColumn fx:id="tableColumnPlacaVeiculo" prefWidth="76.0" text="Placa" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <TextField fx:id="textFieldMarca" disable="true" editable="false" layoutX="42.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="Marca" />
+            <TextField fx:id="textFieldId" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="273.0" layoutY="17.0" prefHeight="25.0" prefWidth="77.0" />
+            <TextField fx:id="textFieldCategoria" disable="true" layoutX="277.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" promptText="Categoria" />
+            <Text layoutX="169.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veiculo Id: ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="42.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" />
+            <Text layoutX="277.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
+            <TextField fx:id="textFieldModelo" disable="true" editable="false" layoutX="42.0" layoutY="131.0" prefHeight="25.0" prefWidth="181.0" promptText="Modelo" />
+            <Text layoutX="42.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo" />
+            <TextField fx:id="textFieldPlaca" disable="true" editable="false" layoutX="276.0" layoutY="131.0" prefHeight="25.0" prefWidth="181.0" promptText="Placa" />
+            <Text layoutX="277.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa" />
+            <TextField fx:id="textFieldEstado" disable="true" editable="false" layoutX="42.0" layoutY="182.0" prefHeight="25.0" prefWidth="181.0" promptText="Estado" />
+            <Text layoutX="42.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" />
+            <Text layoutX="278.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ano" />
+            <Button layoutX="113.0" layoutY="335.0" mnemonicParsing="false" onAction="#getTelaAnterior" prefHeight="48.0" prefWidth="112.0" text="Voltar Tela">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="272.0" layoutY="335.0" mnemonicParsing="false" onAction="#venderVeiculo" prefHeight="48.0" prefWidth="112.0" text="Vender Veiculo">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="396.0" layoutY="271.0" mnemonicParsing="false" onAction="#apagarDadosEscolhidos" text="Cancelar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="textFieldAno" disable="true" editable="false" layoutX="277.0" layoutY="182.0" prefHeight="25.0" prefWidth="181.0" promptText="Ano" />
+            <Text layoutX="113.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor Venda:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textFieldValorVenda" disable="true" editable="false" layoutX="276.0" layoutY="230.0" prefHeight="25.0" prefWidth="181.0" promptText="Preço Venda" />
+         </children>
+      </AnchorPane>
+   </items>
+</SplitPane>

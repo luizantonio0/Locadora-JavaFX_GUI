@@ -9,7 +9,7 @@ public class ClienteDAO {
         int id = Locadora.getClientes().size() + 1;
         cliente.setId(id);
         
-        Locadora.adicionarClientes(cliente);    
+        Locadora.adicionarCliente(cliente);
     }
 
     

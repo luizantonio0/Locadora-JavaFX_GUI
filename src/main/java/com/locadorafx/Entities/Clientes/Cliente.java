@@ -6,7 +6,7 @@ public final class Cliente extends Pessoa{
     public Cliente(String nome, String sobrenome, String cpf, String email, String rg, String endereco) {
         super(nome, sobrenome, cpf, email, rg, endereco);
     }
-
+    private boolean clienteAtivo = false;
     private int id;
 
     //----------------------------------------------------------------------------
@@ -21,6 +21,15 @@ public final class Cliente extends Pessoa{
         this.id = id;
         return this;
     }
+
+    public boolean isAtivo() {
+        return clienteAtivo;
+    }
+
+    public void setAtivo(boolean clienteAtivo) {
+        this.clienteAtivo = clienteAtivo;
+    }
+
     //----------------------------------------------------------------------------
     @Override
     public String toString() {

@@ -12,6 +12,7 @@ public final class Motocicleta extends Veiculo{
     Motocicleta(String placa, double valorCompra, Year ano, Estado estado, ModeloMotocicleta modelo) {
         super(placa, valorCompra, ano, estado);
         this.modelo = modelo;
+        setPrecoDiaria(getValorDiariaLocacao());
     }
 
     private final ModeloMotocicleta modelo;
@@ -40,7 +41,7 @@ public final class Motocicleta extends Veiculo{
 
         return switch (getCategoria()){
             case Categoria.POPULAR -> 70.00;
-            case Categoria.INTEMERIARIO -> 200.00;
+            case Categoria.INTEMERDIARIO -> 200.00;
             case Categoria.LUXO -> 350.00;
         };
     }
@@ -49,8 +50,12 @@ public final class Motocicleta extends Veiculo{
         if (dias <= 0){return 0;}
         return switch (getCategoria()){
             case Categoria.POPULAR -> 70.00 * dias;
-            case Categoria.INTEMERIARIO -> 200.00 * dias;
+            case Categoria.INTEMERDIARIO -> 200.00 * dias;
             case Categoria.LUXO -> 350.00 * dias;
         };
+    }
+    @Override
+    public String getModeloToString(){
+        return this.modelo.toString();
     }
 }

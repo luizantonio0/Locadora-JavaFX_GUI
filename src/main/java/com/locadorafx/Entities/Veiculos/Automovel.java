@@ -12,6 +12,7 @@ public final class Automovel extends Veiculo{
     Automovel(String placa, double valorCompra, Year ano, Estado estado, ModeloAutomovel modelo) {
         super(placa, valorCompra, ano, estado);
         this.modelo = modelo;
+        setPrecoDiaria(getValorDiariaLocacao());
     }
     private final ModeloAutomovel modelo;
     //------------------------------------------------------------------------------------
@@ -39,7 +40,7 @@ public final class Automovel extends Veiculo{
 
          return switch (getCategoria()){
             case Categoria.POPULAR -> 100.00;
-            case Categoria.INTEMERIARIO -> 300.00;
+            case Categoria.INTEMERDIARIO -> 300.00;
             case Categoria.LUXO -> 450.00;
          };
     }
@@ -49,8 +50,12 @@ public final class Automovel extends Veiculo{
         if (dias <= 0){return 0;}
         return switch (getCategoria()){
             case Categoria.POPULAR -> 100.00 * dias;
-            case Categoria.INTEMERIARIO -> 300.00 * dias;
+            case Categoria.INTEMERDIARIO -> 300.00 * dias;
             case Categoria.LUXO -> 450.00 * dias;
         };
+    }
+    @Override
+    public String getModeloToString(){
+        return this.modelo.toString();
     }
 }
