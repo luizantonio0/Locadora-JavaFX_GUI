@@ -1,13 +1,11 @@
 package com.locadorafx.Controllers;
 
-import java.io.IOException;
-
 import com.locadorafx.App;
 
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosCliente;
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarTabelaClientes;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemClienteAtivoNaoPodeSerExcluido;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
+
 import com.locadorafx.Entities.Clientes.Atributos.CPF;
 import com.locadorafx.Entities.Clientes.Atributos.Email;
 import com.locadorafx.Entities.Clientes.Cliente;
@@ -17,7 +15,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class CRUDClienteController {
@@ -119,7 +116,8 @@ public class CRUDClienteController {
     void excluirCliente() {
         if (!clienteSelecionado.isAtivo()) {
             clientes.remove(clienteSelecionado);
-        } else mensagemClienteAtivoNaoPodeSerExcluido();
+            tableViewClientes.setItems(clientes);
+        } else mensagemErro("O cliente selecionado não pode ser excluido, pois tem veiculo alugado!!");
     }
 
 

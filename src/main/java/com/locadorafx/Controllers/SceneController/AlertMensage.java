@@ -2,21 +2,21 @@ package com.locadorafx.Controllers.SceneController;
 
 import javafx.scene.control.Alert;
 
-
 public class AlertMensage {
-    public static void mensagemCadastroVeiculoSucesso() {
+
+    public static void mensagemSucesso(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Veículo cadastrado com sucesso!");
+        alert.setTitle("SUCESSO!!");
         alert.setHeaderText(null);
-        alert.setContentText("O veículo foi cadastrado com sucesso!");
+        alert.setContentText(mensagem);
         alert.showAndWait();
     }
 
-    public static void mensagemCadastroVeiculoErro(String mensagem) {
+    public static void mensagemErro(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erro ao cadastrar veiculo!!");
-        alert.setContentText("Erro: " + mensagem);
+        alert.setTitle("ERRO!!");
         alert.setHeaderText(null);
+        alert.setContentText(mensagem);
         alert.showAndWait();
     }
 
@@ -24,13 +24,6 @@ public class AlertMensage {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Tela não encontrada!");
         alert.setContentText("Erro: " + mensagem);
-        alert.setHeaderText(null);
-        alert.showAndWait();
-    }
-    public static void mensagemClienteAtivoNaoPodeSerExcluido() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("CLiente possui veiculo alugado!!");
-        alert.setContentText("O cliente selecionado não pode ser excluido, pois tem veiculo alugado!!");
         alert.setHeaderText(null);
         alert.showAndWait();
     }

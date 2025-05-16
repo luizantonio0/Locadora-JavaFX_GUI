@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.AdminMenuViewController">
+   <children>
+      <ImageView fitHeight="626.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/MenuAdmin.png" />
+         </image>
+      </ImageView>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1000.0">
+        <menus>
+          <Menu mnemonicParsing="false" onAction="#abrirTelaMenu" text="Menu" />
+          <Menu mnemonicParsing="false" text="Clientes">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#abrirTelaCrudClientes" text="Ver Clientes" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaCadastrarClientes" text="Cadastrar Cliente" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Veiculos">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#abrirTelaLocarVeiculos" text="Locar Veiculos" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaDevolverVeiculo" text="Devolver Veiculos" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaVeiculos" text="Cadastrar Veiculos" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaVenderVeiculos" text="Vender Veiculos" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Locações">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaLocacoes" text="Ver Locações" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaDevolverVeiculo" text="Devolver Veiculos" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#fecharPrograma" text="Sair">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#fecharPrograma" text="Voltar Login" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

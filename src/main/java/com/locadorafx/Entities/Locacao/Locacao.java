@@ -1,17 +1,19 @@
 package com.locadorafx.Entities.Locacao;
 
 import com.locadorafx.Entities.Clientes.Cliente;
+import com.locadorafx.Entities.Veiculos.Veiculo;
 import com.locadorafx.Models.LocacaoDAO;
 
 import java.time.LocalDateTime;
 
 public class Locacao {
 
-    public Locacao(int dias, double valor, LocalDateTime data, Cliente cliente) {
+    public Locacao(int dias, double valor, LocalDateTime data, Cliente cliente, Veiculo veiculo) {
         this.dias = dias;
         this.valor = valor;
         this.data = data;
         this.cliente = cliente;
+        this.veiculo = veiculo;
         LocacaoDAO.save(this);
     }
 
@@ -21,13 +23,23 @@ public class Locacao {
     private final LocalDateTime data;
     //Adicioanr referencia ao Id de cliente e carro NO DAO;
     private final Cliente cliente;
+    private final Veiculo veiculo;
     //----------------------------------------------------------------------------
+
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public int getDias() {
+        return dias;
+    }
 
     public int getId() {
         return id;
     }
     public void setId(int id) {
-        if(id != 0){
+        if(this.id != 0){
             throw new IllegalStateException("Id deve ser imutavel");
         }
         this.id = id;

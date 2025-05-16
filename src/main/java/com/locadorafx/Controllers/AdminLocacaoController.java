@@ -1,20 +1,14 @@
 package com.locadorafx.Controllers;
 
-import com.locadorafx.Entities.Clientes.Atributos.CPF;
-import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Locacao.Locacao;
 import com.locadorafx.Entities.Locadora.Locadora;
-import com.locadorafx.Entities.Veiculos.Atributos.Placa;
-import com.locadorafx.Entities.Veiculos.Veiculo;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.*;
 
@@ -73,30 +67,46 @@ public class AdminLocacaoController {
 
     private ObservableList<Locacao> locacoes = FXCollections.observableArrayList(Locadora.getLocacoes());
 
-    private Locadora locadoraSelecionada;
+    private Locacao locacaoSelecionada;
 
     public void initialize() {
         tableColumnId.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getId())));
         tableColumnNomeCliente.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCliente().getNome())));
-        tableColumnDias.setCellValueFactory(new PropertyValueFactory<>("dias"));
-        //tableColumnPlacaVeiculo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValor()));
-        tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        tableColumnDias.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDias())));
+        tableColumnPlacaVeiculo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVeiculo().getPlaca()));
+        tableColumnValor.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getValor())));
 
         tableViewLocacao.setItems(locacoes);
+
+        tableViewLocacao.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                locacaoSelecionada = newValue;
+                carregarDadosCliente(textFieldCPFCliente, textFieldNomeCliente, textFieldIdCliente, newValue.getCliente());
+                carregarDadosVeiculo(textFieldIdVeiculo, textFieldPlacaVeiculo, textFieldMarcaVeiculo, textFieldModeloVeiculo, textFieldAnoVeiculo, newValue.getVeiculo());
+                textFieldDiasLocacao.setText(String.valueOf(newValue.getDias()));
+                textFieldIdLocacao.setText(String.valueOf(newValue.getId()));
+                textFieldValorLocacao.setText(String.valueOf(newValue.getValor()));
+
+            }
+        });
+
     }
 
     @FXML
-    void apagarDadosEscolhidos(ActionEvent event) {
-
+    void apagarDadosEscolhidos() {
     }
 
     @FXML
-    void devolverVeiculo(ActionEvent event) {
+    void devolverVeiculo() {
+        locacaoSelecionada.getVeiculo().devolver();
 
+        locacoes = FXCollections.observableArrayList(Locadora.getLocacoes());
+        tableViewLocacao.setItems(locacoes);
+        tableViewLocacao.getSelectionModel().clearSelection();
     }
 
     @FXML
-    void getTelaAnterior(ActionEvent event) {
+    void getTelaAnterior() {
 
     }
 

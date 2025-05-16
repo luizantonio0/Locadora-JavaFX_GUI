@@ -8,9 +8,7 @@ import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.get
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoAno;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoPlaca;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoValor;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemCadastroVeiculoErro;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemCadastroVeiculoSucesso;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
 import static com.locadorafx.Controllers.SceneController.ComboBoxInitialize.ComboBoxInitializeModelo;
 import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
@@ -86,9 +84,9 @@ public class cadastrarVeiculoController {
         try {
             var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(),  comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
             Locadora.adicionarVeiculo(veiculo);
-            mensagemCadastroVeiculoSucesso();
+            mensagemSucesso("O veículo foi cadastrado com sucesso!");
         } catch (IllegalArgumentException e){
-            mensagemCadastroVeiculoErro(e.getMessage());
+            mensagemErro("Erro ao cadastrar veiculo: " + e.getMessage());
         }
     }
 

@@ -1,32 +1,29 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
+import com.locadorafx.Controllers.SceneController.AlertMensage;
 import com.locadorafx.Entities.Locadora.Locadora;
-import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.time.Year;
 
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.*;
 
 public class AdminVenderVeiculoController {
 
     @FXML
-    private TableColumn<Veiculo, Year> tableColumnAnoVeiculo;
+    private TableColumn<Veiculo, String> tableColumnAnoVeiculo;
 
     @FXML
-    private TableColumn<Veiculo, Integer> tableColumnIdVeiculo;
+    private TableColumn<Veiculo, String> tableColumnIdVeiculo;
 
     @FXML
-    private TableColumn<Veiculo, Marca> tableColumnMarcaVeiculo;
+    private TableColumn<Veiculo, String> tableColumnMarcaVeiculo;
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnModeloVeiculo;
@@ -34,8 +31,6 @@ public class AdminVenderVeiculoController {
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacaVeiculo;
 
-    @FXML
-    private TableColumn<Veiculo, String> tableColumnPrecoDiariaVeiculo;
 
     @FXML
     private TableView<Veiculo> tableViewVeiculo;
@@ -64,20 +59,18 @@ public class AdminVenderVeiculoController {
     @FXML
     private TextField textFieldValorVenda;
 
-    private ObservableList<Veiculo> estoque = FXCollections.observableArrayList(Locadora.getEstoque());
+    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(Locadora.getEstoque());
 
     private Veiculo veiculoSelecionado;
 
 
     public void initialize(){
 
-        //Usar Lambda na refatoração para evitar repetiçao do dado preço Diaria
-        //tableColumnPrecoDiariaVeiculo.setCellValueFactory(new PropertyValueFactory<>("precoDiaria"));
-        tableColumnIdVeiculo.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tableColumnMarcaVeiculo.setCellValueFactory(new PropertyValueFactory<>("marca"));
-        tableColumnModeloVeiculo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-        tableColumnAnoVeiculo.setCellValueFactory(new PropertyValueFactory<>("ano"));
-        tableColumnPlacaVeiculo.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        tableColumnIdVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
+        tableColumnMarcaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getMarca()))));
+        tableColumnModeloVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getModeloToString())));
+        tableColumnAnoVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getAno()))));
+        tableColumnPlacaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getPlaca())));
 
         tableViewVeiculo.setItems(estoque);
 
@@ -89,7 +82,6 @@ public class AdminVenderVeiculoController {
                 textFieldCategoria.setText(newValue.getCategoria().toString());
                 textFieldValorVenda.setText(String.valueOf(newValue.getValorParaVenda()));
             }
-
         });
     }
 
@@ -108,8 +100,9 @@ public class AdminVenderVeiculoController {
         try {
             veiculoSelecionado.vender();
             textFieldEstado.setText(veiculoSelecionado.getEstado().toString());
+            AlertMensage.mensagemSucesso("O veiculo foi vendido com sucesso!!");
         } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
+            AlertMensage.mensagemErro("Erro: " + e.getMessage());
         }
 
 

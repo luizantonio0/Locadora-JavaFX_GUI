@@ -3,9 +3,9 @@ package com.locadorafx;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.util.Objects;
 
 import com.locadorafx.Entities.Clientes.Cliente;
-import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
@@ -28,9 +28,10 @@ public class App extends Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(/*"login-View"*/"AdminLocacao-View"), 1000, 620);
+        scene = new Scene(loadFXML(/*"login-View"*/"AdminMenu-View"), 1000, 620);
         stage.setTitle("Locadora");
-        stage.getIcons().add(new Image(App.class.getResourceAsStream("/com/locadorafx/images/icon.png")));
+
+            stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("/com/locadorafx/images/icon.png"))));
 
         stage.setScene(scene);
         stage.show();

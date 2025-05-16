@@ -8,6 +8,7 @@ import com.locadorafx.Entities.Locacao.Locacao;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Placa;
 import com.locadorafx.Entities.Veiculos.Interface.IVeiculo;
+import com.locadorafx.Models.LocacaoDAO;
 
 public abstract sealed class Veiculo implements IVeiculo permits Automovel, Motocicleta, Van {
 
@@ -75,28 +76,35 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     }
     @Override
     public void locar(int dias, LocalDateTime data, Cliente cliente){
+
         if (!this.getEstado().equals(Estado.DISPONIVEL)){
             throw new IllegalStateException("O Veiculo não está disponivel para locação");
         }
 
-        Locacao locacaoLocal = new Locacao(dias, getValorDiariaLocacao()*dias, data, cliente);
-        this.setLocacao(locacaoLocal);
+        if (dias <= 0){
+            throw new IllegalStateException("A data de termino deve ser maior que a data de inicio!");
+        }
+
+        Locacao locacaoLocal = new Locacao(dias, getValorDiariaLocacao()*dias, data, cliente, this);
+
+        setLocacao(locacaoLocal);
         cliente.setAtivo(true);
         this.estado = Estado.LOCADO;
     }
     @Override
     public void vender(){
-        if(this.locacao != null && this.estado == Estado.VENDIDO){
+        if(estado.equals(Estado.LOCADO) || estado.equals(Estado.VENDIDO)){
             throw new IllegalStateException("O veiculo Não pode ser vendido, pois está LOCADO ou VENDIDO!!");
         }
         this.estado = Estado.VENDIDO;
     }
     @Override
     public void devolver(){
-        if(this.locacao == null){
+        if(!estado.equals(Estado.LOCADO)) {
             throw new IllegalStateException("O Veiculo não pode ser devolvido, pois não está LOCADO!!");
         }
         this.locacao.getCliente().setAtivo(false);
+        LocacaoDAO.delete(this.locacao);
         this.locacao = null;
         this.estado = Estado.DISPONIVEL;
     }
