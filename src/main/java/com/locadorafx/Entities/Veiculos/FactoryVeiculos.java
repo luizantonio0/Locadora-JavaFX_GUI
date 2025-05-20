@@ -12,6 +12,18 @@ public class FactoryVeiculos {
     private FactoryVeiculos() {
     }
 
+    public static Veiculo factoryVeiculo (String placa, double valorCompra, int anoInt, String estadoString, String modeloString, String tipo){
+        var ano = Year.of(anoInt);
+        var estado = Estado.valueOf(estadoString);
+        
+        return switch (tipo) {
+            case "Automovel"->  factoryAutomovel(placa, valorCompra, ano, estado, ModeloAutomovel.valueOf(modeloString));
+            case "Van"->  factoryVan(placa, valorCompra, ano, estado, ModeloVan.valueOf(modeloString)); 
+            case "Motocicleta"-> factoryMotocicleta(placa, valorCompra, ano, estado, ModeloMotocicleta.valueOf(modeloString)); 
+            default -> null; 
+        };
+    }
+
     public static Veiculo factory(String placa, double valorCompra, Year ano, Estado estado, ModeloAutomovel modelo, ModeloVan modeloVan, ModeloMotocicleta modeloMotocicleta) {
         if (modeloMotocicleta == null && modelo == null) {
             return factoryVan(placa, valorCompra, ano, estado, modeloVan);

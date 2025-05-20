@@ -1,19 +1,25 @@
 package com.locadorafx.Controllers;
 
+import java.time.temporal.ChronoUnit;
+
 import com.locadorafx.App;
+import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosCliente;
+import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosVeiculo;
+import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarTabelaClientes;
 import com.locadorafx.Controllers.SceneController.AlertMensage;
 import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-
-import java.time.temporal.ChronoUnit;
-
-import static com.locadorafx.Controllers.CarregarDadosVeiculo.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class AdminLocarVeiculoController {
 
@@ -112,7 +118,6 @@ public class AdminLocarVeiculoController {
 
         });
 
-        //Usar Lambda na refatoração para evitar repetiçao do dado preço Diaria
         tableColumnPrecoDiariaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getValorDiariaLocacao()))));
         tableColumnIdVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
         tableColumnMarcaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getMarca()))));

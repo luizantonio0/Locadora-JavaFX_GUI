@@ -1,20 +1,16 @@
 package com.locadorafx;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.Year;
 import java.util.Objects;
 
-import com.locadorafx.Entities.Clientes.Cliente;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
-
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 import com.locadorafx.Entities.Veiculos.Veiculo;
-import com.locadorafx.Models.ClienteDAO;
 import com.locadorafx.Models.VeiculoDAO;
 
 import javafx.application.Application;

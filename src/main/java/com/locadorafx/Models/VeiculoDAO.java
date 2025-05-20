@@ -1,14 +1,14 @@
 package com.locadorafx.Models;
 
-import com.locadorafx.Entities.Clientes.Cliente;
-import com.locadorafx.Entities.Veiculos.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
 import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
+import com.locadorafx.Entities.Clientes.Cliente;
+import com.locadorafx.Entities.Veiculos.FactoryVeiculos;
+import com.locadorafx.Entities.Veiculos.Veiculo;
 
 public class VeiculoDAO extends DAO{
 
@@ -57,14 +57,15 @@ public class VeiculoDAO extends DAO{
         }
     }
 
-    public static Cliente get(int id) {
+    public static Veiculo get(int id) {
         try (var conexao = connect()){
-            var stmt = conexao.prepareStatement("SELECT * FROM Cliente WHERE id = ?");
+            var stmt = conexao.prepareStatement("SELECT * FROM Veiculo WHERE id = ?");
             stmt.setInt(1, id);
             try (var rs = stmt.executeQuery()) {
-                if (!rs.next()) throw new RuntimeException("Cliente não encontrado");
-
-                return new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("rg"), rs.getString("endereco"));
+                if (!rs.next()) throw new RuntimeException("Veículo não encontrado");
+                //TODO: Adicionar no DB a tabela tipo 
+                //TODO: Adicionar o id
+                return FactoryVeiculos.factoryVeiculo(rs.getString("placa"), rs.getDouble("valorCompra"), rs.getInt("ano"), rs.getString("estado"), rs.getString("modelo"), rs.getString("tipo"));
             }
         } catch (SQLException e){
             throw new RuntimeException(e);

@@ -1,15 +1,13 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.Entities.Clientes.Cliente;
-import com.locadorafx.Entities.Veiculos.Automovel;
-import com.locadorafx.Entities.Veiculos.Motocicleta;
-import com.locadorafx.Entities.Veiculos.Van;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class CarregarDadosVeiculo {
@@ -25,19 +23,20 @@ public class CarregarDadosVeiculo {
         marca.setText(veiculo.getMarca().toString());
     }
     protected static void carregarModelo(Label modelo, Veiculo veiculo){
-        modelo.setText(switch (veiculo) {
-            case Automovel a -> a.getModelo().toString();
-            case Motocicleta m -> m.getModelo().toString();
-            case Van v -> v.getModelo().toString();
-        });
+        modelo.setText(veiculo.getModeloToString());
     }
 
-    public static void carregarTabelaClientes(TableColumn tableColumnNome, TableColumn tableColumnEmail, TableColumn tableColumnEndereco, TableColumn tableColumnCPF, TableColumn tableColumnId){
-        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-        tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+    public static void carregarTabelaClientes(
+            TableColumn<Cliente, String> tableColumnNome,
+            TableColumn<Cliente, String> tableColumnEmail,
+            TableColumn<Cliente, String> tableColumnEndereco,
+            TableColumn<Cliente, String> tableColumnCPF,
+            TableColumn<Cliente, String> tableColumnId) {
+        tableColumnNome.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getNome())));
+        tableColumnEmail.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getEmail())));
+        tableColumnEndereco.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getEndereco())));
+        tableColumnCPF.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getCpf())));
+        tableColumnId.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
     }
 
     public static void carregarDadosCliente(TextField textFieldCPFCliente, TextField textFieldNomeCliente, TextField textFieldIdCliente, Cliente newValue){
@@ -56,7 +55,7 @@ public class CarregarDadosVeiculo {
     }
     public static void carregarDadosVeiculo(TextField id, TextField placa, TextField marca, TextField modelo, TextField ano, Veiculo newValue){
         id.setText(String.valueOf(newValue.getId()));
-        placa.setText(newValue.getPlaca().toString());
+        placa.setText(newValue.getPlaca());
         marca.setText(newValue.getMarca().toString());
         modelo.setText(newValue.getModeloToString());
         ano.setText(String.valueOf(newValue.getAno()));

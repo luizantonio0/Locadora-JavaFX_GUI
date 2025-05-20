@@ -1,42 +1,40 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
-
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosCliente;
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarTabelaClientes;
-import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
-
-import com.locadorafx.Entities.Clientes.Atributos.CPF;
-import com.locadorafx.Entities.Clientes.Atributos.Email;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
 import com.locadorafx.Entities.Clientes.Cliente;
-
 import com.locadorafx.Models.ClienteDAO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 
 public class CRUDClienteController {
 
     @FXML
-    private TableColumn<Cliente, CPF> tableColumnCPF;
+    private TableColumn<Cliente, String> tableColumnCPF;
 
     @FXML
-    private TableColumn<Cliente, Email> tableColumnEmail;
+    private TableColumn<Cliente, String> tableColumnEmail;
 
     @FXML
     private TableColumn<Cliente, String> tableColumnEndereco;
 
     @FXML
-    private TableColumn<Cliente, Integer> tableColumnId;
+    private TableColumn<Cliente, String> tableColumnId;
 
     @FXML
     private TableColumn<Cliente, String> tableColumnNome;
 
     @FXML
     private TableView<Cliente> tableViewClientes;
-
 
     @FXML
     private TextField textFieldCPF;
