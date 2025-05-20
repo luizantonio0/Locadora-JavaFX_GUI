@@ -3,6 +3,11 @@ package com.locadorafx.Entities.Clientes;
 public final class Cliente extends Pessoa{
 
 
+    public Cliente(int id, String nome, String cpf, String email, String rg, String endereco) {
+        super(nome, cpf, email, rg, endereco);
+        this.id = id;
+    }
+
     public Cliente(String nome, String sobrenome, String cpf, String email, String rg, String endereco) {
         super(nome, sobrenome, cpf, email, rg, endereco);
     }

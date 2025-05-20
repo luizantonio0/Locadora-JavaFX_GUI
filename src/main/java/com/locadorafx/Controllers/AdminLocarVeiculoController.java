@@ -133,15 +133,15 @@ public class AdminLocarVeiculoController {
 
     @FXML
     void LocarVeiculo() {
-        if(diasLocacao > 0 && clienteSelecionado != null){
             try {
-            veiculoSelecionado.locar(diasLocacao, datePickerInicio.getValue().atStartOfDay(), clienteSelecionado);
+            veiculoSelecionado.locar(diasLocacao, datePickerInicio.getValue(), clienteSelecionado);
             AlertMensage.mensagemSucesso("Locado com sucesso!");
 
-            }catch (IllegalStateException ex){
+            } catch (IllegalStateException ex){
                 AlertMensage.mensagemErro("Erro: " + ex.getMessage());
+            } catch (NullPointerException ex){
+                AlertMensage.mensagemErro("Não foi possivel locar o veiculo: Defina as datas da locação");
             }
-        }
     }
 
     @FXML
@@ -152,7 +152,7 @@ public class AdminLocarVeiculoController {
 
     @FXML
     void getTelaAnterior() {
-        App.setRoot("AdminLocacao-View");
+        App.setRoot("AdminMenu-View");
     }
 
     @FXML
@@ -165,6 +165,10 @@ public class AdminLocarVeiculoController {
 
             textLabelValor.setText("R$ %.2f".formatted(valorDiariaLocacao));
         }
+    }
+    @FXML
+    void abrirTelaMenu(){
+        App.setRoot("AdminMenu-View");
     }
 
 }

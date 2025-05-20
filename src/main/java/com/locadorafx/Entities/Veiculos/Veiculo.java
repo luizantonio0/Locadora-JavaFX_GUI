@@ -1,6 +1,6 @@
 package com.locadorafx.Entities.Veiculos;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Year;
 
 import com.locadorafx.Entities.Clientes.Cliente;
@@ -75,7 +75,7 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         return "\nVeiculo{\nPlaca: %s\nAno: %s\nLocacao: %s\nEstado: %s".formatted(this.placa, this.ano, this.locacao, this.estado);
     }
     @Override
-    public void locar(int dias, LocalDateTime data, Cliente cliente){
+    public void locar(int dias, LocalDate data, Cliente cliente){
 
         if (!this.getEstado().equals(Estado.DISPONIVEL)){
             throw new IllegalStateException("O Veiculo não está disponivel para locação");
@@ -111,7 +111,7 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     @Override
     public double getValorParaVenda(){
 
-        int idadeVeiculo = LocalDateTime.now().getYear() - this.ano.getValue();
+        int idadeVeiculo = LocalDate.now().getYear() - this.ano.getValue();
         double tempValorCompra = getValorCompra();
 
         double valorVenda = tempValorCompra - idadeVeiculo * 0.15 * tempValorCompra;

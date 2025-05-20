@@ -9,8 +9,8 @@ import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
 import com.locadorafx.Entities.Clientes.Atributos.CPF;
 import com.locadorafx.Entities.Clientes.Atributos.Email;
 import com.locadorafx.Entities.Clientes.Cliente;
-import com.locadorafx.Entities.Locadora.Locadora;
 
+import com.locadorafx.Models.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -59,7 +59,7 @@ public class CRUDClienteController {
     @FXML
     private TextField textFieldSorbenome;
 
-    private ObservableList<Cliente> clientes = FXCollections.observableArrayList(Locadora.getClientes());
+    private ObservableList<Cliente> clientes = FXCollections.observableArrayList(ClienteDAO.find(30));
 
     private Cliente clienteSelecionado;
 
@@ -92,7 +92,7 @@ public class CRUDClienteController {
 
     @FXML
     void getTelaAnterior(){
-            App.setRoot("menuAdmin");
+        App.setRoot("AdminMenu-View");
     }
 
     @FXML
@@ -115,10 +115,15 @@ public class CRUDClienteController {
     @FXML
     void excluirCliente() {
         if (!clienteSelecionado.isAtivo()) {
+            ClienteDAO.delete(clienteSelecionado.getId());
             clientes.remove(clienteSelecionado);
             tableViewClientes.setItems(clientes);
         } else mensagemErro("O cliente selecionado não pode ser excluido, pois tem veiculo alugado!!");
     }
 
+    @FXML
+    void abrirTelaMenu(){
+        App.setRoot("AdminMenu-View");
+    }
 
 }

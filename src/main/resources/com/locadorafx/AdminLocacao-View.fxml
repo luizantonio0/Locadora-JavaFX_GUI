@@ -29,19 +29,9 @@
             </TableView>
             <MenuBar layoutX="2.0" prefHeight="25.0" prefWidth="496.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" onAction="#getTelaAnterior" text="Menu">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#abrirTelaMenu" text="Voltar" />
                   </items>
                 </Menu>
               </menus>

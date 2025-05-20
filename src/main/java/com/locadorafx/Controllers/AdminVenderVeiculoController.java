@@ -92,7 +92,7 @@ public class AdminVenderVeiculoController {
 
     @FXML
     void getTelaAnterior() {
-        App.setRoot("AdminMenu");
+        App.setRoot("AdminMenu-View");
     }
 
     @FXML
@@ -107,5 +107,8 @@ public class AdminVenderVeiculoController {
 
 
     }
-
+    @FXML
+    void abrirTelaMenu(){
+        App.setRoot("AdminMenu-View");
+    }
 }

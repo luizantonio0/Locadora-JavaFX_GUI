@@ -1,7 +1,7 @@
 package com.locadorafx;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.Objects;
 
@@ -28,7 +28,7 @@ public class App extends Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(/*"login-View"*/"AdminMenu-View"), 1000, 620);
+        scene = new Scene(loadFXML("login-View"), 1000, 620);
         stage.setTitle("Locadora");
 
             stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResourceAsStream("/com/locadorafx/images/icon.png"))));
@@ -52,9 +52,9 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-            Cliente luiz = new Cliente("Luiz", "Gonçalves", "01161535632", "luiz@gmail.com", "201683799", "Curitiba");
-            Cliente antonio = new Cliente("Antonio", "Santos", "12609432089", "antonio@gmail.com", "367463386", "Montes Claros");
-            ClienteDAO.save(luiz); ClienteDAO.save(antonio);
+            //Cliente luiz = new Cliente("Luiz", "Gonçalves", "01161535632", "luiz@gmail.com", "201683799", "Curitiba");
+            //Cliente antonio = new Cliente("Antonio", "Santos", "12609432089", "antonio@gmail.com", "367463386", "Montes Claros");
+            //ClienteDAO.save(luiz); ClienteDAO.save(antonio);
 
             Veiculo gol = factory("AAA0A00", 50000, Year.of(2010), Estado.DISPONIVEL, ModeloAutomovel.GOL, null, null);
             Veiculo virtus = factory("BBB0B00", 100000, Year.of(2010), Estado.DISPONIVEL, ModeloAutomovel.VIRTUS, null, null);
@@ -72,8 +72,8 @@ public class App extends Application {
             VeiculoDAO.save(van1); VeiculoDAO.save(van2); VeiculoDAO.save(van3);
             VeiculoDAO.save(moto1); VeiculoDAO.save(moto2); VeiculoDAO.save(moto3);
 
-            gol.locar(4, LocalDateTime.of(2020, 12, 3, 0,0), luiz);
-            moto1.locar(4, LocalDateTime.of(2020, 12, 3, 0,0), luiz);
+            //gol.locar(4, LocalDate.of(2020, 12, 3), luiz);
+            //moto1.locar(4, LocalDate.of(2020, 12, 3), luiz);
 
         launch();
     }

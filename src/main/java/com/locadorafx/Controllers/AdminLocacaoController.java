@@ -1,5 +1,6 @@
 package com.locadorafx.Controllers;
 
+import com.locadorafx.App;
 import com.locadorafx.Entities.Locacao.Locacao;
 import com.locadorafx.Entities.Locadora.Locadora;
 import javafx.beans.property.SimpleStringProperty;
@@ -107,7 +108,11 @@ public class AdminLocacaoController {
 
     @FXML
     void getTelaAnterior() {
-
+        App.setRoot("AdminMenu-View");
+    }
+    @FXML
+    void abrirTelaMenu(){
+        App.setRoot("AdminMenu-View");
     }
 
 }

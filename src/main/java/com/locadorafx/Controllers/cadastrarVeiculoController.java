@@ -84,6 +84,8 @@ public class cadastrarVeiculoController {
         try {
             var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(),  comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
             Locadora.adicionarVeiculo(veiculo);
+            
+            textFieldPlaca.clear(); textFieldAno.clear(); textFieldValor.clear(); comboBoxMarca.getSelectionModel().clearSelection(); comboBoxEstado.getSelectionModel().clearSelection(); comboBoxModelo.getSelectionModel().clearSelection(); comboBoxModeloVan.getSelectionModel().clearSelection(); comboBoxModeloMotocicleta.getSelectionModel().clearSelection();
             mensagemSucesso("O veículo foi cadastrado com sucesso!");
         } catch (IllegalArgumentException e){
             mensagemErro("Erro ao cadastrar veiculo: " + e.getMessage());
@@ -92,6 +94,7 @@ public class cadastrarVeiculoController {
 
     @FXML
     void voltarTela(){
-            App.setRoot("login-View");
+        App.setRoot("AdminMenu-View");
     }
+
 }

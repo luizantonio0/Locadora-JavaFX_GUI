@@ -6,10 +6,10 @@ import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Locacao.Locacao;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public interface IVeiculo {
-    void locar(int dias, LocalDateTime data, Cliente cliente);
+    void locar(int dias, LocalDate data, Cliente cliente);
     void vender();
     void devolver();
     Estado getEstado();

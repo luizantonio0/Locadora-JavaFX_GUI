@@ -49,5 +49,4 @@ public class AdminMenuViewController {
     void fecharPrograma() {
         App.setRoot("login-View");
     }
-
 }

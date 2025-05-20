@@ -4,11 +4,11 @@ import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 import com.locadorafx.Models.LocacaoDAO;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Locacao {
 
-    public Locacao(int dias, double valor, LocalDateTime data, Cliente cliente, Veiculo veiculo) {
+    public Locacao(int dias, double valor, LocalDate data, Cliente cliente, Veiculo veiculo) {
         this.dias = dias;
         this.valor = valor;
         this.data = data;
@@ -20,7 +20,7 @@ public class Locacao {
     private int id;
     private final int dias;
     private final double valor;
-    private final LocalDateTime data;
+    private final LocalDate data;
     //Adicioanr referencia ao Id de cliente e carro NO DAO;
     private final Cliente cliente;
     private final Veiculo veiculo;
@@ -49,7 +49,7 @@ public class Locacao {
         return cliente;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 

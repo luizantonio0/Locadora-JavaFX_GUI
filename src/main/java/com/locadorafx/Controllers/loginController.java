@@ -41,7 +41,7 @@ public class loginController {
         //String cpfEncriptado = passwordEncryptor.encryptPassword(textFieldCPF.getText());
         //Buscar dados do banco de Dados banco de dados
         //passwordEncryptor.checkPassword(textFieldSenha.getText(), cpfEncriptado);
-            App.setRoot("locarCarro1-View");
+        App.setRoot("AdminMenu-View");
     }
 
 }

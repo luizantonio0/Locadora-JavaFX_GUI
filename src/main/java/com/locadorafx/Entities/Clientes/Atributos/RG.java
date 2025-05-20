@@ -16,6 +16,7 @@ public record RG(String rg) {
         return rg;
     }
 
+
     private  boolean validarRG(String rg) {
         // Remove tudo que não for número ou 'X'
         rg = rg.replaceAll("[^0-9Xx]", "");

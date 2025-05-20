@@ -47,7 +47,7 @@ public class CarregarDadosVeiculo {
     }
     public static void carregarDadosCliente(TextField textFieldCPF, TextField textFieldRG, TextField textFieldNome, TextField textFieldSobrenome, TextField textFieldEmail, TextArea textFieldEndereco, TextField textFieldId, Cliente newValue){
         textFieldCPF.setText(newValue.getCpf());
-        textFieldRG.setText(newValue.getRg().toString());
+        textFieldRG.setText(newValue.getRg());
         textFieldNome.setText(newValue.getNome());
         textFieldSobrenome.setText(newValue.getSobrenome());
         textFieldEmail.setText(newValue.getEmail());

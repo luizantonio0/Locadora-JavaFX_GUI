@@ -1,14 +1,11 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
+import com.locadorafx.Controllers.SceneController.AlertMensage;
 import com.locadorafx.Entities.Clientes.Cliente;
-import javafx.event.ActionEvent;
+import com.locadorafx.Models.ClienteDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
-
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 
 public class cadastrarClienteController {
 
@@ -31,7 +28,7 @@ public class cadastrarClienteController {
     private TextField textFieldSobrenome;
 
     @FXML
-    void cadastrarCliente(ActionEvent event) {
+    void cadastrarCliente() {
         String cpf = textFieldCPF.getText();
         String email = textFieldEmail.getText();
         String endereco = textFieldEndereco.getText();
@@ -39,15 +36,25 @@ public class cadastrarClienteController {
         String rg = textFieldRG.getText();
         String sobrenome = textFieldSobrenome.getText();
         //201683799 RG Valido
-        Cliente cliente = new Cliente(nome, sobrenome, cpf, email, rg, endereco);
-        System.out.println(cliente);
+        try {
+            Cliente cliente = new Cliente(nome, sobrenome, cpf, email, rg, endereco);
+            ClienteDAO.save(cliente);
+
+            textFieldCPF.clear(); textFieldEmail.clear(); textFieldEndereco.clear(); textFieldNome.clear(); textFieldRG.clear(); textFieldSobrenome.clear();
+            AlertMensage.mensagemSucesso("Cliente cadastrado com sucesso!");
+        } catch (IllegalArgumentException e){
+            AlertMensage.mensagemErro("Erro: " + e.getMessage());
+        }
+
+
+
 
 
     }
 
     @FXML
     void voltarTela(){
-            App.setRoot("login-View");
+        App.setRoot("AdminMenu-View");
     }
 
 }

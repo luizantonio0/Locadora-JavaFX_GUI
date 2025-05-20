@@ -6,6 +6,21 @@ import com.locadorafx.Entities.Clientes.Atributos.RG;
 
 public abstract sealed class Pessoa permits Cliente {
 
+    public Pessoa(String nome, String cpf, String email, String rg, String endereco) {
+        String sobrenome;
+        if (nome.contains(" ")) {
+            sobrenome = nome.substring(nome.lastIndexOf(" ") + 1);
+        } else {
+            sobrenome = nome;
+        }
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = new CPF(cpf);
+        this.email = new Email(email);
+        this.rg = new RG(rg);
+        this.endereco = endereco;
+    }
+
     public Pessoa(String nome, String sobrenome, String cpf, String email, String rg, String endereco) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -48,8 +63,8 @@ public abstract sealed class Pessoa permits Cliente {
     public String getSobrenome() {
         return sobrenome;
     }
-    public RG getRg() {
-        return rg;
+    public String getRg() {
+        return rg.toString();
     }
     public String getEndereco() {
         return endereco;
