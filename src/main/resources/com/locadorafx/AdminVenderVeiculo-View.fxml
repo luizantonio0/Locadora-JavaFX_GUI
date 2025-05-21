@@ -20,10 +20,11 @@
             <TableView fx:id="tableViewVeiculo" layoutY="27.0" prefHeight="595.0" prefWidth="496.0">
                <columns>
                   <TableColumn fx:id="tableColumnIdVeiculo" prefWidth="49.0" text="Id" />
-                  <TableColumn fx:id="tableColumnMarcaVeiculo" prefWidth="172.0" text="Marca" />
-                  <TableColumn fx:id="tableColumnModeloVeiculo" prefWidth="156.0" text="Modelo" />
-                  <TableColumn fx:id="tableColumnAnoVeiculo" prefWidth="42.0" text="Ano" />
-                  <TableColumn fx:id="tableColumnPlacaVeiculo" prefWidth="76.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnMarcaVeiculo" prefWidth="134.0" text="Marca" />
+                  <TableColumn fx:id="tableColumnModeloVeiculo" prefWidth="139.0" text="Modelo" />
+                  <TableColumn fx:id="tableColumnAnoVeiculo" prefWidth="46.0" text="Ano" />
+                  <TableColumn fx:id="tableColumnPlacaVeiculo" prefWidth="72.0" text="Placa" />
+                  <TableColumn fx:id="tableColumnPrecoDiariaVeiculo" prefWidth="55.0" text="Preço" />
                </columns>
             </TableView>
             <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="496.0">

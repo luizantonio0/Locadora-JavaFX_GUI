@@ -36,7 +36,6 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     private Estado estado;
     private Locacao locacao;
     private int id;
-    //Manter variavel precoDiaria, Criar MEtodo no Construtor
     private double precoDiaria;
     //------------------------------------------------------------------------------------
     public int getId() {
@@ -97,9 +96,10 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         Locacao locacaoLocal = new Locacao(dias, getValorDiariaLocacao()*dias, data, cliente, this);
         cliente.setAtivo(true);
         this.estado = Estado.LOCADO;
-        setLocacao(locacaoLocal);
+        this.locacao = locacaoLocal;
 
         VeiculoDAO.update(this);
+        LocacaoDAO.save(locacaoLocal);
     }
     @Override
     public void vender(){
@@ -114,9 +114,10 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
             throw new IllegalStateException("O Veiculo não pode ser devolvido, pois não está LOCADO!!");
         }
         this.locacao.getCliente().setAtivo(false);
+        this.locacao.setAtivo(false);
         this.estado = Estado.DISPONIVEL;
         VeiculoDAO.update(this);
-        LocacaoDAO.delete(this.locacao.getId());
+        LocacaoDAO.update(this.locacao);
         this.locacao = null;
     }
     @Override

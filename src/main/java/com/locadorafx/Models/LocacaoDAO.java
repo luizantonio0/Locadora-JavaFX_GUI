@@ -1,8 +1,6 @@
 package com.locadorafx.Models;
 
 import com.locadorafx.Entities.Locacao.Locacao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +11,11 @@ import java.util.List;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
 
 public class LocacaoDAO extends DAO{
-    private static final Logger log = LoggerFactory.getLogger(LocacaoDAO.class);
 
     //OK?
     public static void save (Locacao locacao){
         try (var conexao = connect()){
-            String sql = "INSERT INTO Locacao (dias, dataLocacao, idCliente, idVeiculo, valor) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Locacao (dias, dataLocacao, idCliente, idVeiculo, valor, ativo) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = setPreparedStatementVeiculo(locacao, conexao, sql);
             stmt.executeUpdate();
             stmt.close();
@@ -40,15 +37,16 @@ public class LocacaoDAO extends DAO{
         stmt.setInt(3, locacao.getCliente().getId());
         stmt.setInt(4, locacao.getVeiculo().getId());
         stmt.setDouble(5, locacao.getValor());
+        stmt.setInt(6, locacao.isAtivo() ? 1 : 0);
         return stmt;
     }
 
     //OK?
     public static void update (Locacao locacao){
         try (var conexao = connect()){
-            String sql = "UPDATE Locacao SET dias = ?, dataLocacao = ?, idCliente = ?, idVeiculo = ? valor = ? WHERE id = ? ";
+            String sql = "UPDATE Locacao SET dias = ?, dataLocacao = ?, idCliente = ?, idVeiculo = ?,  valor = ?, ativo = ? WHERE id = ? ";
             var stmt = setPreparedStatementVeiculo(locacao, conexao, sql);
-            stmt.setInt(5, locacao.getId());
+            stmt.setInt(7, locacao.getId());
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e){
@@ -68,7 +66,8 @@ public class LocacaoDAO extends DAO{
                                 LocalDate.parse(rs.getString("dataLocacao")),
                                 rs.getInt("idCliente"),
                                 rs.getInt("idVeiculo"),
-                                rs.getDouble("valor"));
+                                rs.getDouble("valor"),
+                                rs.getInt("ativo"));
             }
         } catch (SQLException e){
             throw new RuntimeException(e);
@@ -88,7 +87,8 @@ public class LocacaoDAO extends DAO{
                             LocalDate.parse(rs.getString("dataLocacao")),
                             rs.getInt("idCliente"),
                             rs.getInt("idVeiculo"),
-                            rs.getDouble("valor")));
+                            rs.getDouble("valor"),
+                            rs.getInt("ativo")));
                     locacoes.getLast().getVeiculo().setLocacao(locacoes.getLast());
                 }
                 return locacoes;

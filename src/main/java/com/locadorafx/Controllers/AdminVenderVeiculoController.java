@@ -26,7 +26,7 @@ public class AdminVenderVeiculoController {
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnModeloVeiculo;
-
+    @FXML
     private TableColumn<Veiculo, String> tableColumnPrecoDiariaVeiculo;
 
     @FXML

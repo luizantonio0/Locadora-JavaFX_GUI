@@ -33,7 +33,9 @@ public class App extends Application {
         try {
             scene.setRoot(loadFXML(fxml));
         } catch (IOException | IllegalStateException e) {
-            mensagemTelaNaoExistente(e.getMessage());
+            e.printStackTrace();
+            System.out.println();
+            //mensagemTelaNaoExistente(e.getMessage());
         }
     }
     private static Parent loadFXML(String fxml) throws IOException {
