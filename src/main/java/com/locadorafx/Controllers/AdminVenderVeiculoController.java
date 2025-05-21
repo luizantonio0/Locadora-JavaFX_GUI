@@ -2,9 +2,8 @@ package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
 import com.locadorafx.Controllers.SceneController.AlertMensage;
-import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Veiculo;
-import javafx.beans.property.SimpleStringProperty;
+import com.locadorafx.Models.VeiculoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,6 +26,8 @@ public class AdminVenderVeiculoController {
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnModeloVeiculo;
+
+    private TableColumn<Veiculo, String> tableColumnPrecoDiariaVeiculo;
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacaVeiculo;
@@ -59,22 +60,18 @@ public class AdminVenderVeiculoController {
     @FXML
     private TextField textFieldValorVenda;
 
-    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(Locadora.getEstoque());
+    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(VeiculoDAO.find(100));
 
     private Veiculo veiculoSelecionado;
 
 
     public void initialize(){
 
-        tableColumnIdVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
-        tableColumnMarcaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getMarca()))));
-        tableColumnModeloVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getModeloToString())));
-        tableColumnAnoVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getAno()))));
-        tableColumnPlacaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getPlaca())));
+        CarregarDadosTabela.carregarTabelaVeiculos(tableColumnPrecoDiariaVeiculo, tableColumnIdVeiculo, tableColumnMarcaVeiculo, tableColumnModeloVeiculo, tableColumnAnoVeiculo, tableColumnPlacaVeiculo);
 
         tableViewVeiculo.setItems(estoque);
 
-        tableViewVeiculo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        tableViewVeiculo.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
             veiculoSelecionado = newValue;
             if (newValue != null) {
                 carregarDadosVeiculo(textFieldId, textFieldPlaca, textFieldMarca, textFieldModelo, textFieldAno, newValue);
@@ -99,6 +96,7 @@ public class AdminVenderVeiculoController {
     void venderVeiculo() {
         try {
             veiculoSelecionado.vender();
+            VeiculoDAO.update(veiculoSelecionado);
             textFieldEstado.setText(veiculoSelecionado.getEstado().toString());
             AlertMensage.mensagemSucesso("O veiculo foi vendido com sucesso!!");
         } catch (IllegalStateException e) {

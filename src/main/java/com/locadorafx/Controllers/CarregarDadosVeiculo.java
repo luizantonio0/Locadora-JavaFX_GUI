@@ -3,9 +3,7 @@ package com.locadorafx.Controllers;
 import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -24,19 +22,6 @@ public class CarregarDadosVeiculo {
     }
     protected static void carregarModelo(Label modelo, Veiculo veiculo){
         modelo.setText(veiculo.getModeloToString());
-    }
-
-    public static void carregarTabelaClientes(
-            TableColumn<Cliente, String> tableColumnNome,
-            TableColumn<Cliente, String> tableColumnEmail,
-            TableColumn<Cliente, String> tableColumnEndereco,
-            TableColumn<Cliente, String> tableColumnCPF,
-            TableColumn<Cliente, String> tableColumnId) {
-        tableColumnNome.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getNome())));
-        tableColumnEmail.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getEmail())));
-        tableColumnEndereco.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getEndereco())));
-        tableColumnCPF.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getCpf())));
-        tableColumnId.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
     }
 
     public static void carregarDadosCliente(TextField textFieldCPFCliente, TextField textFieldNomeCliente, TextField textFieldIdCliente, Cliente newValue){

@@ -2,7 +2,6 @@ package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosCliente;
-import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarTabelaClientes;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
 import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Models.ClienteDAO;
@@ -57,18 +56,18 @@ public class CRUDClienteController {
     @FXML
     private TextField textFieldSorbenome;
 
-    private ObservableList<Cliente> clientes = FXCollections.observableArrayList(ClienteDAO.find(30));
+    private final ObservableList<Cliente> clientes = FXCollections.observableArrayList(ClienteDAO.find(30));
 
     private Cliente clienteSelecionado;
 
     public void initialize() {
 
-        carregarTabelaClientes(tableColumnNome, tableColumnEmail, tableColumnEndereco, tableColumnCPF, tableColumnId);
+        CarregarDadosTabela.carregarTabelaClientes(tableColumnNome, tableColumnEmail, tableColumnEndereco, tableColumnCPF, tableColumnId);
 
-        //clientes = FXCollections.observableArrayList(Locadora.getClientes());
+
         tableViewClientes.setItems(clientes);
 
-        tableViewClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        tableViewClientes.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
             textFieldEmail.setEditable(false);
             textFieldNome.setEditable(false);
             textFieldSorbenome.setEditable(false);
