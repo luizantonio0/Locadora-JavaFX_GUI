@@ -4,7 +4,6 @@ import com.locadorafx.App;
 import com.locadorafx.Controllers.SceneController.AlertMensage;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 import com.locadorafx.Models.VeiculoDAO;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,6 +26,8 @@ public class AdminVenderVeiculoController {
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnModeloVeiculo;
+
+    private TableColumn<Veiculo, String> tableColumnPrecoDiariaVeiculo;
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnPlacaVeiculo;
@@ -66,11 +67,7 @@ public class AdminVenderVeiculoController {
 
     public void initialize(){
 
-        tableColumnIdVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
-        tableColumnMarcaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getMarca()))));
-        tableColumnModeloVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getModeloToString())));
-        tableColumnAnoVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getAno()))));
-        tableColumnPlacaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getPlaca())));
+        CarregarDadosTabela.carregarTabelaVeiculos(tableColumnPrecoDiariaVeiculo, tableColumnIdVeiculo, tableColumnMarcaVeiculo, tableColumnModeloVeiculo, tableColumnAnoVeiculo, tableColumnPlacaVeiculo);
 
         tableViewVeiculo.setItems(estoque);
 

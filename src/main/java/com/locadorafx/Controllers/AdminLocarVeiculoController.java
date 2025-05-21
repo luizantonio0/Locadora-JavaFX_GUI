@@ -5,15 +5,12 @@ import java.time.temporal.ChronoUnit;
 import com.locadorafx.App;
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosCliente;
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarDadosVeiculo;
-import static com.locadorafx.Controllers.CarregarDadosVeiculo.carregarTabelaClientes;
 import com.locadorafx.Controllers.SceneController.AlertMensage;
 import com.locadorafx.Entities.Clientes.Cliente;
-import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 
 import com.locadorafx.Models.ClienteDAO;
 import com.locadorafx.Models.VeiculoDAO;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -108,11 +105,11 @@ public class AdminLocarVeiculoController {
     private Label textLabelValor;
 
     public void initialize(){
-        carregarTabelaClientes(tableColumnNome, tableColumnEmail, tableColumnEndereco, tableColumnCPF, tableColumnId);
+        CarregarDadosTabela.carregarTabelaClientes(tableColumnNome, tableColumnEmail, tableColumnEndereco, tableColumnCPF, tableColumnId);
 
         tableViewClientes.setItems(clientes);
 
-        tableViewClientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        tableViewClientes.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
             clienteSelecionado = newValue;
             if (newValue != null) {
                 carregarDadosCliente(textFieldCPFCliente, textFieldNomeCliente, textFieldIdCliente, newValue);
@@ -120,16 +117,11 @@ public class AdminLocarVeiculoController {
 
         });
 
-        tableColumnPrecoDiariaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getValorDiariaLocacao()))));
-        tableColumnIdVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getId()))));
-        tableColumnMarcaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getMarca()))));
-        tableColumnModeloVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getModeloToString()))));
-        tableColumnAnoVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getAno()))));
-        tableColumnPlacaVeiculo.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getPlaca())));
+        CarregarDadosTabela.carregarTabelaVeiculos(tableColumnPrecoDiariaVeiculo, tableColumnIdVeiculo, tableColumnMarcaVeiculo, tableColumnModeloVeiculo, tableColumnAnoVeiculo, tableColumnPlacaVeiculo);
 
         tableViewVeiculo.setItems(estoque);
 
-        tableViewVeiculo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        tableViewVeiculo.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
             veiculoSelecionado = newValue;
             if (newValue != null) {
                 carregarDadosVeiculo(textFieldIdVeiculo, textFieldPlacaVeiculo, textFieldMarcaVeiculo, textFieldModeloVeiculo, textFieldAnoVeiculo, newValue);
