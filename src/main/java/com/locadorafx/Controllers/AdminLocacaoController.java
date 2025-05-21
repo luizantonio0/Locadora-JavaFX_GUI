@@ -3,6 +3,7 @@ package com.locadorafx.Controllers;
 import com.locadorafx.App;
 import com.locadorafx.Entities.Locacao.Locacao;
 import com.locadorafx.Entities.Locadora.Locadora;
+import com.locadorafx.Models.LocacaoDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,7 +67,7 @@ public class AdminLocacaoController {
     @FXML
     private TextField textFieldValorLocacao;
 
-    private ObservableList<Locacao> locacoes = FXCollections.observableArrayList(Locadora.getLocacoes());
+    private ObservableList<Locacao> locacoes = FXCollections.observableArrayList(LocacaoDAO.find(100));
 
     private Locacao locacaoSelecionada;
 
@@ -99,9 +100,10 @@ public class AdminLocacaoController {
 
     @FXML
     void devolverVeiculo() {
+
         locacaoSelecionada.getVeiculo().devolver();
 
-        locacoes = FXCollections.observableArrayList(Locadora.getLocacoes());
+        locacoes.remove(locacaoSelecionada);
         tableViewLocacao.setItems(locacoes);
         tableViewLocacao.getSelectionModel().clearSelection();
     }

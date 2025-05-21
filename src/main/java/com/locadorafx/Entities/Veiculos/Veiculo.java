@@ -9,8 +9,17 @@ import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Placa;
 import com.locadorafx.Entities.Veiculos.Interface.IVeiculo;
 import com.locadorafx.Models.LocacaoDAO;
+import com.locadorafx.Models.VeiculoDAO;
 
 public abstract sealed class Veiculo implements IVeiculo permits Automovel, Motocicleta, Van {
+
+    protected Veiculo(int id, String placa, double valorCompra, Year ano, Estado estado) {
+        this.placa = new Placa(placa);
+        this.valorCompra = valorCompra;
+        this.ano = ano;
+        this.estado = estado;
+        this.id = id;
+    }
 
     protected Veiculo(String placa, double valorCompra, Year ano, Estado estado) {
         //Formato da Placa "XXX-0X00"
@@ -86,10 +95,11 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         }
 
         Locacao locacaoLocal = new Locacao(dias, getValorDiariaLocacao()*dias, data, cliente, this);
-
-        setLocacao(locacaoLocal);
         cliente.setAtivo(true);
         this.estado = Estado.LOCADO;
+        setLocacao(locacaoLocal);
+
+        VeiculoDAO.update(this);
     }
     @Override
     public void vender(){
@@ -104,9 +114,10 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
             throw new IllegalStateException("O Veiculo não pode ser devolvido, pois não está LOCADO!!");
         }
         this.locacao.getCliente().setAtivo(false);
-        LocacaoDAO.delete(this.locacao);
-        this.locacao = null;
         this.estado = Estado.DISPONIVEL;
+        VeiculoDAO.update(this);
+        LocacaoDAO.delete(this.locacao.getId());
+        this.locacao = null;
     }
     @Override
     public double getValorParaVenda(){

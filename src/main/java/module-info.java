@@ -2,7 +2,8 @@ module com.locadorafx {
         requires javafx.controls;
         requires javafx.fxml;
         requires java.sql;
-        //requires jasypt;
+    requires org.slf4j;
+    //requires jasypt;
 
         //TODO: Remover
         opens com.locadorafx.Entities.Clientes to javafx.base;

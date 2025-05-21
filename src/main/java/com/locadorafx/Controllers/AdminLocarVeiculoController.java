@@ -11,6 +11,8 @@ import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Veiculo;
 
+import com.locadorafx.Models.ClienteDAO;
+import com.locadorafx.Models.VeiculoDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -92,9 +94,9 @@ public class AdminLocarVeiculoController {
     @FXML
     private TextField textFieldPlacaVeiculo;
 
-    private final ObservableList<Cliente> clientes = FXCollections.observableArrayList(Locadora.getClientes());
+    private final ObservableList<Cliente> clientes = FXCollections.observableArrayList(ClienteDAO.find(100));
 
-    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(Locadora.getEstoque());
+    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(VeiculoDAO.find(100));
 
     private Veiculo veiculoSelecionado;
 
