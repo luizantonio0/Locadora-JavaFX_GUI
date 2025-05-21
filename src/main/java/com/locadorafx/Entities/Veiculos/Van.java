@@ -5,10 +5,14 @@ import java.time.Year;
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
-import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
 
 public final class Van extends Veiculo {
+
+    Van(int id, String placa, double valorCompra, Year ano, Estado estado, ModeloVan modelo) {
+        super(id, placa, valorCompra, ano, estado);
+        this.modelo = modelo;
+    }
 
     Van(String placa, double valorCompra, Year ano, Estado estado, ModeloVan modelo) {
         super(placa, valorCompra, ano, estado);

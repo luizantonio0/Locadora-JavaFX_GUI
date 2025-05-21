@@ -2,12 +2,25 @@ package com.locadorafx.Entities.Locacao;
 
 import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Veiculos.Veiculo;
+import com.locadorafx.Models.ClienteDAO;
 import com.locadorafx.Models.LocacaoDAO;
+import com.locadorafx.Models.VeiculoDAO;
 
 import java.time.LocalDate;
 
 public class Locacao {
 
+    //Construtor para buscar dados do banco de dados
+    public Locacao(int id, int dias, LocalDate data, int idCliente, int idVeiculo, double valor){
+        this.id = id;
+        this.dias = dias;
+        this.data = data;
+        this.cliente = ClienteDAO.get(idCliente);
+        this.veiculo = VeiculoDAO.get(idVeiculo);
+        this.valor = valor;
+    }
+
+    //Salvar no banco de dados
     public Locacao(int dias, double valor, LocalDate data, Cliente cliente, Veiculo veiculo) {
         this.dias = dias;
         this.valor = valor;
@@ -21,7 +34,6 @@ public class Locacao {
     private final int dias;
     private final double valor;
     private final LocalDate data;
-    //Adicioanr referencia ao Id de cliente e carro NO DAO;
     private final Cliente cliente;
     private final Veiculo veiculo;
     //----------------------------------------------------------------------------

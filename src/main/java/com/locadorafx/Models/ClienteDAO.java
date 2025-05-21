@@ -87,11 +87,12 @@ public class ClienteDAO extends DAO{
 //TODO: TESTAR
     public static boolean delete(int id) {
         try (var conexao = connect()){
+            //TODO: VERIFICAR SE ESTÀ ATIVO
+           // var stmt = conexao.prepareStatement("UPDATE Cliente SET ativo = 0 WHERE id = ?");
             var stmt = conexao.prepareStatement("DELETE FROM Cliente WHERE id = ?");
             stmt.setInt(1, id);
-            try (var rs = stmt.executeQuery()) {
-                return true;
-            }
+            stmt.executeUpdate();
+            return true;
         } catch (SQLException e){
             System.out.println(e.getMessage());
             return false;

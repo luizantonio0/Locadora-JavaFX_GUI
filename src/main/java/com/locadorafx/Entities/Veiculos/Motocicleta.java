@@ -9,6 +9,11 @@ import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 
 public final class Motocicleta extends Veiculo{
 
+    Motocicleta(int id, String placa, double valorCompra, Year ano, Estado estado, ModeloMotocicleta modelo) {
+        super(id, placa, valorCompra, ano, estado);
+        this.modelo = modelo;
+    }
+
     Motocicleta(String placa, double valorCompra, Year ano, Estado estado, ModeloMotocicleta modelo) {
         super(placa, valorCompra, ano, estado);
         this.modelo = modelo;

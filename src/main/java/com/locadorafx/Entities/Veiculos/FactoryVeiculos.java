@@ -12,37 +12,26 @@ public class FactoryVeiculos {
     private FactoryVeiculos() {
     }
 
-    public static Veiculo factoryVeiculo (String placa, double valorCompra, int anoInt, String estadoString, String modeloString, String tipo){
+    public static Veiculo factoryVeiculo(int id, String placa, double valorCompra, int anoInt, String estadoString, String modeloString, String tipo){
         var ano = Year.of(anoInt);
         var estado = Estado.valueOf(estadoString);
         
         return switch (tipo) {
-            case "Automovel"->  factoryAutomovel(placa, valorCompra, ano, estado, ModeloAutomovel.valueOf(modeloString));
-            case "Van"->  factoryVan(placa, valorCompra, ano, estado, ModeloVan.valueOf(modeloString)); 
-            case "Motocicleta"-> factoryMotocicleta(placa, valorCompra, ano, estado, ModeloMotocicleta.valueOf(modeloString)); 
+            case "Automovel"->  new Automovel(id, placa, valorCompra, ano, estado, ModeloAutomovel.valueOf(modeloString));
+            case "Van"->  new Van(id, placa, valorCompra, ano, estado, ModeloVan.valueOf(modeloString));
+            case "Motocicleta"-> new Motocicleta(id, placa, valorCompra, ano, estado, ModeloMotocicleta.valueOf(modeloString));
             default -> null; 
         };
     }
 
     public static Veiculo factory(String placa, double valorCompra, Year ano, Estado estado, ModeloAutomovel modelo, ModeloVan modeloVan, ModeloMotocicleta modeloMotocicleta) {
         if (modeloMotocicleta == null && modelo == null) {
-            return factoryVan(placa, valorCompra, ano, estado, modeloVan);
+            return new Van(placa, valorCompra, ano, estado, modeloVan);
         }
         if (modelo == null && modeloVan == null) {
-            return factoryMotocicleta(placa, valorCompra, ano, estado, modeloMotocicleta);
+            return new Motocicleta(placa, valorCompra, ano, estado, modeloMotocicleta);
         }
-        return factoryAutomovel(placa, valorCompra, ano, estado, modelo);
-    }
-
-    private static Veiculo factoryAutomovel(String placa, double valorCompra, Year ano, Estado estado,  ModeloAutomovel modelo) {
         return new Automovel(placa, valorCompra, ano, estado, modelo);
     }
 
-    private static Veiculo factoryVan(String placa, double valorCompra, Year ano, Estado estado, ModeloVan modelo) {
-        return new Van(placa, valorCompra, ano, estado, modelo);
-    }
-
-    private static Veiculo factoryMotocicleta(String placa, double valorCompra, Year ano, Estado estado, ModeloMotocicleta modelo) {
-        return new Motocicleta(placa, valorCompra, ano, estado, modelo);
-    }
 }
