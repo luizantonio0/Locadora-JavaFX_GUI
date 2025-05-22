@@ -3,6 +3,8 @@ module com.locadorafx {
         requires javafx.fxml;
         requires java.sql;
         requires org.slf4j;
+        requires org.apache.poi.ooxml;
+        requires org.apache.poi.poi;
         //requires jasypt;
 
         opens com.locadorafx.Controllers to javafx.fxml;
