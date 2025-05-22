@@ -114,7 +114,6 @@ public class AdminLocarVeiculoController {
             if (newValue != null) {
                 carregarDadosCliente(textFieldCPFCliente, textFieldNomeCliente, textFieldIdCliente, newValue);
             }
-
         });
 
         CarregarDadosTabela.carregarTabelaVeiculos(tableColumnPrecoDiariaVeiculo, tableColumnIdVeiculo, tableColumnMarcaVeiculo, tableColumnModeloVeiculo, tableColumnAnoVeiculo, tableColumnPlacaVeiculo);
@@ -126,7 +125,6 @@ public class AdminLocarVeiculoController {
             if (newValue != null) {
                 carregarDadosVeiculo(textFieldIdVeiculo, textFieldPlacaVeiculo, textFieldMarcaVeiculo, textFieldModeloVeiculo, textFieldAnoVeiculo, newValue);
             }
-
         });
     }
 

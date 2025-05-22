@@ -3,7 +3,6 @@ package com;
 
 import com.locadorafx.Entities.Veiculos.FactoryVeiculos;
 
-import com.locadorafx.Entities.Veiculos.Automovel;
 import com.locadorafx.Entities.Veiculos.Motocicleta;
 
 public class testeeeeeee {

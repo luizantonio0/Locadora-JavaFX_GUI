@@ -2,16 +2,19 @@ package com.locadorafx.Entities.Clientes;
 
 public final class Cliente extends Pessoa{
 
-
-    public Cliente(int id, String nome, String cpf, String email, String rg, String endereco) {
+    //Construtor para buscar dados do banco de dados
+    public Cliente(int id, String nome, String cpf, String email, String rg, String endereco, int ativo) {
         super(nome, cpf, email, rg, endereco);
         this.id = id;
+        this.clienteAtivo = ativo == 1;
     }
 
+    //Salvar no banco de dados
     public Cliente(String nome, String sobrenome, String cpf, String email, String rg, String endereco) {
         super(nome, sobrenome, cpf, email, rg, endereco);
+        this.clienteAtivo = false;
     }
-    private boolean clienteAtivo = false;
+    private boolean clienteAtivo;
     private int id;
 
     //----------------------------------------------------------------------------

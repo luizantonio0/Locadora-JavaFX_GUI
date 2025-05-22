@@ -7,6 +7,8 @@ import com.locadorafx.Models.ClienteDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.sql.SQLException;
+
 public class cadastrarClienteController {
 
     @FXML
@@ -42,19 +44,13 @@ public class cadastrarClienteController {
 
             textFieldCPF.clear(); textFieldEmail.clear(); textFieldEndereco.clear(); textFieldNome.clear(); textFieldRG.clear(); textFieldSobrenome.clear();
             AlertMensage.mensagemSucesso("Cliente cadastrado com sucesso!");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException | SQLException e){
             AlertMensage.mensagemErro("Erro: " + e.getMessage());
         }
-
-
-
-
-
     }
 
     @FXML
     void voltarTela(){
         App.setRoot("AdminMenu-View");
     }
-
 }

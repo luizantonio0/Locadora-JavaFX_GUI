@@ -14,6 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.sql.SQLException;
+
 
 public class CRUDClienteController {
 
@@ -98,6 +100,11 @@ public class CRUDClienteController {
         clienteSelecionado.setNome(textFieldNome.getText());
         clienteSelecionado.setEndereco(textFieldEndereco.getText());
         clienteSelecionado.setSobrenome(textFieldSorbenome.getText());
+        ClienteDAO.update(clienteSelecionado);
+
+        //tableViewClientes.refresh();
+        clientes.set(clientes.indexOf(clienteSelecionado), clienteSelecionado);
+        tableViewClientes.setItems(clientes);
     }
 
     @FXML
@@ -112,9 +119,14 @@ public class CRUDClienteController {
     @FXML
     void excluirCliente() {
         if (!clienteSelecionado.isAtivo()) {
-            ClienteDAO.delete(clienteSelecionado.getId());
-            clientes.remove(clienteSelecionado);
-            tableViewClientes.setItems(clientes);
+            try {
+                ClienteDAO.delete(clienteSelecionado.getId());
+                clientes.remove(clienteSelecionado);
+                tableViewClientes.setItems(clientes);
+            } catch (SQLException e) {
+                mensagemErro(e.getMessage());
+            }
+
         } else mensagemErro("O cliente selecionado não pode ser excluido, pois tem veiculo alugado!!");
     }
 

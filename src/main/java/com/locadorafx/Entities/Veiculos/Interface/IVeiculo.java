@@ -4,7 +4,6 @@ import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Categoria.Categoria;
-import com.locadorafx.Entities.Locacao.Locacao;
 
 import java.time.LocalDate;
 
@@ -16,7 +15,7 @@ public interface IVeiculo {
     Marca getMarca();
     String getModeloToString();
     Categoria getCategoria();
-    Locacao getLocacao();
+    //Locacao getLocacao();
     String getPlaca();
     int getAno();
     double getValorParaVenda();

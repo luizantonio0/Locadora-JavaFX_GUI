@@ -70,7 +70,7 @@ public class AdminLocacaoController {
     private Locacao locacaoSelecionada;
 
     public void initialize() {
-        CarregarDadosTabela.carregarTabelaLocacoes(tableColumnId, tableColumnDias, tableColumnNomeCliente, tableColumnPlacaVeiculo, tableColumnValor);
+        CarregarDadosTabela.carregarTabelaLocacoes(tableColumnId, tableColumnNomeCliente, tableColumnDias, tableColumnPlacaVeiculo, tableColumnValor);
 
         tableViewLocacao.setItems(locacoes);
 

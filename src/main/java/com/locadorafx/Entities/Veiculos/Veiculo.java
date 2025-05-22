@@ -8,6 +8,7 @@ import com.locadorafx.Entities.Locacao.Locacao;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Placa;
 import com.locadorafx.Entities.Veiculos.Interface.IVeiculo;
+import com.locadorafx.Models.ClienteDAO;
 import com.locadorafx.Models.LocacaoDAO;
 import com.locadorafx.Models.VeiculoDAO;
 
@@ -58,10 +59,6 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
     public Estado getEstado(){
         return this.estado;
     }
-    @Override
-    public Locacao getLocacao(){
-        return this.locacao;
-    }
     public void setLocacao(Locacao locacao) {
         this.locacao = locacao;
     }
@@ -98,6 +95,7 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         this.estado = Estado.LOCADO;
         this.locacao = locacaoLocal;
 
+        ClienteDAO.update(cliente);
         VeiculoDAO.update(this);
         LocacaoDAO.save(locacaoLocal);
     }
@@ -116,6 +114,8 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         this.locacao.getCliente().setAtivo(false);
         this.locacao.setAtivo(false);
         this.estado = Estado.DISPONIVEL;
+
+        ClienteDAO.update(this.locacao.getCliente());
         VeiculoDAO.update(this);
         LocacaoDAO.update(this.locacao);
         this.locacao = null;

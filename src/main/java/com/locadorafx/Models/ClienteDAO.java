@@ -11,11 +11,10 @@ import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemEr
 
 public class ClienteDAO extends DAO{
 
-
-    public static void save (Cliente cliente){
+    public static void save (Cliente cliente) throws SQLException{
         try (var conexao = connect()){
             //TODO: Tente fazer sem usar o campo ativo, para verificar se esta ativo: try catch ao tentar apagar dados
-            String sql = "INSERT INTO Cliente (nome, cpf, email, rg, endereco) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Cliente (nome, cpf, email, rg, endereco, ativo) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = setPreparedStatementCliente(cliente, conexao, sql);
             stmt.executeUpdate();
             stmt.close();
@@ -24,8 +23,6 @@ public class ClienteDAO extends DAO{
                     cliente.setId(rs.getInt(1));
                 }
             }
-        } catch (SQLException e){
-            mensagemErro(e.getMessage());
         }
     }
 
@@ -36,6 +33,7 @@ public class ClienteDAO extends DAO{
         stmt.setString(3, cliente.getEmail());
         stmt.setString(4, cliente.getRg());
         stmt.setString(5, cliente.getEndereco());
+        stmt.setInt(6, cliente.isAtivo()? 1: 0);
         return stmt;
     }
 
@@ -46,7 +44,7 @@ public class ClienteDAO extends DAO{
             try (var rs = stmt.executeQuery()) {
                 if (!rs.next()) throw new RuntimeException("Cliente não encontrado");
 
-                return new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("rg"), rs.getString("endereco"));
+                return new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("rg"), rs.getString("endereco"), rs.getInt("ativo"));
             }
         } catch (SQLException e){
             throw new RuntimeException(e);
@@ -56,10 +54,10 @@ public class ClienteDAO extends DAO{
 
     public static void update (Cliente cliente){
         try (var conexao = connect()){
-            //TODO: Tente fazer sem usar o campo ativo, para verificar se esta ativo: try catch ao tentar apagar dados
-            String sql = "UPDATE Cliente SET nome = ?,  cpf= ?, email= ?, rg= ?, endereco = ? WHERE id = ? ";
+            String sql = "UPDATE Cliente SET nome = ?,  cpf= ?, email= ?, rg= ?, endereco = ?, ativo = ? WHERE id = ? ";
             var stmt = setPreparedStatementCliente(cliente, conexao, sql);
-            stmt.setInt(6, cliente.getId());
+            //TODO: Verificar se o cliente tem outro Veiculo Locado
+            stmt.setInt(7, cliente.getId());
             stmt.executeUpdate();
             stmt.close();
 
@@ -75,7 +73,7 @@ public class ClienteDAO extends DAO{
             try (var rs = stmt.executeQuery()) {
                 List<Cliente> clientes = new java.util.ArrayList<>();
                 while (rs.next()) {
-                    clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("rg"), rs.getString("endereco")));
+                    clientes.add(new Cliente(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"), rs.getString("email"), rs.getString("rg"), rs.getString("endereco"), rs.getInt("ativo")));
                 }
                 return clientes;
             }
@@ -85,17 +83,11 @@ public class ClienteDAO extends DAO{
         }
     }
 //TODO: TESTAR
-    public static boolean delete(int id) {
-        try (var conexao = connect()){
-            //TODO: VERIFICAR SE ESTÀ ATIVO
-           // var stmt = conexao.prepareStatement("UPDATE Cliente SET ativo = 0 WHERE id = ?");
+    public static void delete(int id) throws SQLException {
+        try (var conexao = connect()) {
             var stmt = conexao.prepareStatement("DELETE FROM Cliente WHERE id = ?");
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            return true;
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
-            return false;
         }
     }
 }

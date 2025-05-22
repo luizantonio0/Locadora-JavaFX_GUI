@@ -1,16 +1,14 @@
 package com.locadorafx.Controllers;
 
-import java.io.IOException;
 import java.time.Year;
 
 import com.locadorafx.App;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.getDouble;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoAno;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoPlaca;
-import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoValor;
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.formatarValorMonetario;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
 import static com.locadorafx.Controllers.SceneController.ComboBoxInitialize.ComboBoxInitializeModelo;
-import com.locadorafx.Entities.Locadora.Locadora;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
@@ -18,6 +16,7 @@ import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloMotocicleta;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloVan;
 import static com.locadorafx.Entities.Veiculos.FactoryVeiculos.factory;
 
+import com.locadorafx.Models.VeiculoDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -49,7 +48,7 @@ public class cadastrarVeiculoController {
     @FXML
     private TextField textFieldValor;
 
-    protected static short tipoVeiculo = 0;
+    protected static final short tipoVeiculo = 0;
 
     public void initialize() {
 
@@ -62,7 +61,7 @@ public class cadastrarVeiculoController {
         comboBoxMarca.getItems().addAll(Marca.values());
 
         comboBoxMarca.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
+                (_, _, newValue) -> {
 
                     switch (tipoVeiculo) {
                         case 0 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModelo, newValue);
@@ -71,7 +70,7 @@ public class cadastrarVeiculoController {
                     }
                 });
         textFieldAno.setTextFormatter(new TextFormatter<>(rolagemTextoAno()));
-        textFieldValor.setTextFormatter(new TextFormatter<>(rolagemTextoValor()));
+        textFieldValor.setTextFormatter(new TextFormatter<>(formatarValorMonetario()));
         textFieldPlaca.setTextFormatter(new TextFormatter<>(rolagemTextoPlaca()));
     }
 
@@ -83,7 +82,7 @@ public class cadastrarVeiculoController {
 
         try {
             var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(),  comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
-            Locadora.adicionarVeiculo(veiculo);
+            VeiculoDAO.save(veiculo);
             
             textFieldPlaca.clear(); textFieldAno.clear(); textFieldValor.clear(); comboBoxMarca.getSelectionModel().clearSelection(); comboBoxEstado.getSelectionModel().clearSelection(); comboBoxModelo.getSelectionModel().clearSelection(); comboBoxModeloVan.getSelectionModel().clearSelection(); comboBoxModeloMotocicleta.getSelectionModel().clearSelection();
             mensagemSucesso("O veículo foi cadastrado com sucesso!");

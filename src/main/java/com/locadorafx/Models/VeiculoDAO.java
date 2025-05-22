@@ -37,9 +37,9 @@ public class VeiculoDAO extends DAO{
         stmt.setString(6, veiculo.getCategoria().toString());
         stmt.setString(7, veiculo.getPlaca());
         stmt.setString(8, switch (veiculo){
-            case Motocicleta m -> "Motocicleta";
-            case Van v-> "Van";
-            case Automovel a -> "Automovel";
+            case Motocicleta _ -> "Motocicleta";
+            case Van _-> "Van";
+            case Automovel _ -> "Automovel";
         });
         return stmt;
     }

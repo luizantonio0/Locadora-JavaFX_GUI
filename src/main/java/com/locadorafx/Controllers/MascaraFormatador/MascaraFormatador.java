@@ -7,8 +7,10 @@ import java.util.function.UnaryOperator;
 import javafx.scene.control.TextFormatter;
 
 public class MascaraFormatador {
-
-    public static UnaryOperator<TextFormatter.Change> rolagemTextoValor() {
+    private static final Locale LOCALE_PT_BR = new Locale("pt", "BR");
+    private static final String REGEX_APENAS_DIGITOS = "\\d+";
+    
+    public static UnaryOperator<TextFormatter.Change> formatarValorMonetario() {
         return change -> {
             String digito = change.getText();
 
@@ -16,34 +18,36 @@ public class MascaraFormatador {
                 return change;
             }
 
-            if (!digito.matches("\\d+")) {
+            if (!digito.matches(REGEX_APENAS_DIGITOS)) {
                 return null;
             }
 
             String textoAtual = change.getControlText().replaceAll("[^0-9]", "");
-
             String novoTexto = textoAtual + digito;
 
             try {
-                long valor = Long.parseLong(novoTexto);
-                double valorDouble = valor / 100.0;
-
-                NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-                nf.setMaximumFractionDigits(2);
-                nf.setMinimumFractionDigits(2);
-                String formatado = nf.format(valorDouble).replace("R$ ", ""); // remove "R$" se quiser só o número
-
-                change.setText(formatado);
+                String valorFormatado = formatarParaValorMonetario(novoTexto);
+                change.setText(valorFormatado);
                 change.setRange(0, change.getControlText().length());
-
                 return change;
-
             } catch (NumberFormatException e) {
                 return null;
             }
         };
     }
 
+    private static String formatarParaValorMonetario(String texto) {
+        long valor = Long.parseLong(texto);
+        double valorEmReais = valor / 100.0;
+        
+        NumberFormat formatador = NumberFormat.getCurrencyInstance(LOCALE_PT_BR);
+        formatador.setMaximumFractionDigits(2);
+        formatador.setMinimumFractionDigits(2);
+        
+        return formatador.format(valorEmReais).replace("R$ ", "");
+    }
+    
+    // ... resto do código permanece igual
     public static UnaryOperator<TextFormatter.Change> rolagemTextoPlaca() {
         return change -> {
             StringBuilder novoValor = new StringBuilder(change.getControlText());
@@ -103,4 +107,3 @@ public class MascaraFormatador {
     }
 
 }
-

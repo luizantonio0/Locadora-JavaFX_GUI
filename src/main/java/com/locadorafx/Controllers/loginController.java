@@ -6,9 +6,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 //import org.jasypt.util.password.BasicPasswordEncryptor;
 
-import java.io.IOException;
-
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 
 public class loginController {
 

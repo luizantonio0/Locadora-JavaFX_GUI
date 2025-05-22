@@ -3,12 +3,6 @@ package com.locadorafx;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
-
-import com.locadorafx.Entities.Locacao.Locacao;
-import com.locadorafx.Entities.Veiculos.FactoryVeiculos;
-import com.locadorafx.Models.LocacaoDAO;
-import com.locadorafx.Models.VeiculoDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
