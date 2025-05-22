@@ -27,7 +27,7 @@ public abstract class RelatorioExcel {
             }
         }
 
-        try (var fileOut = new FileOutputStream(nomeArquivo + ".xlsx")) {
+        try (var fileOut = new FileOutputStream("RelatoriosFinanceiros/" + nomeArquivo + ".xlsx")) {
             workbook.write(fileOut);
         } catch (IOException e) {
             e.printStackTrace();
