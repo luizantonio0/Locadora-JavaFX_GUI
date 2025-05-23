@@ -52,11 +52,22 @@ public class ClienteDAO extends DAO{
 
     }
 
+    public static boolean isAtivo(int id) {
+        try (var conexao = connect()){
+            var stmt = conexao.prepareStatement("SELECT ativo FROM Locacao WHERE idCliente = ? AND ativo = 1");
+            stmt.setInt(1, id);
+            try (var rs = stmt.executeQuery()) {
+                return rs.next() /*&& rs.getInt("ativo") == 1*/;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void update (Cliente cliente){
         try (var conexao = connect()){
             String sql = "UPDATE Cliente SET nome = ?,  cpf= ?, email= ?, rg= ?, endereco = ?, ativo = ? WHERE id = ? ";
             var stmt = setPreparedStatementCliente(cliente, conexao, sql);
-            //TODO: Verificar se o cliente tem outro Veiculo Locado
             stmt.setInt(7, cliente.getId());
             stmt.executeUpdate();
             stmt.close();

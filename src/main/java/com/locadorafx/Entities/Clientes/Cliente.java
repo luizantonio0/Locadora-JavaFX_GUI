@@ -1,5 +1,8 @@
 package com.locadorafx.Entities.Clientes;
 
+
+import com.locadorafx.Models.ClienteDAO;
+
 public final class Cliente extends Pessoa{
 
     //Construtor para buscar dados do banco de dados
@@ -34,8 +37,11 @@ public final class Cliente extends Pessoa{
         return clienteAtivo;
     }
 
-    public void setAtivo(boolean clienteAtivo) {
-        this.clienteAtivo = clienteAtivo;
+    public void setAtivo() {
+        this.clienteAtivo = ClienteDAO.isAtivo(id);
+    }
+    public void setAtivo(boolean ativo) {
+        this.clienteAtivo = ativo;
     }
 
     //----------------------------------------------------------------------------

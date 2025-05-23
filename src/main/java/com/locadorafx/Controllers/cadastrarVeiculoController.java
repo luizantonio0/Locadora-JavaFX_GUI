@@ -6,9 +6,10 @@ import com.locadorafx.App;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.getDouble;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoAno;
 import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.rolagemTextoPlaca;
-import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.formatarValorMonetario;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.*;
 import static com.locadorafx.Controllers.SceneController.ComboBoxInitialize.ComboBoxInitializeModelo;
+
+import com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador;
 import com.locadorafx.Entities.Veiculos.Atributos.Estado.Estado;
 import com.locadorafx.Entities.Veiculos.Atributos.Marca.Marca;
 import com.locadorafx.Entities.Veiculos.Atributos.Modelos.ModeloAutomovel;
@@ -70,7 +71,7 @@ public class cadastrarVeiculoController {
                     }
                 });
         textFieldAno.setTextFormatter(new TextFormatter<>(rolagemTextoAno()));
-        textFieldValor.setTextFormatter(new TextFormatter<>(formatarValorMonetario()));
+        textFieldValor.setTextFormatter(new TextFormatter<>(MascaraFormatador.formatarValorMonetario()));
         textFieldPlaca.setTextFormatter(new TextFormatter<>(rolagemTextoPlaca()));
     }
 

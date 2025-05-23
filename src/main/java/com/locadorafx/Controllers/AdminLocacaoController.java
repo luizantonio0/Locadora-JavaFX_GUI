@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.*;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemSucesso;
 
 public class AdminLocacaoController {
 
@@ -94,11 +96,14 @@ public class AdminLocacaoController {
 
     @FXML
     void devolverVeiculo() {
-
-        locacaoSelecionada.getVeiculo().devolver();
-
-        locacoes.remove(locacaoSelecionada);
-        tableViewLocacao.setItems(locacoes);
+        try {
+            locacaoSelecionada.getVeiculo().devolver();
+            locacoes.remove(locacaoSelecionada);
+            tableViewLocacao.setItems(locacoes);
+            mensagemSucesso("Devolvido com sucesso!");
+        } catch (IllegalStateException ex) {
+            mensagemErro(ex.getMessage());
+        }
         tableViewLocacao.getSelectionModel().clearSelection();
     }
 

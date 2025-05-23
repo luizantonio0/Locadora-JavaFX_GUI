@@ -111,13 +111,14 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         if(!estado.equals(Estado.LOCADO)) {
             throw new IllegalStateException("O Veiculo não pode ser devolvido, pois não está LOCADO!!");
         }
-        this.locacao.getCliente().setAtivo(false);
         this.locacao.setAtivo(false);
         this.estado = Estado.DISPONIVEL;
 
-        ClienteDAO.update(this.locacao.getCliente());
         VeiculoDAO.update(this);
         LocacaoDAO.update(this.locacao);
+
+        this.locacao.getCliente().setAtivo();
+        ClienteDAO.update(this.locacao.getCliente());
         this.locacao = null;
     }
     @Override
