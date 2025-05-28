@@ -28,11 +28,11 @@ public enum ModeloVan {
     public Categoria getCategoria() {
         return categoria;
     }
-    public static List<ModeloVan> getModeloVan(Marca marca) {
-        List<ModeloVan> modelos = new ArrayList<>();
+    public static List<String> getModeloVan(Marca marca) {
+        List<String> modelos = new ArrayList<>();
         for (ModeloVan automovel : ModeloVan.values()) {
             if (automovel.marca.equals(marca)) {
-                modelos.add(automovel);
+                modelos.add(automovel.toString());
             }
         }
         return modelos;

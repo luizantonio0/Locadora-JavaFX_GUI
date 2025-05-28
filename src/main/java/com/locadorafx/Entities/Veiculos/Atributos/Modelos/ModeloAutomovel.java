@@ -30,11 +30,11 @@ public enum ModeloAutomovel {
         this.categoria = categoria;
     }
 
-    public static List<ModeloAutomovel> getModeloAutomovel(Marca marca) {
-        List<ModeloAutomovel> modeloAutomoveis = new ArrayList<>();
+    public static List<String> getModeloAutomovel(Marca marca) {
+        List<String> modeloAutomoveis = new ArrayList<>();
         for (ModeloAutomovel automovel : ModeloAutomovel.values()) {
             if (automovel.marca.equals(marca)) {
-                modeloAutomoveis.add(automovel);
+                modeloAutomoveis.add(automovel.toString());
             }
         }
         return modeloAutomoveis;

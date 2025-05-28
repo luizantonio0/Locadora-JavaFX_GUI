@@ -25,11 +25,11 @@ public enum ModeloMotocicleta {
         return categoria;
     }
 
-    public static List<ModeloMotocicleta> getModeloMotocicleta(Marca marca) {
-        List<ModeloMotocicleta> modelos = new ArrayList<>();
+    public static List<String> getModeloMotocicleta(Marca marca) {
+        List<String> modelos = new ArrayList<>();
         for (ModeloMotocicleta automovel : ModeloMotocicleta.values()) {
             if (automovel.marca.equals(marca)) {
-                modelos.add(automovel);
+                modelos.add(automovel.toString());
             }
         }
         return modelos;

@@ -26,19 +26,16 @@ import javafx.scene.control.TextFormatter;
 public class cadastrarVeiculoController {
 
     @FXML
+    private ComboBox<String> comboBoxTipo;
+
+    @FXML
     private ComboBox<Estado> comboBoxEstado;
 
     @FXML
     private ComboBox<Marca> comboBoxMarca;
 
     @FXML
-    private ComboBox<ModeloAutomovel> comboBoxModelo;
-
-    @FXML
-    private ComboBox<ModeloMotocicleta> comboBoxModeloMotocicleta;
-
-    @FXML
-    private ComboBox<ModeloVan> comboBoxModeloVan;
+    private ComboBox<String> comboBoxModelo;
 
     @FXML
     private TextField textFieldAno;
@@ -49,25 +46,27 @@ public class cadastrarVeiculoController {
     @FXML
     private TextField textFieldValor;
 
-    protected static final short tipoVeiculo = 0;
-
     public void initialize() {
 
-        switch (tipoVeiculo) {
-            case 0 -> comboBoxModelo.setVisible(true);
-            case 1 -> comboBoxModeloMotocicleta.setVisible(true);
-            case 2 -> comboBoxModeloVan.setVisible(true);
-        }
+        comboBoxTipo.getItems().addAll("Automovel", "Motocicleta", "Van");
+
         comboBoxEstado.getItems().addAll(Estado.values());
         comboBoxMarca.getItems().addAll(Marca.values());
+
+        comboBoxTipo.getSelectionModel().selectedItemProperty().addListener(
+                (_, _, _) -> {
+                    comboBoxModelo.getSelectionModel().clearSelection();
+                    comboBoxMarca.getSelectionModel().clearSelection();
+                    textFieldPlaca.setDisable(false); textFieldAno.setDisable(false); textFieldValor.setDisable(false); comboBoxMarca.setDisable(false); comboBoxEstado.setDisable(false); comboBoxModelo.setDisable(false);
+                });
 
         comboBoxMarca.getSelectionModel().selectedItemProperty().addListener(
                 (_, _, newValue) -> {
 
-                    switch (tipoVeiculo) {
-                        case 0 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModelo, newValue);
-                        case 1 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloMotocicleta, newValue);
-                        case 2 -> ComboBoxInitializeModelo(tipoVeiculo, comboBoxModeloVan, newValue);
+                    switch (comboBoxTipo.getValue()) {
+                        case "Automovel" -> ComboBoxInitializeModelo("Automovel", comboBoxModelo, newValue);
+                        case "Motocicleta" -> ComboBoxInitializeModelo("Motocicleta", comboBoxModelo, newValue);
+                        case "Van" -> ComboBoxInitializeModelo("Van", comboBoxModelo, newValue);
                     }
                 });
         textFieldAno.setTextFormatter(new TextFormatter<>(rolagemTextoAno()));
@@ -77,15 +76,25 @@ public class cadastrarVeiculoController {
 
     @FXML
     void cadastrarVeiculo() {
+
+        ModeloMotocicleta modeloMotocicleta = null;
+        ModeloVan modeloVan = null;
+        ModeloAutomovel modeloAutomovel = null;
+
+         switch (comboBoxTipo.getValue()) {
+            case "Automovel" -> modeloAutomovel = ModeloAutomovel.valueOf(comboBoxModelo.getValue());
+            case "Motocicleta" -> modeloMotocicleta = ModeloMotocicleta.valueOf(comboBoxModelo.getValue());
+            case "Van" -> modeloVan = ModeloVan.valueOf(comboBoxModelo.getValue());
+         }
+
         StringBuilder valorString = new StringBuilder(textFieldValor.getText());
 
         double valor = getDouble(valorString);
 
         try {
-            var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(),  comboBoxModelo.getValue(),  comboBoxModeloVan.getValue(), comboBoxModeloMotocicleta.getValue());
+            var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(), modeloAutomovel, modeloVan, modeloMotocicleta);
             VeiculoDAO.save(veiculo);
-            
-            textFieldPlaca.clear(); textFieldAno.clear(); textFieldValor.clear(); comboBoxMarca.getSelectionModel().clearSelection(); comboBoxEstado.getSelectionModel().clearSelection(); comboBoxModelo.getSelectionModel().clearSelection(); comboBoxModeloVan.getSelectionModel().clearSelection(); comboBoxModeloMotocicleta.getSelectionModel().clearSelection();
+            textFieldPlaca.clear(); textFieldAno.clear(); textFieldValor.clear(); comboBoxMarca.getSelectionModel().clearSelection(); comboBoxEstado.getSelectionModel().clearSelection(); comboBoxModelo.getSelectionModel().clearSelection();
             mensagemSucesso("O veículo foi cadastrado com sucesso!");
         } catch (IllegalArgumentException e){
             mensagemErro("Erro ao cadastrar veiculo: " + e.getMessage());
@@ -96,5 +105,4 @@ public class cadastrarVeiculoController {
     void voltarTela(){
         App.setRoot("AdminMenu-View");
     }
-
 }
