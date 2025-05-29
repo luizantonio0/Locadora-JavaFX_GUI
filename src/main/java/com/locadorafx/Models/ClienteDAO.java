@@ -57,7 +57,7 @@ public class ClienteDAO extends DAO{
             var stmt = conexao.prepareStatement("SELECT ativo FROM Locacao WHERE idCliente = ? AND ativo = 1");
             stmt.setInt(1, id);
             try (var rs = stmt.executeQuery()) {
-                return rs.next() /*&& rs.getInt("ativo") == 1*/;
+                return rs.next();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -79,7 +79,12 @@ public class ClienteDAO extends DAO{
 
     public static List<Cliente> find(int quantidade) {
         try (var conexao = connect()){
-            var stmt = conexao.prepareStatement("SELECT * FROM Cliente ORDER BY nome LIMIT ?");
+            var stmt = conexao.prepareStatement("""
+                                                    SELECT * FROM Cliente
+                                                    WHERE cpf != '00000000000'
+                                                    ORDER BY nome
+                                                    LIMIT ?
+                                                   """);
             stmt.setInt(1, quantidade);
             try (var rs = stmt.executeQuery()) {
                 List<Cliente> clientes = new java.util.ArrayList<>();
@@ -93,11 +98,15 @@ public class ClienteDAO extends DAO{
             throw new RuntimeException(e);
         }
     }
-//TODO: TESTAR
     public static void delete(int id) throws SQLException {
         try (var conexao = connect()) {
-            var stmt = conexao.prepareStatement("DELETE FROM Cliente WHERE id = ?");
-            stmt.setInt(1, id);
+            var stmt = conexao.prepareStatement("UPDATE Cliente SET nome = ?,  cpf= ?, email= ?, rg= ?, endereco = ? WHERE id = ?");
+            stmt.setString(1, "Cliente removido");
+            stmt.setString(2, "00000000000");
+            stmt.setString(3, "Cliente removido");
+            stmt.setString(4, "000000000");
+            stmt.setString(5, "Cliente removido");
+            stmt.setInt(6, id);
             stmt.executeUpdate();
         }
     }

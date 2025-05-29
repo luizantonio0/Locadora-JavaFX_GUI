@@ -17,7 +17,7 @@ public class AdminMenuViewController {
 
     @FXML
     void abrirTelaDevolverVeiculo() {
-        App.setRoot("AdminLocacao-View");
+        App.setRoot("AdminLocacaoDevolver-View");
     }
 
     @FXML
@@ -27,7 +27,7 @@ public class AdminMenuViewController {
 
     @FXML
     void abrirTelaLocacoes() {
-        App.setRoot("AdminLocacao-View");
+        App.setRoot("AdminLocacaoDevolver-View");
     }
 
     @FXML

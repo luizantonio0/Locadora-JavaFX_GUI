@@ -7,13 +7,11 @@ import java.sql.SQLException;
 
 
 public abstract class DAO {
-    //TODO: testar o caminho relativo
     private static final String url = "jdbc:sqlite:src/main/dataBase/data.db";
 
     public static Connection connect() throws java.sql.SQLException{
         return DriverManager.getConnection(url);
     }
-    //TODO: testar
     public static ResultSet queryId(Connection conexao){
         try (var rs = conexao.createStatement().executeQuery("SELECT last_insert_rowid()")) {
             if (rs.next()) {

@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+
 public class App extends Application {
     private static Scene scene;
     @Override
@@ -27,9 +29,7 @@ public class App extends Application {
         try {
             scene.setRoot(loadFXML(fxml));
         } catch (IOException | IllegalStateException e) {
-            e.printStackTrace();
-            System.out.println();
-            //mensagemTelaNaoExistente(e.getMessage());
+            mensagemTelaNaoExistente(e.getMessage());
         }
     }
     private static Parent loadFXML(String fxml) throws IOException {

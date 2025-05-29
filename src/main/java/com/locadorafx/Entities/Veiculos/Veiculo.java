@@ -96,7 +96,7 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         this.locacao = locacaoLocal;
 
         ClienteDAO.update(cliente);
-        VeiculoDAO.update(this);
+        VeiculoDAO.updateEstado(this);
         LocacaoDAO.save(locacaoLocal);
     }
     @Override
@@ -111,10 +111,14 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         if(!estado.equals(Estado.LOCADO)) {
             throw new IllegalStateException("O Veiculo não pode ser devolvido, pois não está LOCADO!!");
         }
+
+        if (!LocacaoDAO.isAtivo(this.locacao.getId())) {
+            throw new IllegalStateException("O Veiculo não pode ser devolvido, pois já foi devolvido!!");
+        }
         this.locacao.setAtivo(false);
         this.estado = Estado.DISPONIVEL;
 
-        VeiculoDAO.update(this);
+        VeiculoDAO.updateEstado(this);
         LocacaoDAO.update(this.locacao);
 
         this.locacao.getCliente().setAtivo();

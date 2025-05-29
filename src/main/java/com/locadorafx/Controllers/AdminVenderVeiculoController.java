@@ -96,7 +96,7 @@ public class AdminVenderVeiculoController {
     void venderVeiculo() {
         try {
             veiculoSelecionado.vender();
-            VeiculoDAO.update(veiculoSelecionado);
+            VeiculoDAO.updateEstado(veiculoSelecionado);
             textFieldEstado.setText(veiculoSelecionado.getEstado().toString());
             AlertMensage.mensagemSucesso("O veiculo foi vendido com sucesso!!");
         } catch (IllegalStateException e) {

@@ -44,11 +44,11 @@ public class VeiculoDAO extends DAO{
         return stmt;
     }
 
-    public static void update (Veiculo veiculo){
+    public static void updateEstado(Veiculo veiculo){
         try (var conexao = connect()){
-            String sql = "UPDATE Veiculo SET valorCompra = ?,  ano= ?, estado= ?, marca= ?, modelo = ?, categoria = ?, placa = ?, tipo = ? WHERE id = ? ";
-            var stmt = setPreparedStatementVeiculo(veiculo, conexao, sql);
-            stmt.setInt(9, veiculo.getId());
+            var stmt = conexao.prepareStatement("UPDATE Veiculo SET estado= ? WHERE id = ? ");
+            stmt.setString(1,veiculo.getEstado().toString());
+            stmt.setInt(2, veiculo.getId());
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e){

@@ -75,10 +75,16 @@ public class LocacaoDAO extends DAO{
 
     }
 
-    public static List<Locacao> find(int quantidade) {
+    public static List<Locacao> find(int quantidade, boolean ativo) {
         try (var conexao = connect()){
-            var stmt = conexao.prepareStatement("SELECT * FROM Locacao ORDER BY id LIMIT ?");
-            stmt.setInt(1, quantidade);
+            var stmt = conexao.prepareStatement("""
+                                                    SELECT * FROM Locacao
+                                                    WHERE ativo = ?
+                                                    ORDER BY id
+                                                    LIMIT ?
+                                                    """);
+            stmt.setInt(1, ativo ? 1 : 0);
+            stmt.setInt(2, quantidade);
             try (var rs = stmt.executeQuery()) {
                 List<Locacao> locacoes = new java.util.ArrayList<>();
                 while (rs.next()) {
@@ -95,6 +101,18 @@ public class LocacaoDAO extends DAO{
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean isAtivo(int id) {
+        try (var conexao = connect()){
+            var stmt = conexao.prepareStatement("SELECT ativo FROM Locacao WHERE id = ?");
+            stmt.setInt(1, id);
+            try (var rs = stmt.executeQuery()) {
+                return rs.getInt("ativo") == 1;
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

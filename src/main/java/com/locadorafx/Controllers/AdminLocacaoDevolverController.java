@@ -5,7 +5,9 @@ import com.locadorafx.Entities.Locacao.Locacao;
 import com.locadorafx.Models.LocacaoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,7 +16,10 @@ import static com.locadorafx.Controllers.CarregarDadosVeiculo.*;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
 import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemSucesso;
 
-public class AdminLocacaoController {
+public class AdminLocacaoDevolverController {
+
+    @FXML
+    private MenuItem menuItemAtiva;
 
     @FXML
     private TableColumn<Locacao, String> tableColumnDias;
@@ -67,7 +72,7 @@ public class AdminLocacaoController {
     @FXML
     private TextField textFieldValorLocacao;
 
-    private final ObservableList<Locacao> locacoes = FXCollections.observableArrayList(LocacaoDAO.find(100));
+    private final ObservableList<Locacao> locacoes = FXCollections.observableArrayList(LocacaoDAO.find(100, true));
 
     private Locacao locacaoSelecionada;
 
@@ -92,6 +97,15 @@ public class AdminLocacaoController {
 
     @FXML
     void apagarDadosEscolhidos() {
+    }
+
+    @FXML
+    void filtrarLocacoes(ActionEvent event) {
+        if (event.getSource() == menuItemAtiva) {
+            locacoes.setAll(LocacaoDAO.find(100, true));
+        } else {
+            locacoes.setAll(LocacaoDAO.find(100, false));
+        }
     }
 
     @FXML
