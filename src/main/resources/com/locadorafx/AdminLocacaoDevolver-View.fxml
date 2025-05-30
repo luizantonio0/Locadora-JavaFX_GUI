@@ -21,10 +21,10 @@
             <TableView fx:id="tableViewLocacao" layoutY="25.0" prefHeight="572.0" prefWidth="500.0">
                <columns>
                   <TableColumn fx:id="tableColumnId" prefWidth="60.0" text="Id" />
-                  <TableColumn fx:id="tableColumnNomeCliente" prefWidth="109.0" text="Cliente (Nome)" />
-                  <TableColumn fx:id="tableColumnPlacaVeiculo" prefWidth="109.0" text="Veiculo (Placa)" />
-                  <TableColumn fx:id="tableColumnDias" prefWidth="109.0" text="Dias" />
-                  <TableColumn fx:id="tableColumnValor" prefWidth="109.0" text="Valor" />
+                  <TableColumn fx:id="tableColumnNomeCliente" prefWidth="245.0" text="Cliente (Nome)" />
+                  <TableColumn fx:id="tableColumnPlacaVeiculo" prefWidth="90.0" text="Veiculo (Placa)" />
+                  <TableColumn fx:id="tableColumnDias" prefWidth="40.0" text="Dias" />
+                  <TableColumn fx:id="tableColumnValor" prefWidth="61.0" text="Valor" />
                </columns>
             </TableView>
             <MenuBar layoutX="2.0" prefHeight="25.0" prefWidth="496.0">

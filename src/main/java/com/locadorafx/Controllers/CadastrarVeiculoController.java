@@ -23,7 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
-public class cadastrarVeiculoController {
+public class CadastrarVeiculoController {
 
     @FXML
     private ComboBox<String> comboBoxTipo;

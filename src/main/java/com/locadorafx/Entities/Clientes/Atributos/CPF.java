@@ -15,7 +15,10 @@ public record CPF(String cpf) {
     }
 
     private  boolean validarCPF(String cpf) {
-        if (cpf == null || cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
+
+        cpf = cpf.replaceAll("[.\\-]", "");
+
+        if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
             return false;
         }
 

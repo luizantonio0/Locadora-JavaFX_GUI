@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.loginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.LoginController">
       <ImageView fitHeight="620.0" fitWidth="1000.0">
 
             <Image url="@images/Untitled.png" />
@@ -26,7 +25,6 @@
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <Hyperlink layoutX="408.0" layoutY="475.0" onAction="#abrirTelaCadastro" text="Não tem conta? Se Cadastre aqui" />
       <Button layoutX="377.0" layoutY="419.0" mnemonicParsing="false" onAction="#cancelForm" opacity="0.0" prefHeight="41.0" prefWidth="106.0" text="Cancelar">
          <cursor>
             <Cursor fx:constant="HAND" />

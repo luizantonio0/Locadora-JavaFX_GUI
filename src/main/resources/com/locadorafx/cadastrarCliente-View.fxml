@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.cadastrarClienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadorafx.Controllers.CadastrarClienteController">
    <children>
       <ImageView fitHeight="620.0" fitWidth="1000.0">
          <image>
@@ -23,32 +23,32 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField fx:id="textFieldRG" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldRG" layoutX="220.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" promptText="Digite seu RG">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldCPF" layoutX="220.0" layoutY="265.0" prefHeight="35.0" prefWidth="242.0" text="INSERIR MASCARA">
+      <TextField fx:id="textFieldCPF" layoutX="220.0" layoutY="265.0" prefHeight="35.0" prefWidth="242.0" promptText="Digite seu CPF">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldEmail" layoutX="530.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldEmail" layoutX="530.0" layoutY="364.0" prefHeight="35.0" prefWidth="242.0" promptText="Inforem seu e-mail">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldEndereco" layoutX="530.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldEndereco" layoutX="530.0" layoutY="275.0" prefHeight="35.0" prefWidth="242.0" promptText="Digite aqui o endereço completo">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldSobrenome" layoutX="530.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldSobrenome" layoutX="530.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" promptText="Informe seu ultimo sobrenome">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldNome" layoutX="220.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0">
+      <TextField fx:id="textFieldNome" layoutX="220.0" layoutY="177.0" prefHeight="35.0" prefWidth="242.0" promptText="Insira seu nome">
          <font>
             <Font size="14.0" />
          </font>

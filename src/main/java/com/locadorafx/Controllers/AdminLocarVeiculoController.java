@@ -53,6 +53,9 @@ public class AdminLocarVeiculoController {
     private TableColumn<Veiculo, String> tableColumnModeloVeiculo;
 
     @FXML
+    private TableColumn<Veiculo, String> tableColumnEstado;
+
+    @FXML
     private TableColumn<Cliente, String> tableColumnNome;
 
     @FXML
@@ -116,7 +119,7 @@ public class AdminLocarVeiculoController {
             }
         });
 
-        CarregarDadosTabela.carregarTabelaVeiculos(tableColumnPrecoDiariaVeiculo, tableColumnIdVeiculo, tableColumnMarcaVeiculo, tableColumnModeloVeiculo, tableColumnAnoVeiculo, tableColumnPlacaVeiculo);
+        CarregarDadosTabela.carregarTabelaVeiculos(tableColumnPrecoDiariaVeiculo, tableColumnIdVeiculo, tableColumnMarcaVeiculo, tableColumnModeloVeiculo, tableColumnAnoVeiculo, tableColumnPlacaVeiculo, tableColumnEstado);
 
         tableViewVeiculo.setItems(estoque);
 

@@ -14,7 +14,7 @@ public class CarregarDadosTabela {
             TableColumn<Cliente, String> endereco,
             TableColumn<Cliente, String> CPF,
             TableColumn<Cliente, String> id) {
-        nome.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getNome())));
+        nome.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getNome() + " " + cellData.getValue().getSobrenome())));
         email.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getEmail())));
         endereco.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getEndereco())));
         CPF.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getCpf())));
@@ -36,6 +36,18 @@ public class CarregarDadosTabela {
         placa.setCellValueFactory(cellData -> (new SimpleStringProperty(cellData.getValue().getPlaca())));
     }
 
+    protected static void carregarTabelaVeiculos(
+            TableColumn<Veiculo, String> preco,
+            TableColumn<Veiculo, String> id,
+            TableColumn<Veiculo, String> marca,
+            TableColumn<Veiculo, String> modelo,
+            TableColumn<Veiculo, String> ano,
+            TableColumn<Veiculo, String> placa,
+            TableColumn<Veiculo, String> estado) {
+        carregarTabelaVeiculos(preco, id, marca, modelo, ano, placa);
+        estado.setCellValueFactory(cellData -> (new SimpleStringProperty(String.valueOf(cellData.getValue().getEstado()))));
+    }
+
     protected static void carregarTabelaLocacoes(
             TableColumn<Locacao, String> id,
             TableColumn<Locacao, String> nomeCliente,
@@ -44,7 +56,7 @@ public class CarregarDadosTabela {
             TableColumn<Locacao, String> valor
     ) {
         id.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getId())));
-        nomeCliente.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCliente().getNome())));
+        nomeCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNome() + " " + cellData.getValue().getCliente().getSobrenome()));
         dias.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getDias())));
         placaVeiculo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVeiculo().getPlaca()));
         valor.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getValor())));

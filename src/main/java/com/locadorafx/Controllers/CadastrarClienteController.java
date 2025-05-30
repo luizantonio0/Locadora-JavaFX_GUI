@@ -6,10 +6,13 @@ import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Models.ClienteDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 import java.sql.SQLException;
 
-public class cadastrarClienteController {
+import static com.locadorafx.Controllers.MascaraFormatador.MascaraFormatador.*;
+
+public class CadastrarClienteController {
 
     @FXML
     private TextField textFieldCPF;
@@ -28,6 +31,11 @@ public class cadastrarClienteController {
 
     @FXML
     private TextField textFieldSobrenome;
+
+    public void initialize() {
+        textFieldCPF.setTextFormatter(new TextFormatter<>(formatarCpf()));
+        textFieldRG.setTextFormatter(new TextFormatter<>(formatarRg()));
+    }
 
     @FXML
     void cadastrarCliente() {

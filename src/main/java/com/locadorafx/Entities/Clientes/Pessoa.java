@@ -10,6 +10,7 @@ public abstract sealed class Pessoa permits Cliente {
         String sobrenome;
         if (nome.contains(" ")) {
             sobrenome = nome.substring(nome.lastIndexOf(" ") + 1);
+            nome = nome.substring(0, nome.lastIndexOf(" "));
         } else {
             sobrenome = nome;
         }

@@ -2,20 +2,18 @@ package com.locadorafx.Entities.Locacao;
 
 import com.locadorafx.Entities.Clientes.Cliente;
 import com.locadorafx.Entities.Veiculos.Veiculo;
-import com.locadorafx.Models.ClienteDAO;
-import com.locadorafx.Models.VeiculoDAO;
 
 import java.time.LocalDate;
 
 public class Locacao {
 
     //Construtor para buscar dados do banco de dados
-    public Locacao(int id, int dias, LocalDate data, int idCliente, int idVeiculo, double valor, int ativo){
+    public Locacao(int id, int dias, LocalDate data, Cliente cliente, Veiculo veiculo, double valor, int ativo){
         this.id = id;
         this.dias = dias;
         this.data = data;
-        this.cliente = ClienteDAO.get(idCliente);
-        this.veiculo = VeiculoDAO.get(idVeiculo);
+        this.cliente = cliente;
+        this.veiculo = veiculo;
         this.valor = valor;
         this.ativo = ativo == 1;
     }

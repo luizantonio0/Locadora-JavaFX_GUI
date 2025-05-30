@@ -13,7 +13,6 @@ public class ClienteDAO extends DAO{
 
     public static void save (Cliente cliente) throws SQLException{
         try (var conexao = connect()){
-            //TODO: Tente fazer sem usar o campo ativo, para verificar se esta ativo: try catch ao tentar apagar dados
             String sql = "INSERT INTO Cliente (nome, cpf, email, rg, endereco, ativo) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = setPreparedStatementCliente(cliente, conexao, sql);
             stmt.executeUpdate();
@@ -28,7 +27,7 @@ public class ClienteDAO extends DAO{
 
     private static PreparedStatement setPreparedStatementCliente(Cliente cliente, Connection conexao, String sql) throws SQLException {
         var stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, cliente.getNome());
+        stmt.setString(1, cliente.getNome() + " " + cliente.getSobrenome());
         stmt.setString(2, cliente.getCpf());
         stmt.setString(3, cliente.getEmail());
         stmt.setString(4, cliente.getRg());

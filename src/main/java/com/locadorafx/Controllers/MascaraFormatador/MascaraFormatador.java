@@ -8,6 +8,50 @@ import javafx.scene.control.TextFormatter;
 
 public class MascaraFormatador {
 
+    public static UnaryOperator<TextFormatter.Change> formatarCpf() {
+        return change -> {
+            String novoTexto = change.getControlNewText().replaceAll("\\D", "");
+            if (novoTexto.length() > 11) return null;
+
+            if (novoTexto.length() == 11) {
+                String formatado = String.format("%s.%s.%s-%s",
+                        novoTexto.substring(0, 3),
+                        novoTexto.substring(3, 6),
+                        novoTexto.substring(6, 9),
+                        novoTexto.substring(9, 11));
+                change.setText(formatado);
+                change.setRange(0, change.getControlText().length());
+            } else {
+                change.setText(novoTexto);
+                change.setRange(0, change.getControlText().length());
+            }
+
+            return change;
+        };
+    }
+
+    public static UnaryOperator<TextFormatter.Change> formatarRg() {
+        return change -> {
+            String novoTexto = change.getControlNewText().replaceAll("\\D", "");
+            if (novoTexto.length() > 9) return null;
+
+            if (novoTexto.length() == 9) {
+                String formatado = String.format("%s.%s.%s-%s",
+                        novoTexto.substring(0, 2),
+                        novoTexto.substring(2, 5),
+                        novoTexto.substring(5, 8),
+                        novoTexto.substring(8));
+                change.setText(formatado);
+                change.setRange(0, change.getControlText().length());
+            } else {
+                change.setText(novoTexto);
+                change.setRange(0, change.getControlText().length());
+            }
+
+            return change;
+        };
+    }
+
     public static UnaryOperator<TextFormatter.Change> formatarValorMonetario() {
         return change -> {
             String digito = change.getText();
@@ -99,11 +143,7 @@ public class MascaraFormatador {
                 i--;
             }
         }
-//        String valorFormatado = valor.toString().replace(",", ".");
-//        valorFormatado
-//        valorFormatado.trim();
 
         return Double.parseDouble(valor.toString().replace(",", "."));
     }
-
 }
