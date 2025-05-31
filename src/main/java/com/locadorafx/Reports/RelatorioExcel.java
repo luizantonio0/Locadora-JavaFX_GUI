@@ -6,13 +6,16 @@ import java.io.IOException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public abstract class RelatorioExcel {
+public abstract class RelatorioExcel implements Relatorio{
+
+
+
 
     public static Workbook criarPlanilhaComDados(String[] cabecalhoString ,String[][] dados, String nomePlanilha, String nomeArquivo) throws IOException{
 
         var workbook = WorkbookFactory.create(true);
         var planilha = workbook.createSheet(nomePlanilha);
-         
+
         var cabecalho = planilha.createRow(0);
 
         for (int i = 0; i < cabecalhoString.length; i++) {
@@ -26,10 +29,12 @@ public abstract class RelatorioExcel {
             }
         }
 
-        try (var fileOut = new FileOutputStream("RelatoriosFinanceiros/" + nomeArquivo + ".xlsx")) {
+        Relatorio.criarPasta();
+
+        try (var fileOut = new FileOutputStream(pasta + nomeArquivo + ".xlsx")) {
             workbook.write(fileOut);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return workbook;
     }

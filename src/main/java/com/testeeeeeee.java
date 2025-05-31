@@ -1,15 +1,22 @@
 package com;
 
+import com.locadorafx.Models.LocacaoDAO;
+import com.locadorafx.Reports.RelatorioFinanceiroLocacao;
+import com.locadorafx.Reports.RelatorioFinanceiroLocacaoCSV;
 
-import com.locadorafx.Entities.Veiculos.FactoryVeiculos;
-
-import com.locadorafx.Entities.Veiculos.Motocicleta;
+import java.io.IOException;
 
 public class testeeeeeee {
-        public static void main(String[] args) {
-            
-        var veiculo = FactoryVeiculos.factoryVeiculo(0,"AAA0A00",20000.00, 2024, "NOVO", "CG150", "Motocicleta");
-        System.out.println(veiculo instanceof Motocicleta);
+        public static void main(String[] args) throws IOException {
+
+
+            String[] cabecalho = {"Id", "Dias", "Valor", "Data", "ClienteId", "VeiculoId", "Ativo"};
+
+            RelatorioFinanceiroLocacao relatorio = new RelatorioFinanceiroLocacao();
+            RelatorioFinanceiroLocacaoCSV relatorioCSV = new RelatorioFinanceiroLocacaoCSV();
+            relatorio.gerarRelatorio(cabecalho, LocacaoDAO.findAll(100), "RelatorioFinanceiroLocacao");
+            relatorioCSV.gerarRelatorio(cabecalho, LocacaoDAO.findAll(100), "RelatorioFinanceiroLocacao");
+            System.out.println(relatorio.getWorkbook());
 
 
     }

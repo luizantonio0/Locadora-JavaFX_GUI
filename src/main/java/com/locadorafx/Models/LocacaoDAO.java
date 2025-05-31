@@ -130,6 +130,12 @@ public class LocacaoDAO extends DAO{
 
     }
 
+    public static List<Locacao> findAll(int quantidade) {
+        List<Locacao> all = find(quantidade, true);
+        all.addAll(find(quantidade, false));
+        return all;
+    }
+
     public static List<Locacao> find(int quantidade, boolean ativo) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("""
@@ -232,5 +238,4 @@ public class LocacaoDAO extends DAO{
             return false;
         }
     }
-
 }
