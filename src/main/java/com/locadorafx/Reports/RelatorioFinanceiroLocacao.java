@@ -9,13 +9,9 @@ import com.locadorafx.Entities.Locacao.Locacao;
 
 public class RelatorioFinanceiroLocacao extends RelatorioExcel{
     @Override
-    public void gerarRelatorio(String[] cabecalhoString, List<Locacao> locacoes, String nomePlanilha) {
-        String[][] dados = Relatorio.getDados(locacoes);
-        try{
-            this.workbook = RelatorioExcel.criarPlanilhaComDados(cabecalhoString, dados, nomePlanilha, "Relatorio-Financeiro-Locacao");
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
+    public void gerarRelatorio(String[] cabecalhoString, List<Locacao> locacoes, String nomePlanilha) throws IOException {
+            this.workbook = RelatorioExcel.criarPlanilhaComDados(cabecalhoString, locacoes, nomePlanilha, "Relatorio-Financeiro-Locacao");
+
     }
 
     private Workbook workbook;

@@ -2,16 +2,16 @@ package com.locadorafx.Reports;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import com.locadorafx.Entities.Locacao.Locacao;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public abstract class RelatorioExcel implements Relatorio{
 
-
-
-
-    public static Workbook criarPlanilhaComDados(String[] cabecalhoString ,String[][] dados, String nomePlanilha, String nomeArquivo) throws IOException{
+    public static Workbook criarPlanilhaComDados(String[] cabecalhoString , List<Locacao> locacoes, String nomePlanilha, String nomeArquivo) throws IOException{
 
         var workbook = WorkbookFactory.create(true);
         var planilha = workbook.createSheet(nomePlanilha);
@@ -21,13 +21,24 @@ public abstract class RelatorioExcel implements Relatorio{
         for (int i = 0; i < cabecalhoString.length; i++) {
             cabecalho.createCell(i).setCellValue(cabecalhoString[i]);
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        for (int i = 0; i < dados.length; i++) {
+        for (int i = 0; i < locacoes.size(); i++) {
             var linha = planilha.createRow(i + 1);
-            for (int j = 0; j < dados[i].length; j++) {
-                linha.createCell(j).setCellValue(dados[i][j]);
-            }
+                linha.createCell(0).setCellValue(locacoes.get(i).getId());
+                linha.createCell(1).setCellValue(locacoes.get(i).getDias());
+                linha.createCell(2).setCellValue(locacoes.get(i).getData().format(formatter));
+                linha.createCell(3).setCellValue(locacoes.get(i).getCliente().getId());
+                linha.createCell(4).setCellValue(locacoes.get(i).getVeiculo().getId());
+                linha.createCell(5).setCellValue(locacoes.get(i).isAtivo());
+                linha.createCell(6).setCellValue(locacoes.get(i).getValor());
         }
+        planilha.setColumnWidth(5, 12 * 256);
+        planilha.autoSizeColumn(2);
+
+        var linha = planilha.createRow(locacoes.size() + 1);
+        linha.createCell(cabecalhoString.length - 1).setCellFormula("SUM(G2:G" + (locacoes.size() + 1) + ")");
+        linha.createCell(cabecalhoString.length - 2).setCellValue("Total: ");
 
         Relatorio.criarPasta();
 

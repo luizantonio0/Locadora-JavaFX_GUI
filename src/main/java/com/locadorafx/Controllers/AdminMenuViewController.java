@@ -1,7 +1,15 @@
 package com.locadorafx.Controllers;
 
 import com.locadorafx.App;
+import com.locadorafx.Models.LocacaoDAO;
+import com.locadorafx.Reports.RelatorioFinanceiroLocacao;
+import com.locadorafx.Reports.RelatorioFinanceiroLocacaoCSV;
 import javafx.fxml.FXML;
+
+import java.io.IOException;
+
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemErro;
+import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemSucesso;
 
 public class AdminMenuViewController {
 
@@ -48,5 +56,30 @@ public class AdminMenuViewController {
     @FXML
     void fecharPrograma() {
         App.setRoot("login-View");
+    }
+    @FXML
+    void gerarRelatorioCSV(){
+        String[] cabecalho = {"Id", "Dias", "Data", "ClienteId", "VeiculoId", "Ativo", "Valor"};
+
+        RelatorioFinanceiroLocacaoCSV relatorio = new RelatorioFinanceiroLocacaoCSV();
+        try {
+            relatorio.gerarRelatorio(cabecalho, LocacaoDAO.findAll(100), "RelatorioFinanceiroLocacao");
+            mensagemSucesso("Relatório gerado com sucesso!");
+        } catch (IOException e) {
+            mensagemErro(e.getMessage());
+        }
+    }
+
+    @FXML
+    void gerarRelatorioExcel() {
+        String[] cabecalho = {"Id", "Dias", "Valor", "Data", "ClienteId", "VeiculoId", "Ativo"};
+
+        RelatorioFinanceiroLocacao relatorio = new RelatorioFinanceiroLocacao();
+        try {
+        relatorio.gerarRelatorio(cabecalho, LocacaoDAO.findAll(100), "RelatorioFinanceiroLocacao");
+        mensagemSucesso("Relatório gerado com sucesso!");
+        } catch (IOException e) {
+            mensagemErro(e.getMessage());
+        }
     }
 }
