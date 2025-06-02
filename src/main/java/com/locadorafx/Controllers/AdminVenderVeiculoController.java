@@ -6,7 +6,9 @@ import com.locadorafx.Entities.Veiculos.Veiculo;
 import com.locadorafx.Models.VeiculoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,6 +16,15 @@ import javafx.scene.control.TextField;
 import static com.locadorafx.Controllers.CarregarDadosVeiculo.*;
 
 public class AdminVenderVeiculoController {
+
+    @FXML
+    private MenuItem menuItemVeiculo;
+
+    @FXML
+    private MenuItem menuItemMotocicleta;
+
+    @FXML
+    private MenuItem menuItemVan;
 
     @FXML
     private TableColumn<Veiculo, String> tableColumnAnoVeiculo;
@@ -85,6 +96,19 @@ public class AdminVenderVeiculoController {
     @FXML
     void apagarDadosEscolhidos() {
         //Talvez Tirar
+    }
+
+    @FXML
+    void alterarTipoTabela(ActionEvent event) {
+        if (event.getSource() == menuItemVeiculo) {
+            //TODO: Criar metodo para tipo especifico
+        } else if (event.getSource() == menuItemMotocicleta) {
+            //TODO: Criar metodo para tipo especifico
+        } else if (event.getSource() == menuItemVan) {
+            //TODO: Criar metodo para tipo especifico
+        } else {
+            estoque.setAll(VeiculoDAO.find(100));
+        }
     }
 
     @FXML
