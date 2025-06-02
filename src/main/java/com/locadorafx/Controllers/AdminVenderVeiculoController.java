@@ -101,7 +101,7 @@ public class AdminVenderVeiculoController {
     @FXML
     void alterarTipoTabela(ActionEvent event) {
         if (event.getSource() == menuItemVeiculo) {
-            //TODO: Criar metodo para tipo especifico
+            //TODO: Criar metodo para tipo especific
         } else if (event.getSource() == menuItemMotocicleta) {
             //TODO: Criar metodo para tipo especifico
         } else if (event.getSource() == menuItemVan) {
