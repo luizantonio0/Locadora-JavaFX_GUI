@@ -101,11 +101,11 @@ public class AdminVenderVeiculoController {
     @FXML
     void alterarTipoTabela(ActionEvent event) {
         if (event.getSource() == menuItemVeiculo) {
-            //TODO: Criar metodo para tipo especific
+            estoque.setAll(VeiculoDAO.find(100, "Automovel"));
         } else if (event.getSource() == menuItemMotocicleta) {
-            //TODO: Criar metodo para tipo especifico
+            estoque.setAll(VeiculoDAO.find(100, "Motocicleta"));
         } else if (event.getSource() == menuItemVan) {
-            //TODO: Criar metodo para tipo especifico
+            estoque.setAll(VeiculoDAO.find(100, "Van"));
         } else {
             estoque.setAll(VeiculoDAO.find(100));
         }

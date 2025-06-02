@@ -76,6 +76,30 @@ public class VeiculoDAO extends DAO{
         }
     }
 
+    public static List<Veiculo> find(int quantidade, String tipo) {
+        try (var conexao = connect()){
+            var stmt = conexao.prepareStatement("SELECT * FROM Veiculo WHERE tipo = ? ORDER BY id LIMIT ?");
+            stmt.setInt(1, quantidade);
+            stmt.setString(2, tipo);
+            try (var rs = stmt.executeQuery()) {
+                List<Veiculo> veiculos = new java.util.ArrayList<>();
+                while (rs.next()) {
+                    veiculos.add(FactoryVeiculos.factoryVeiculo(rs.getInt("id"),
+                            rs.getString("placa"),
+                            rs.getDouble("valorCompra"),
+                            rs.getInt("ano"),
+                            rs.getString("estado"),
+                            rs.getString("modelo"),
+                            rs.getString("tipo")));
+                }
+                return veiculos;
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
     public static List<Veiculo> find(int quantidade) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("SELECT * FROM Veiculo ORDER BY id LIMIT ?");
