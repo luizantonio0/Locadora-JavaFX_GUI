@@ -79,8 +79,8 @@ public class VeiculoDAO extends DAO{
     public static List<Veiculo> find(int quantidade, String tipo) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("SELECT * FROM Veiculo WHERE tipo = ? ORDER BY id LIMIT ?");
-            stmt.setInt(1, quantidade);
-            stmt.setString(2, tipo);
+            stmt.setString(1, tipo);
+            stmt.setInt(2, quantidade);
             try (var rs = stmt.executeQuery()) {
                 List<Veiculo> veiculos = new java.util.ArrayList<>();
                 while (rs.next()) {

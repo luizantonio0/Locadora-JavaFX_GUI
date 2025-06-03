@@ -108,6 +108,14 @@
                   <MenuItem mnemonicParsing="false" onAction="#abrirTelaMenu" text="Voltar" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Configuração da Tabela Veiculo">
+               <items>
+                  <MenuItem fx:id="menuItemVeiculo" mnemonicParsing="false" onAction="#alterarTipoTabela" text="Mostrar Automóveis" />
+                  <MenuItem fx:id="menuItemMotocicleta" mnemonicParsing="false" onAction="#alterarTipoTabela" text="Mostrar Motocicletas" />
+                  <MenuItem fx:id="menuItemVan" mnemonicParsing="false" onAction="#alterarTipoTabela" text="Mostrar Vans" />
+                  <MenuItem mnemonicParsing="false" onAction="#alterarTipoTabela" text="Mostrar Todos os tipos" />
+               </items>
+            </Menu>
          </menus>
       </MenuBar>
    </children>

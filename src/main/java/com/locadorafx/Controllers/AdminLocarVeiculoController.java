@@ -13,14 +13,20 @@ import com.locadorafx.Models.ClienteDAO;
 import com.locadorafx.Models.VeiculoDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class AdminLocarVeiculoController {
+
+    @FXML
+    private MenuItem menuItemMotocicleta;
+
+    @FXML
+    private MenuItem menuItemVan;
+
+    @FXML
+    private MenuItem menuItemVeiculo;
 
     @FXML
     private DatePicker datePickerInicio;
@@ -169,6 +175,19 @@ public class AdminLocarVeiculoController {
     @FXML
     void abrirTelaMenu(){
         App.setRoot("AdminMenu-View");
+    }
+
+    @FXML
+    void alterarTipoTabela(ActionEvent event) {
+        if (event.getSource() == menuItemVeiculo) {
+            estoque.setAll(VeiculoDAO.find(100, "Automovel"));
+        } else if (event.getSource() == menuItemMotocicleta) {
+            estoque.setAll(VeiculoDAO.find(100, "Motocicleta"));
+        } else if (event.getSource() == menuItemVan) {
+            estoque.setAll(VeiculoDAO.find(100, "Van"));
+        } else {
+            estoque.setAll(VeiculoDAO.find(100));
+        }
     }
 
 }
