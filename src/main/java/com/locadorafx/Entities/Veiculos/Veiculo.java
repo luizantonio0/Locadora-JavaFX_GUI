@@ -18,7 +18,7 @@ public abstract sealed class Veiculo implements IVeiculo permits Automovel, Moto
         this.placa = new Placa(placa);
         this.valorCompra = valorCompra;
         this.ano = ano;
-        this.estado = estado;
+        this.estado = estado.equals(Estado.NOVO)? Estado.DISPONIVEL : estado ;
         this.id = id;
     }
 
