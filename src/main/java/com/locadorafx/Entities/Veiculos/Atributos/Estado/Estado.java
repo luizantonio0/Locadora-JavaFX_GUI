@@ -6,3 +6,4 @@ public enum Estado {
     DISPONIVEL,
     VENDIDO
 }
+

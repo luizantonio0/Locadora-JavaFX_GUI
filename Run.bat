@@ -1,0 +1,1 @@
+java --module-path "lib/javafx-sdk-24/lib" --add-modules javafx.controls,javafx.fxml -jar "out/artifacts/LocadoraFX_jar2/LocadoraFX.jar"
