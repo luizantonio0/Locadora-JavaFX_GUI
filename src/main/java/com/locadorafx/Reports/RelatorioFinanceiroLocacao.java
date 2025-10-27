@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
-import com.locadorafx.Entities.Locacao.Locacao;
+import com.locadorafx.models.Locacao.Locacao;
 
 public class RelatorioFinanceiroLocacao extends RelatorioExcel{
     @Override

@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import static com.locadorafx.Controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
+import static com.locadorafx.controllers.SceneController.AlertMensage.mensagemTelaNaoExistente;
 
 public class App extends Application {
     private static Scene scene;

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import com.locadorafx.Entities.Locacao.Locacao;
+import com.locadorafx.models.Locacao.Locacao;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 

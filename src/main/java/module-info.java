@@ -8,7 +8,7 @@ module com.locadorafx {
     requires jasypt;
     //requires jasypt;
 
-        opens com.locadorafx.Controllers to javafx.fxml;
+        opens com.locadorafx.controllers to javafx.fxml;
         opens com.locadorafx to javafx.fxml;
         exports com.locadorafx;
         }

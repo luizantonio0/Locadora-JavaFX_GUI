@@ -1,6 +1,6 @@
 package com.locadorafx.Reports;
 
-import com.locadorafx.Entities.Locacao.Locacao;
+import com.locadorafx.models.Locacao.Locacao;
 
 import java.io.FileWriter;
 import java.io.IOException;
