@@ -6,8 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public abstract class DAO {
+public abstract class DAO<T> {
     private static final String url = "jdbc:sqlite:src/main/dataBase/data.db";
+
+    abstract void save(T object) throws SQLException;
+    abstract void update(T object) throws SQLException;
+    abstract void delete(int id) throws SQLException;
+    abstract T find(int id) throws SQLException;
+    abstract Iterable<T> findAll(int quantidade) throws SQLException;
 
     public static Connection connect() throws java.sql.SQLException{
         return DriverManager.getConnection(url);

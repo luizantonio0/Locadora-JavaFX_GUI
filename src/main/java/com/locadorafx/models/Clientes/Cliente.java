@@ -38,7 +38,7 @@ public final class Cliente extends Pessoa{
     }
 
     public void setAtivo() {
-        this.clienteAtivo = ClienteDAO.isAtivo(id);
+        this.clienteAtivo = ClienteDAO.getInstance().isAtivo(id);
     }
     public void setAtivo(boolean ativo) {
         this.clienteAtivo = ativo;

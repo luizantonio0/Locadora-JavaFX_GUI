@@ -58,7 +58,7 @@ public class CRUDClienteController {
     @FXML
     private TextField textFieldSorbenome;
 
-    private final ObservableList<Cliente> clientes = FXCollections.observableArrayList(ClienteDAO.find(30));
+    private final ObservableList<Cliente> clientes = FXCollections.observableArrayList(ClienteDAO.getInstance().findAll(30));
 
     private Cliente clienteSelecionado;
 
@@ -100,7 +100,7 @@ public class CRUDClienteController {
         clienteSelecionado.setNome(textFieldNome.getText());
         clienteSelecionado.setEndereco(textFieldEndereco.getText());
         clienteSelecionado.setSobrenome(textFieldSorbenome.getText());
-        ClienteDAO.update(clienteSelecionado);
+        ClienteDAO.getInstance().update(clienteSelecionado);
 
         //tableViewClientes.refresh();
         clientes.set(clientes.indexOf(clienteSelecionado), clienteSelecionado);
@@ -120,7 +120,7 @@ public class CRUDClienteController {
     void excluirCliente() {
         if (!clienteSelecionado.isAtivo()) {
             try {
-                ClienteDAO.delete(clienteSelecionado.getId());
+                ClienteDAO.getInstance().delete(clienteSelecionado.getId());
                 clientes.remove(clienteSelecionado);
                 tableViewClientes.setItems(clientes);
             } catch (SQLException e) {

@@ -63,7 +63,7 @@ public class AdminMenuViewController {
 
         RelatorioFinanceiroLocacaoCSV relatorio = new RelatorioFinanceiroLocacaoCSV();
         try {
-            relatorio.gerarRelatorio(cabecalho, LocacaoDAO.findAll(100), "RelatorioFinanceiroLocacao");
+            relatorio.gerarRelatorio(cabecalho, LocacaoDAO.getInstance().findAll(100), "RelatorioFinanceiroLocacao");
             mensagemSucesso("Relatório gerado com sucesso!");
         } catch (IOException e) {
             mensagemErro(e.getMessage());
@@ -76,7 +76,7 @@ public class AdminMenuViewController {
 
         RelatorioFinanceiroLocacao relatorio = new RelatorioFinanceiroLocacao();
         try {
-        relatorio.gerarRelatorio(cabecalho, LocacaoDAO.findAll(100), "RelatorioFinanceiroLocacao");
+        relatorio.gerarRelatorio(cabecalho, LocacaoDAO.getInstance().findAll(100), "RelatorioFinanceiroLocacao");
         mensagemSucesso("Relatório gerado com sucesso!");
         } catch (IOException e) {
             mensagemErro(e.getMessage());

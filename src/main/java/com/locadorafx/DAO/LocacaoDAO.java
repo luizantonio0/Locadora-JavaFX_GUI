@@ -13,10 +13,19 @@ import java.util.List;
 import static com.locadorafx.controllers.SceneController.AlertMensage.mensagemErro;
 import static com.locadorafx.models.Veiculos.FactoryVeiculos.factoryVeiculo;
 
-public class LocacaoDAO extends DAO{
+public class LocacaoDAO extends DAO<Locacao>{
+    private static LocacaoDAO instance = null;
 
-    //OK?
-    public static void save (Locacao locacao){
+    private LocacaoDAO(){}
+
+    public static LocacaoDAO getInstance() {
+        if (instance == null) {
+            instance = new LocacaoDAO();
+        }
+        return instance;
+    }
+
+    public void save (Locacao locacao){
         try (var conexao = connect()){
             String sql = "INSERT INTO Locacao (dias, dataLocacao, idCliente, idVeiculo, valor, ativo) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = setPreparedStatementVeiculo(locacao, conexao, sql);
@@ -44,8 +53,7 @@ public class LocacaoDAO extends DAO{
         return stmt;
     }
 
-    //OK?
-    public static void update (Locacao locacao){
+    public void update (Locacao locacao){
         try (var conexao = connect()){
             String sql = "UPDATE Locacao SET dias = ?, dataLocacao = ?, idCliente = ?, idVeiculo = ?,  valor = ?, ativo = ? WHERE id = ? ";
             var stmt = setPreparedStatementVeiculo(locacao, conexao, sql);
@@ -57,7 +65,7 @@ public class LocacaoDAO extends DAO{
         }
     }
 
-    public static Locacao get(int id) {
+    public Locacao find(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("""
                     
@@ -130,13 +138,13 @@ public class LocacaoDAO extends DAO{
 
     }
 
-    public static List<Locacao> findAll(int quantidade) {
-        List<Locacao> all = find(quantidade, true);
-        all.addAll(find(quantidade, false));
+    public List<Locacao> findAll(int quantidade) {
+        List<Locacao> all = findAll(quantidade, true);
+        all.addAll(findAll(quantidade, false));
         return all;
     }
 
-    public static List<Locacao> find(int quantidade, boolean ativo) {
+    public List<Locacao> findAll(int quantidade, boolean ativo) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("""
                                                      SELECT\s
@@ -215,7 +223,7 @@ public class LocacaoDAO extends DAO{
         }
     }
 
-    public static boolean isAtivo(int id) {
+    public boolean isAtivo(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("SELECT ativo FROM Locacao WHERE id = ?");
             stmt.setInt(1, id);
@@ -227,15 +235,13 @@ public class LocacaoDAO extends DAO{
         }
     }
 
-    public static boolean delete(int id) {
+    public void delete(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("DELETE FROM Locacao WHERE id = ?");
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            return true;
         } catch (SQLException e){
             System.out.println(e.getMessage());
-            return false;
         }
     }
 }

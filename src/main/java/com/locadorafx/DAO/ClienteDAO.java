@@ -9,9 +9,19 @@ import java.util.List;
 
 import static com.locadorafx.controllers.SceneController.AlertMensage.mensagemErro;
 
-public class ClienteDAO extends DAO{
+public class ClienteDAO extends DAO<Cliente>{
+    private static ClienteDAO instance = null;
 
-    public static void save (Cliente cliente) throws SQLException{
+    private ClienteDAO() {}
+
+    public static ClienteDAO getInstance() {
+        if (instance == null) {
+            instance = new ClienteDAO();
+        }
+        return instance;
+    }
+
+    public void save (Cliente cliente) throws SQLException{
         try (var conexao = connect()){
             String sql = "INSERT INTO Cliente (nome, cpf, email, rg, endereco, ativo) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = setPreparedStatementCliente(cliente, conexao, sql);
@@ -36,7 +46,7 @@ public class ClienteDAO extends DAO{
         return stmt;
     }
 
-    public static Cliente get(int id) {
+    public Cliente find(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("SELECT * FROM Cliente WHERE id = ?");
             stmt.setInt(1, id);
@@ -51,7 +61,7 @@ public class ClienteDAO extends DAO{
 
     }
 
-    public static boolean isAtivo(int id) {
+    public boolean isAtivo(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("SELECT ativo FROM Locacao WHERE idCliente = ? AND ativo = 1");
             stmt.setInt(1, id);
@@ -63,7 +73,7 @@ public class ClienteDAO extends DAO{
         }
     }
 
-    public static void update (Cliente cliente){
+    public void update (Cliente cliente){
         try (var conexao = connect()){
             String sql = "UPDATE Cliente SET nome = ?,  cpf= ?, email= ?, rg= ?, endereco = ?, ativo = ? WHERE id = ? ";
             var stmt = setPreparedStatementCliente(cliente, conexao, sql);
@@ -76,7 +86,7 @@ public class ClienteDAO extends DAO{
         }
     }
 
-    public static List<Cliente> find(int quantidade) {
+    public List<Cliente> findAll(int quantidade) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("""
                                                     SELECT * FROM Cliente
@@ -97,7 +107,7 @@ public class ClienteDAO extends DAO{
             throw new RuntimeException(e);
         }
     }
-    public static void delete(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         try (var conexao = connect()) {
             var stmt = conexao.prepareStatement("UPDATE Cliente SET nome = ?,  cpf= ?, email= ?, rg= ?, endereco = ? WHERE id = ?");
             stmt.setString(1, "Cliente removido");

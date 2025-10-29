@@ -8,9 +8,19 @@ import java.util.List;
 import static com.locadorafx.controllers.SceneController.AlertMensage.mensagemErro;
 import com.locadorafx.models.Veiculos.*;
 
-public class VeiculoDAO extends DAO{
+public class VeiculoDAO extends DAO<Veiculo>{
 
-    public static void save (Veiculo veiculo){
+    private static VeiculoDAO instance = null;
+    private VeiculoDAO(){}
+
+    public static VeiculoDAO getInstance(){
+        if (instance == null) {
+            instance = new VeiculoDAO();
+        }
+        return instance;
+    }
+
+    public void save (Veiculo veiculo){
         try (var conexao = connect()){
 
             String sql = "INSERT INTO Veiculo (valorCompra, ano, estado, marca, modelo, categoria, placa, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -26,6 +36,12 @@ public class VeiculoDAO extends DAO{
             mensagemErro(e.getMessage());
         }
     }
+
+    @Override
+    void update(Veiculo object) {
+
+    }
+
     private static PreparedStatement setPreparedStatementVeiculo(Veiculo veiculo, Connection conexao, String sql) throws SQLException {
 
         var stmt = conexao.prepareStatement(sql);
@@ -44,7 +60,7 @@ public class VeiculoDAO extends DAO{
         return stmt;
     }
 
-    public static void updateEstado(Veiculo veiculo){
+    public void updateEstado(Veiculo veiculo){
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("UPDATE Veiculo SET estado= ? WHERE id = ? ");
             stmt.setString(1,veiculo.getEstado().toString());
@@ -56,7 +72,7 @@ public class VeiculoDAO extends DAO{
         }
     }
 
-    public static Veiculo get(int id) {
+    public Veiculo find(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("SELECT * FROM Veiculo WHERE id = ?");
             stmt.setInt(1, id);
@@ -76,9 +92,9 @@ public class VeiculoDAO extends DAO{
         }
     }
 
-    public static List<Veiculo> find(int quantidade, String tipo) {
+    public List<Veiculo> findAll(int quantidade, String tipo) {
         try (var conexao = connect()){
-            var stmt = conexao.prepareStatement("SELECT * FROM Veiculo WHERE tipo = ? ORDER BY id LIMIT ?");
+            var stmt = conexao.prepareStatement("SELECT * FROM Veiculo WHERE tipo LIKE ? ORDER BY id LIMIT ?");
             stmt.setString(1, tipo);
             stmt.setInt(2, quantidade);
             try (var rs = stmt.executeQuery()) {
@@ -100,40 +116,19 @@ public class VeiculoDAO extends DAO{
         }
     }
 
-    public static List<Veiculo> find(int quantidade) {
-        try (var conexao = connect()){
-            var stmt = conexao.prepareStatement("SELECT * FROM Veiculo ORDER BY id LIMIT ?");
-            stmt.setInt(1, quantidade);
-            try (var rs = stmt.executeQuery()) {
-                List<Veiculo> veiculos = new java.util.ArrayList<>();
-                while (rs.next()) {
-                    veiculos.add(FactoryVeiculos.factoryVeiculo(rs.getInt("id"),
-                                                                rs.getString("placa"),
-                                                                rs.getDouble("valorCompra"),
-                                                                rs.getInt("ano"),
-                                                                rs.getString("estado"),
-                                                                rs.getString("modelo"),
-                                                                rs.getString("tipo")));
-                }
-                return veiculos;
-            }
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
+    public List<Veiculo> findAll(int quantidade) {
+        return findAll(quantidade, "%");
     }
-    //TODO: TESTAR
-    public static boolean delete(int id) {
+
+    public void delete(int id) {
         try (var conexao = connect()){
             var stmt = conexao.prepareStatement("DELETE FROM Veiculo WHERE id = ?");
             stmt.setInt(1, id);
 
             try (var _ = stmt.executeQuery()) {
-                return true;
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
-            return false;
         }
     }
 }

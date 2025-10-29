@@ -72,7 +72,7 @@ public class AdminLocacaoDevolverController {
     @FXML
     private TextField textFieldValorLocacao;
 
-    private final ObservableList<Locacao> locacoes = FXCollections.observableArrayList(LocacaoDAO.find(100, true));
+    private final ObservableList<Locacao> locacoes = FXCollections.observableArrayList(LocacaoDAO.getInstance().findAll(100, true));
 
     private Locacao locacaoSelecionada;
 
@@ -102,9 +102,9 @@ public class AdminLocacaoDevolverController {
     @FXML
     void filtrarLocacoes(ActionEvent event) {
         if (event.getSource() == menuItemAtiva) {
-            locacoes.setAll(LocacaoDAO.find(100, true));
+            locacoes.setAll(LocacaoDAO.getInstance().findAll(100, true));
         } else {
-            locacoes.setAll(LocacaoDAO.find(100, false));
+            locacoes.setAll(LocacaoDAO.getInstance().findAll(100, false));
         }
     }
 

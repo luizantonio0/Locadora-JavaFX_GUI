@@ -93,7 +93,7 @@ public class CadastrarVeiculoController {
 
         try {
             var veiculo = factory(textFieldPlaca.getText(), valor, Year.parse(textFieldAno.getText()), comboBoxEstado.getValue(), modeloAutomovel, modeloVan, modeloMotocicleta);
-            VeiculoDAO.save(veiculo);
+            VeiculoDAO.getInstance().save(veiculo);
             textFieldPlaca.clear(); textFieldAno.clear(); textFieldValor.clear(); comboBoxMarca.getSelectionModel().clearSelection(); comboBoxEstado.getSelectionModel().clearSelection(); comboBoxModelo.getSelectionModel().clearSelection();
             mensagemSucesso("O veículo foi cadastrado com sucesso!");
         } catch (IllegalArgumentException e){

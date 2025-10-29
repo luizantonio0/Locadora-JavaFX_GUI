@@ -5,7 +5,7 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\VSCODE_projetos\Java\Locadora-JavaFX\src\main\dataBase\data.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\VSCODE_projetos\Java\Locadora-JavaFX_GUI\src\main\dataBase\data.db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

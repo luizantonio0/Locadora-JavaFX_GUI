@@ -48,7 +48,7 @@ public class CadastrarClienteController {
         //201683799 RG Valido
         try {
             Cliente cliente = new Cliente(nome, sobrenome, cpf, email, rg, endereco);
-            ClienteDAO.save(cliente);
+            ClienteDAO.getInstance().save(cliente);
 
             textFieldCPF.clear(); textFieldEmail.clear(); textFieldEndereco.clear(); textFieldNome.clear(); textFieldRG.clear(); textFieldSobrenome.clear();
             AlertMensage.mensagemSucesso("Cliente cadastrado com sucesso!");

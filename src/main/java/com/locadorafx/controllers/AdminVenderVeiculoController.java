@@ -71,7 +71,7 @@ public class AdminVenderVeiculoController {
     @FXML
     private TextField textFieldValorVenda;
 
-    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(VeiculoDAO.find(100));
+    private final ObservableList<Veiculo> estoque = FXCollections.observableArrayList(VeiculoDAO.getInstance().findAll(100));
 
     private Veiculo veiculoSelecionado;
 
@@ -101,13 +101,13 @@ public class AdminVenderVeiculoController {
     @FXML
     void alterarTipoTabela(ActionEvent event) {
         if (event.getSource() == menuItemVeiculo) {
-            estoque.setAll(VeiculoDAO.find(100, "Automovel"));
+            estoque.setAll(VeiculoDAO.getInstance().findAll(100, "Automovel"));
         } else if (event.getSource() == menuItemMotocicleta) {
-            estoque.setAll(VeiculoDAO.find(100, "Motocicleta"));
+            estoque.setAll(VeiculoDAO.getInstance().findAll(100, "Motocicleta"));
         } else if (event.getSource() == menuItemVan) {
-            estoque.setAll(VeiculoDAO.find(100, "Van"));
+            estoque.setAll(VeiculoDAO.getInstance().findAll(100, "Van"));
         } else {
-            estoque.setAll(VeiculoDAO.find(100));
+            estoque.setAll(VeiculoDAO.getInstance().findAll(100));
         }
     }
 
@@ -120,7 +120,7 @@ public class AdminVenderVeiculoController {
     void venderVeiculo() {
         try {
             veiculoSelecionado.vender();
-            VeiculoDAO.updateEstado(veiculoSelecionado);
+            VeiculoDAO.getInstance().updateEstado(veiculoSelecionado);
             textFieldEstado.setText(veiculoSelecionado.getEstado().toString());
             AlertMensage.mensagemSucesso("O veiculo foi vendido com sucesso!!");
         } catch (IllegalStateException e) {
